@@ -17,11 +17,19 @@ The motivation for this project:
 
 -   This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
 
-The intended final products The anticipated data sources:
+The anticipated data sources:
 
 -   The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3
 -   <https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726>
 
 The intended final products:
 
-The planned analyses / visualizations / coding challenges The planned timeline
+-   Descriptive statistics in the form of tables and plots that provide information on our project objective
+-   Final products include: report and webpage with screencast
+
+The planned analyses / visualizations / coding challenges:
+
+-   Will look at key indicators such as: age, employment status, retired status, activity group participation, number of close relatives or friends, etc...
+-   Comparing them to the outcome of interest: quality of life
+
+The planned timeline
