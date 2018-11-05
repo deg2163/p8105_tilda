@@ -1,6 +1,6 @@
 ---
 title: "Proposal"
-author: "Christopher Crowe"
+author: "Christopher Crowe, Diana Ballesteros"
 date: "November 5, 2018"
 output: github_document
 ---
@@ -8,3 +8,16 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+
+Group Members:
+
+* Diana Ballesteros Gonzalez (uni: deg2163) 
+* Chris Crowe (uni: clc2229) 
+* Tanvi Jain (uni: tj2383)
+
+The tentative project title
+The motivation for this project
+The intended final products
+The anticipated data sources
+The planned analyses / visualizations / coding challenges
+The planned timeline
