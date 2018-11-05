@@ -1,0 +1,121 @@
+Bibliography
+The Irish Longitudinal Study on Ageing (TILDA), 2009-2011
+
+This bibliography includes published and unpublished works that are related 
+to ICPSR study 34315. It includes works that are based on primary
+or secondary analysis of the data, or which describe or critique those
+data or the collection methodology. 
+
+If you publish a work or know of other works that are based on these data,
+please send the complete citation and name of the ICPSR study used to:
+icpsr-biblio-notify@umich.edu 
+
+
+1. Donoghue, Orna; Horgan, N.; Savva, George; Cronin, Hilary; O'Regan,
+Claire; Kenny, Rose, "Association between timed up-and-go and memory,
+executive function, and processing speed." Journal of the American
+Geriatrics Society. Sep 2012, 60, (9), 1681 - 1686. DOI: 10.1111/j.1532-
+5415.2012.04120.x
+
+2. Fan, Chie; Savva, George; Finucane, Ciaran; Cronin, Hilary; O'Regan,
+Claire; Kenny, Rose, "Factors affecting continuous beat-to-beat orthostatic
+blood pressure response in community-dwelling older adults." Blood Pressure
+Monitoring. Aug 2012, 17, (4), 160 - 163. DOI: 10.1097/MBP.0b013e328356821f
+
+3. Gallagher, Damien; O'Regan, Claire; Savva, George; Cronin, Hillary;
+Lawlor, Brian; Kenny, Rose, "Depression, anxiety and cardiovascular
+disease: Which symptoms are associated with increased risk in community
+dwelling older adults?." Journal of Affective Disorders. Dec 2012, 142, (1-
+3), 132 - 138. DOI: https://doi.org/10.1016/j.jad.2012.04.012
+
+4. Kearney, Patricia; Cronin, Hilary; O'Regan, Claire; Kamiya, Yumiko;
+Savva, George; Whelan, Brendan; Kenny, RoseAnne, "Cohort profile: The Irish
+Longitudinal Study on Ageing." International Journal of Epidemiology. Aug
+2011, 40, (4), 877 - 884. DOI: 10.1093/ije/dyr116
+
+5. Kearney, Patricia; Cronin, Hilary; O'Regan, Claire; Kamiya, Yumiko;
+Whelan, Brendan; Kenny, Rose Anne, "Comparison of centre and home-based
+health assessments: Early experience from The Irish Longitudinal Study on
+Ageing (TILDA)." Age and Ageing. Jan 2011, 40, (1), 85 - 90. DOI:
+10.1093/ageing/afq124
+
+6. Leahy, S.; O'Halloran, A.M.; O'Leary, N.; Healy, M.; McCormack, M.;
+Kenny, R.A.; O'Connell, J., "Prevalence and correlates of diagnosed and
+undiagnosed type 2 diabetes mellitus and pre-diabetes in older adults:
+Findings from the Irish Longitudinal Study on Ageing (TILDA)." Diabetes
+Research and Clinical Practice. Dec 2015, 110, (3), 241 - 249. DOI:
+10.1016/j.diabres.2015.10.015
+
+7. Nolan, J.; Kenny, R.; O'Regan, C.; Cronin, H.; Loughman, J.; Connolly,
+E.; Kearney, P.; Loane, E.; Beatty, S., "Macular pigment optical density in
+an ageing Irish population: The Irish Longitudinal Study on Ageing."
+Ophthalmic Research. 2010, 44, (2), 131 - 139. DOI: 10.1159/000315531
+
+8. Nolan, John; Feeney, Joanne; Kenny, Rose Anne; Cronin, Hilary; O'Regan,
+Claire; Savva, George; Loughman, James; Finucane, Ciaran; Connolly, Eithne;
+Meagher, Katie; Beatty, Stephen, "Education is positively associated with
+macular pigment: The Irish Longitudinal Study on Ageing (TILDA)."
+Investigative Ophthalmology and Visual Science. 2012/11/27, 53, (12), 7855
+- 7861.
+
+9. O'Sullivan, Michael; Brennan, Sabina; Lawlor, Brian A.; Hannigan,
+Caoimhe; Robertson, Ian H.; Pertl, Maria M., "Cognitive functioning among
+cognitively intact dementia caregivers compared to matched self-selected
+and population controls." Aging and Mental Health. in press 2018,. DOI:
+10.1080/13607863.2018.1428937
+
+10. Peklar, Jure; Henman, Martin Charles; Richardson, Kathryn; Kos, Mitja;
+Kenny, Rose Anne, "Food supplement use in the community dwelling population
+aged 50 and over in the Republic of Ireland." Complementary Therapies in
+Medicine. Aug 2013, 21, (4), 333 - 341. DOI:
+https://doi.org/10.1016/j.ctim.2013.06.004
+
+11. Regan, Claire; Kearney, Patricia; Cronin, Hilary; Savva, George;
+Lawlor, Brian; Kenny, Roseanne, "Oscillometric measure of blood pressure
+detects association between orthostatic hypotension and depression in
+population based study of older adults." BMC Psychiatry. Oct 2013, 13, 266.
+DOI: 10.1186/1471-244X-13-266
+
+12. Regan, Claire; Kearney, Patricia; Savva, George; Cronin, Hilary; Kenny,
+Rose Anne, "Age and sex differences in prevalence and clinical correlates
+of depression: First results from The Irish Longitudinal Study on Ageing."
+International Journal of Geriatric Psychiatry. Dec 2013, 28, (12), 1280 -
+1287. DOI: 10.1002/gps.3955
+
+13. Richardson, Kathryn; Kenny, Rose Anne; Peklar, Jure; Bennett, Kathleen,
+"Agreement between patient interview data on prescription medication use
+and pharmacy records in those aged older than 50 years varied by
+therapeutic group and reporting of indicated health conditions." Journal of
+Clinical Epidemiology. Nov 2013, 66, (11), 1308 - 1316. DOI:
+https://doi.org/10.1016/j.jclinepi.2013.02.016
+
+14. Romero-Ortuno, Roman; O'Connell, Matthew; Finucane, Ciaran; Soraghan,
+Christopher; Fan, Chie Wei; Kenny, Rose Anne, "Insights into the clinical
+management of the syndrome of supine hypertension-orthostatic hypotension
+(SH-OH): The Irish Longitudinal Study on Ageing (TILDA)." BMC Geriatrics.
+Jul 2013, 13, (73),. DOI: 10.1186/1471-2318-13-73
+
+15. Savva, George; Donoghue, Orna; Horgan, Frances; O'Regan, Claire;
+Cronin, Hilary; Kenny, Rose Anne, "Using timed up-and-go to identify frail
+members of the older population." Journals of Gerontology, Series A:
+Biological Sciences and Medical Sciences. Apr 2013, 68, (4), 441 - 446.
+DOI: 10.1093/gerona/gls190
+
+16. Savva, George; Maty, Siobhan; Setti, Annalisa; Feeney, Joanne,
+"Cognitive and physical health of the older populations of England, the
+United States, and Ireland: International comparability of The Irish
+Longitudinal Study on Ageing." Journal of the American Geriatrics Society.
+May 2013, 61, (s2), S291 - S298. DOI: 10.1111/jgs.12196
+
+17. Sexton, Eithne; King-Kallimanis, Bellinda; Conroy, Ronan; Hickey, Anne,
+"Psychometric evaluation of the CASP-19 quality of life scale in an older
+Irish cohort." Quality of Life Research. Nov 2013, 22, (9), 2549 - 2559.
+DOI: 10.1007/s11136-013-0388-7
+
+18. Stokes, Jeffrey E., "Mutual influence and older married adults anxiety
+symptoms: Results from the Irish Longitudinal Study on Ageing."
+Gerontologist. in press 2016,. DOI: 10.1093/geront/gnv147
+
+19. Whelan, Brendan; Savva, George, "Design and methodology of The Irish
+Longitudinal Study on Ageing." Journal of the American Geriatrics Society.
+May 2013, 61, (s2), S265 - S268. DOI: 10.1111/jgs.12199

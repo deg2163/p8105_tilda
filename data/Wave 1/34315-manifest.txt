@@ -1,0 +1,73 @@
+File Manifest for ICPSR 34315
+
+Kenny, Rose Anne. The Irish Longitudinal Study on Ageing (TILDA), 2009-
+2011. ICPSR34315-v2. Ann Arbor, MI: Inter-university Consortium for
+Political and Social Research [distributor], 2018-08-01.
+http://doi.org/10.3886/ICPSR34315.v2
+
+Details on the version history can be found below the file listings.
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    34315-descriptioncitation.pdf       -       -         -       2018-08-03  -
+
+    34315-related_literature.txt        -       -         -       daily       -
+
+    34315-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 The Irish Longitudinal Study on Ageing (TILDA), 2009-2011
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    34315-0001-Codebook-derived_variables.pdf -       -         -       2018-08-01  491b7a1f9bc25c1a32b61c8045693a93
+
+    34315-0001-Codebook.pdf             -       -         -       2018-08-01  ec4904439b9f0ca535c336aea7e745c9
+
+    34315-0001-Data.dta                 -       8,504     1585    2018-08-01  e1ef3b2e95438af3374c9d2064aa5123
+
+    34315-0001-Data.rda                 -       8,504     1585    2018-08-01  497812af69947186bc54194c5d7452a6
+
+    34315-0001-Data.sav                 -       8,504     1585    2018-08-01  c371efb3af82a4f0bd84b5bc7991ef07
+
+    34315-0001-Data.stc                 -       8,504     1585    2018-08-01  c180407e05ba9c92a6ca4d5bb4bfea75
+
+    34315-0001-Data.tsv                 -       8,504     1585    2018-08-01  ccffd7a7bb0b2354f0d046f5bea5f9e4
+
+    34315-0001-Data.txt                 5024    8,504     1585    2018-08-01  40a5e43248387a20ae1edea32e9a3fae
+
+    34315-0001-Documentation-release_guide.pdf -       -         -       2018-08-01  d73b1a2b32d625bfcd3eb58304b0fd85
+
+    34315-0001-Documentation-release_notes.pdf -       -         -       2018-08-01  2c71261603ad5406a9b32b57508aa067
+
+    34315-0001-Documentation-tilda_crosswalk.xlsx -       -         -       2018-08-01  a95500de606f1b1fa20e7cb81d5954a1
+
+    34315-0001-Documentation-var_anonymisation.pdf -       -         -       2018-08-01  2559e467dece23eef95bb342bda857eb
+
+    34315-0001-Questionnaire.pdf        -       -         -       2018-08-01  49e0288a004299d9807a9b9533b1cedb
+
+    34315-0001-Report-designrpt.pdf     -       -         -       2018-08-01  a250cf3c528b52f5516e67724187b0d8
+
+    34315-0001-Setup.dct                -       -         -       2018-08-01  bf5d064c509a707dfaeaf9f08a740694
+
+    34315-0001-Setup.do                 -       -         -       2018-08-01  372d7edab3a5f9da8a585ef74dc8ed58
+
+    34315-0001-Setup.sas                -       -         -       2018-08-01  a10cdc9d32b86a00aa061141baf49fb9
+
+    34315-0001-Setup.sps                -       -         -       2018-08-01  5b4a21268b19c022ca979f5923d8aae5
+
+    34315-0001-Supplemental_syntax.do   -       -         -       2018-08-01  f7c3051dd14b9577dcb7a57eb9ef0f2c
+
+    34315-0001-Supplemental_syntax.sas  -       -         -       2018-08-01  48e6b8bb3adac7d97eeff357924a3b3e
+
+
+Version History
+
+2018-08-01 The data file was replaced with an anonymized version supplied
+by the P.I. Additional documentation supplied by the P.I. and a crosswalk
+created by ICPSR were also added to the collection.
