@@ -1,6 +1,6 @@
 ---
 title: "Proposal"
-author: "Christopher Crowe, Diana Ballesteros"
+author: "Christopher Crowe, Diana Ballesteros, & Tanvi Jain"
 date: "November 5, 2018"
 output: github_document
 ---

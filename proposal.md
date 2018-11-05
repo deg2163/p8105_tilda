@@ -1,6 +1,6 @@
 Proposal
 ================
-Christopher Crowe, Diana Ballesteros
+Christopher Crowe, Diana Ballesteros, & Tanvi Jain
 November 5, 2018
 
 Group Members:
