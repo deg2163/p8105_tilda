@@ -35,7 +35,14 @@ knitr::opts_chunk$set(echo = TRUE)
 
 **The planned analyses / visualizations / coding challenges:**
 
-* Will look at key indicators such as: age, employment status, retired status, activity group participation, number of close relatives or friends, etc...
+* ICD-10 code distribution for Wave 2 and 3 (potentially use shiny)
+* Will look at key indicators such as: age, employment status, retired status, activity group participation, and number of close relatives or friends
 * Comparing them to the outcome of interest: quality of life
 
 **The planned timeline:**
+
+* Nov 12th-16th: Project review meeting 
+* Week of Nov 19th: Meet up to work on the report and website  
+* Week of Nov 26th: Make any last edits on the report and website and begin screencast 
+* December 3rd: Add screencast to website and complete final edits 
+* Dec 6th: Report, webcast, and web page due 
