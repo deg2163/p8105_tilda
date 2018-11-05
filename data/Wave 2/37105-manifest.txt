@@ -1,0 +1,59 @@
+File Manifest for ICPSR 37105
+
+Kenny, Rose Anne. The Irish Longitudinal Study on Ageing (TILDA), 2012-
+2013. ICPSR37105-v1. Ann Arbor, MI: Inter-university Consortium for
+Political and Social Research [distributor], 2018-07-30.
+http://doi.org/10.3886/ICPSR37105.v1
+
+
+Study-level Documentation
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37105-descriptioncitation.pdf       -       -         -       2018-08-10  -
+
+    37105-manifest.txt                  -       -         -       daily       -
+
+
+DS0001 The Irish Longitudinal Study on Ageing (TILDA), 2012-2013
+
+    Filename                            Record  Record    Var.    Date        MD5
+                                        Length  Count     Count   Updated     Checksum
+
+    37105-0001-Codebook-derived_variables.pdf -       -         -       2018-07-30  9a28c3b362cae591e78107ac57b18e48
+
+    37105-0001-Codebook.pdf             -       -         -       2018-07-30  7de545877913f1fe968f7412a317c5e9
+
+    37105-0001-Data.dta                 -       7,207     333     2018-07-30  5b86c625b95ee2ea7ebb7230b0955317
+
+    37105-0001-Data.rda                 -       7,207     333     2018-07-30  53043a696c66f592c8cabf267c051851
+
+    37105-0001-Data.sav                 -       7,207     333     2018-07-30  6bec481d216bbd198f6080304a820cee
+
+    37105-0001-Data.stc                 -       7,207     333     2018-07-30  7412c55f8afb44973d93c6c225b89786
+
+    37105-0001-Data.tsv                 -       7,207     333     2018-07-30  866ff1dfcfbf56a5ededb089e2a7a0ce
+
+    37105-0001-Data.txt                 806     7,207     333     2018-07-30  7d578c9bb74c1639c766e6a48fda29a2
+
+    37105-0001-Documentation-release_guide.pdf -       -         -       2018-07-30  722d53a437d98e2cc011fb139bde6a8d
+
+    37105-0001-Documentation-tilda_crosswalk.xlsx -       -         -       2018-07-30  a95500de606f1b1fa20e7cb81d5954a1
+
+    37105-0001-Documentation-var_anonymisation.pdf -       -         -       2018-07-30  eb6441b247ff4a1f6ae1902f8d5c192c
+
+    37105-0001-Questionnaire.pdf        -       -         -       2018-07-30  31a8d3f4a33ac853b3569bcf577bda40
+
+    37105-0001-Setup.dct                -       -         -       2018-07-30  ac03ddd2a45e0e9bc5ab880ed02a9e3c
+
+    37105-0001-Setup.do                 -       -         -       2018-07-30  912ccb014270808936b492d57f112703
+
+    37105-0001-Setup.sas                -       -         -       2018-07-30  cc8bfd5abbedcff770bbe2bd54b8a9ca
+
+    37105-0001-Setup.sps                -       -         -       2018-07-30  ffc391ad83b8f5c4b9fcd60b67f92085
+
+    37105-0001-Supplemental_syntax.do   -       -         -       2018-07-30  e37ad9925d5e5392550b6dd5aaeb7e78
+
+    37105-0001-Supplemental_syntax.sas  -       -         -       2018-07-30  050851e2cd609f5f40472f5852f252ea
+
