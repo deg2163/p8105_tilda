@@ -19,7 +19,9 @@ Tentative project title:
 
 * Analysis of a Longitudinal Study on Ageing Conducted in Ireland 
 
-The motivation for this project
+The motivation for this project:
+
+* This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
 
 The intended final products
 The anticipated data sources:
