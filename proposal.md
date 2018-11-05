@@ -9,4 +9,8 @@ Group Members:
 -   Chris Crowe (uni: clc2229)
 -   Tanvi Jain (uni: tj2383)
 
-The tentative project title The motivation for this project The intended final products The anticipated data sources The planned analyses / visualizations / coding challenges The planned timeline
+Tentative project title: \* Analysis of a Longitudinal Study on Ageing Conducted in Ireland
+
+The motivation for this project The intended final products:
+
+The anticipated data sources The planned analyses / visualizations / coding challenges The planned timeline
