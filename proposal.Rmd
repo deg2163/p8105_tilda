@@ -36,7 +36,7 @@ knitr::opts_chunk$set(echo = TRUE)
 **The planned analyses / visualizations / coding challenges:**
 
 * ICD-10 code distribution for Wave 2 and 3 (potentially use shiny)
-* Will look at key indicators such as: age(AGE), employment status(WE001), sex(SEX), retired status, activity group participation, and number of close relatives or friends
+* Will look at key indicators such as: age(AGE), employment status(WE001), sex(SEX), retired status, activity group participation, marital status (CS006), education (DM001), and number of close relatives or friends
 * Comparing them to the outcome of interest: quality of life
 
 **The planned timeline:**
