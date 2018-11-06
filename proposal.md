@@ -29,34 +29,16 @@ November 5, 2018
 
 **The planned analyses / visualizations / coding challenges:**
 
--   ICD-10 code distribution for Wave 2 and 3 (potentially use shiny)
--   Will look at key indicators such as: retired status, marital status (CS006), education (DM001), weight in kg (WEIGHT), mini mental state examination(COGMMSE\_HA), BMI(FRBMI), loneliness(MHucla\_loneliness), total financial assets(INCASSassets5, quintiles), and number of close relatives or friends (SOCsocnet), self-rated physical health (PH001) and mental health (PH002)
-
-Visualizations:
+Planned Analyses / Visualizations:
 
 -   ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females.
 -   Loneliness: spaghetti plot of loneliness over time for males who were widowed at baseline.
 -   Physical & Mental/Emotional Health: hexagonal heatmap of self-rated physical health vs. mental/emotional health among all individuals in Wave 3.
 -   Quality of Life: density plots of the distribution of total scores on the CASP-19 by age group in Wave 2.
 
-All:
+Coding challenges:
 
--   physical activity(IPAQexercise3, low/moderate/high)
--   age(AGE)
--   employment status(employ in Waves 2&3 and WE001 in Wave 1)
-
-Wave 1:
-
--   sex(SEX)
--   income (INCASSETSweklyHHdisy)
-
-Wave 3:
-
--   number of close relatives or friends (SOCsocnet)
-
--   Physical activity levels (IPAQexercise3, low/moderate/high) changes over time
--   Comparing them to the outcome of interest: quality of life (MHcasp19\_total)
--   Coding challenges: combining data from multiple waves with different variable names
+-   Combining data from multiple waves with different variable names
 
 **The planned timeline:**
 
