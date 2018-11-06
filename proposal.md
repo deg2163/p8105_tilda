@@ -30,8 +30,21 @@ November 5, 2018
 **The planned analyses / visualizations / coding challenges:**
 
 -   ICD-10 code distribution for Wave 2 and 3 (potentially use shiny)
--   Will look at key indicators such as: age(AGE), employment status(WE001), sex(SEX), retired status, activity group participation, marital status (CS006), education (DM001), weight in kg (WEIGHT), mini mental state examination(COGMMSE\_HA), BMI(FRBMI), social class(SESsocial\_class), total financial assets(INCASSassets5, quintiles), physical activity(IPAQexercise3, low/moderate/high) and number of close relatives or friends
--   Comparing them to the outcome of interest: quality of life
+-   Will look at key indicators such as: retired status, marital status (CS006), education (DM001), weight in kg (WEIGHT), mini mental state examination(COGMMSE\_HA), BMI(FRBMI), , total financial assets(INCASSassets5, quintiles), and number of close relatives or friends (SOCsocnet), social status ()
+
+All: \* physical activity(IPAQexercise3, low/moderate/high) \* age(AGE) \* employment status(employ in Waves 2&3 and WE001 in Wave 1)
+
+Wave 1:
+
+-   sex(SEX)
+-   income (INCASSETSweklyHHdisy)
+
+Wave 3: \* number of close relatives or friends (SOCsocnet)
+
+-   As you get older whether, feelings of loneliness (MHucla\_lonliness) is due to age (AGE) controlling for marital status (CS006) and group participation
+-   Physical activity levels (IPAQexercise3, low/moderate/high) changes over time
+-   Comparing them to the outcome of interest: quality of life (MHcasp19\_total)
+-   Coding challenges: combining data from multiple waves with different variable names
 
 **The planned timeline:**
 
