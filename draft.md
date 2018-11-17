@@ -95,5 +95,14 @@ spaghetti =
       wave == "MHUCLA_LONELINESS_2" ~ 2, 
       wave == "MHUCLA_LONELINESS_3" ~ 3
   )) %>% 
-  janitor::clean_names() 
+  janitor::clean_names()
+
+spaghetti %>% 
+  filter(sex == "Male", loneliness_value != "NA") %>% 
+  ggplot(aes(x = wave, y = loneliness_value, color = id)) +
+  geom_line() +
+  theme_bw() +
+  theme(legend.position = "none")
 ```
+
+![](draft_files/figure-markdown_github/spaghetti-1.png)
