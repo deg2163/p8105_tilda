@@ -28,7 +28,7 @@ Creating Graphs
 
 ```{r heatmap}
 heatmap = wave_3_data %>% 
-  select(PH001, PH002) %>% 
+  select(PH001, PH002, SEX) %>% 
   mutate(physical = case_when(
     PH001 == "(01) Excellent" ~ "Excellent", 
     PH001 == "(02) Very Good" ~ "Very Good",
@@ -41,14 +41,31 @@ heatmap = wave_3_data %>%
     PH002 == "(02) Very Good" ~ "Very Good",
     PH002 == "(03) Good" ~ "Good", 
     PH002 == "(04) Fair" ~ "Fair", 
-    PH002 == "(05) Poor" ~ "Poor"), 
+    PH002 == "(05) Poor" ~ "Poor"),
+  
+  sex = case_when(
+    SEX == "(1) Male" ~ "Male",
+    SEX == "(2) Female" ~ "Female"
+  ),
   
   physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
+  
   mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor"))
         ) %>% 
-  select(-PH001, -PH002)
+  select(-PH001, -PH002, -SEX)
 
-heatmap %>% ggplot(aes(x = physical, y = mental)) +  geom_hex()
+heatmap %>%
+  ggplot(aes(x = physical, y = mental, color = ..n..)) +
+  geom_count(alpha = 0.8) +
+  labs(
+    x = "Self-Rated Physical Health",
+    y = "Self-Rated Mental Health"
+  ) +
+  facet_grid(~sex) +
+  theme_bw() +
+  theme(legend.position = "none")
+
+
 
 ```
 
