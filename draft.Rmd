@@ -27,7 +27,12 @@ wave_3_data = da37106.0001
 Creating Graphs
 
 ```{r}
-wave_3_data %>% 
-  select(PH001, PH002)
+heatmap = wave_3_data %>% 
+  select(PH001, PH002) %>% 
+  mutate(physical = case_when(
+    PH001 == "(01) Excellent" ~ "Excellent"
+    ))
+    
+
 ```
 
