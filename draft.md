@@ -72,11 +72,9 @@ wave_3_data = wave_3_data %>%
 spaghetti = 
   merge(wave_1_data, wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
-<<<<<<< HEAD
+
   select(ID, SEX.x, CS006, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  arrange(ID)
-=======
-  select(SEX.x, CS006, MHUCLA_LONELINESS) %>% 
+  arrange(ID) %>% 
   mutate(sex = case_when(
     SEX.x == "(1) Male" ~ "Male",
     SEX.x == "(2) Female" ~ "Female"
@@ -90,5 +88,4 @@ spaghetti =
       CS006 == "(6) Widowed" ~ "Widowed"
 )) %>% 
   filter(marital_status == "Widowed")
->>>>>>> 7df5ae92c6c32e282bf5fd2786a65abf4a40df4c
 ```
