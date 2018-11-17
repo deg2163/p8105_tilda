@@ -130,3 +130,120 @@ bar_graph %>%
 ```
 
 ![](draft_files/figure-markdown_github/bar_graph-1.png)
+
+``` r
+### Baseline 0
+
+baseline_loneliness_0 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 0 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_0 = baseline_loneliness_0 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 1
+
+baseline_loneliness_1 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 1 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_1 = baseline_loneliness_1 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 2
+
+baseline_loneliness_2 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 2 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_2 = baseline_loneliness_2 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 3
+
+
+baseline_loneliness_3 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 3 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_3 = baseline_loneliness_3 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 4
+
+baseline_loneliness_4 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 4 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_4 = baseline_loneliness_4 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+
+
+### Baseline 5
+
+### Baseline 6
+
+### Baseline 7
+
+### Baseline 8
+
+### Baseline 9
+
+### Baseline 10
+```
