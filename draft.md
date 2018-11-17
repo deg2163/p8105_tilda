@@ -62,5 +62,19 @@ heatmap %>%
 ``` r
 spaghetti = 
   merge(wave_1_data, wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID")
+  merge(wave_3_data, by = "ID") %>% 
+  select(SEX.x, CS006, MHUCLA_LONELINESS) %>% 
+  mutate(sex = case_when(
+    SEX.x == "(1) Male" ~ "Male",
+    SEX.x == "(2) Female" ~ "Female"
+  ),
+    marital_status = case_when(
+      CS006 == "(1) Married" ~ "Married",
+      CS006 == "(2) Living with a partner as if married" ~ "Cohabitation",
+      CS006 == "(3) Single(never married)" ~ "Single",
+      CS006 == "(4) Separated" ~ "Separated",
+      CS006 == "(5) Divorced" ~ "Divorced",
+      CS006 == "(6) Widowed" ~ "Widowed"
+)) %>% 
+  filter(marital_status == "Widowed")
 ```
