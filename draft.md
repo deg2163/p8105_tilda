@@ -18,7 +18,7 @@ wave_3_data = da37106.0001
 Creating Graphs
 
 ``` r
-heatmap = wave_3_data %>% 
+countplot = wave_3_data %>% 
   select(PH001, PH002, SEX) %>% 
   mutate(physical = case_when(
     PH001 == "(01) Excellent" ~ "Excellent", 
@@ -45,7 +45,7 @@ heatmap = wave_3_data %>%
         ) %>% 
   select(-PH001, -PH002, -SEX)
 
-heatmap %>%
+countplot %>%
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
@@ -87,5 +87,13 @@ spaghetti =
       CS006 == "(5) Divorced" ~ "Divorced",
       CS006 == "(6) Widowed" ~ "Widowed"
 )) %>% 
-  filter(marital_status == "Widowed")
+  filter(marital_status == "Widowed") %>% 
+  select(-SEX.x, -CS006) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+      wave == "MHUCLA_LONELINESS_1" ~ 1, 
+      wave == "MHUCLA_LONELINESS_2" ~ 2, 
+      wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  janitor::clean_names() 
 ```
