@@ -34,11 +34,15 @@ heatmap = wave_3_data %>%
     PH002 == "(04) Fair" ~ "Fair", 
     PH002 == "(05) Poor" ~ "Poor"), 
   
-  physical = as.factor(physical), 
-  mental = as.factor(mental)
+  physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
+  mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor"))
         ) %>% 
   select(-PH001, -PH002)
+
+heatmap %>% ggplot(aes(x = physical, y = mental)) +  geom_hex()
 ```
+
+![](draft_files/figure-markdown_github/heatmap-1.png)
 
 ``` r
 spaghetti = 
