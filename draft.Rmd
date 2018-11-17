@@ -30,9 +30,22 @@ Creating Graphs
 heatmap = wave_3_data %>% 
   select(PH001, PH002) %>% 
   mutate(physical = case_when(
-    PH001 == "(01) Excellent" ~ "Excellent"
-    ))
+    PH001 == "(01) Excellent" ~ "Excellent", 
+    PH001 == "(02) Very Good" ~ "Very Good",
+    PH001 == "(03) Good" ~ "Good", 
+    PH001 == "(04) Fair" ~ "Fair", 
+    PH001 == "(05) Poor" ~ "Poor"), 
     
-
+  mental = case_when(
+    PH002 == "(01) Excellent" ~ "Excellent", 
+    PH002 == "(02) Very Good" ~ "Very Good",
+    PH002 == "(03) Good" ~ "Good", 
+    PH002 == "(04) Fair" ~ "Fair", 
+    PH002 == "(05) Poor" ~ "Poor"), 
+  
+  physical = as.factor(physical), 
+  mental = as.factor(mental)
+        ) %>% 
+  select(-PH001, -PH002)
 ```
 
