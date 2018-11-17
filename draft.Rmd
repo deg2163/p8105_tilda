@@ -26,7 +26,7 @@ wave_3_data = da37106.0001
 
 Creating Graphs
 
-```{r heatmap}
+```{r countplot}
 countplot = wave_3_data %>% 
   select(PH001, PH002, SEX) %>% 
   mutate(physical = case_when(
@@ -113,5 +113,10 @@ spaghetti %>%
   theme(legend.position = "none")
 ```
 
-
+```{r bar_graph}
+# ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
+bar_graph = 
+  wave_3_data %>% 
+  select(ICD10_01:ICD10_16)
+```
 

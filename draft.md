@@ -57,7 +57,7 @@ countplot %>%
   theme(legend.position = "none")
 ```
 
-![](draft_files/figure-markdown_github/heatmap-1.png)
+![](draft_files/figure-markdown_github/countplot-1.png)
 
 ``` r
 wave_1_data = wave_1_data %>% 
@@ -106,3 +106,10 @@ spaghetti %>%
 ```
 
 ![](draft_files/figure-markdown_github/spaghetti-1.png)
+
+``` r
+# ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
+bar_graph = 
+  wave_3_data %>% 
+  select(ICD10_01:ICD10_16)
+```
