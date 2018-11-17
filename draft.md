@@ -60,7 +60,18 @@ heatmap %>%
 ![](draft_files/figure-markdown_github/heatmap-1.png)
 
 ``` r
+wave_1_data = wave_1_data %>% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
+
+wave_2_data = wave_2_data %>% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+
+wave_3_data = wave_3_data %>% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+
 spaghetti = 
   merge(wave_1_data, wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID")
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, SEX.x, CS006, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  arrange(ID)
 ```
