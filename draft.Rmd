@@ -117,6 +117,22 @@ spaghetti %>%
 # ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
 bar_graph = 
   wave_3_data %>% 
-  select(ICD10_01:ICD10_16)
+  select(ID, ICD10_01:ICD10_16) %>% 
+  summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
+            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
+            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
+            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
+            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
+            total_16 = sum(ICD10_16)) %>% 
+  gather(key = icd_code, value = total, total_01:total_16) %>% 
+  separate(icd_code, into = c("total_char","icd_code"), sep = "_") %>% 
+  select(-total_char) %>% 
+  mutate(burden = total/sum(total)*100)
+ 
+
+bar_graph %>% 
+  ggplot(aes(x = reorder(icd_code, -burden), y = burden)) +
+  geom_bar(stat = "identity")
+  
 ```
 
