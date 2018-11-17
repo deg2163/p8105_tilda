@@ -39,3 +39,9 @@ heatmap = wave_3_data %>%
         ) %>% 
   select(-PH001, -PH002)
 ```
+
+``` r
+spaghetti = 
+  merge(wave_1_data, wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID")
+```
