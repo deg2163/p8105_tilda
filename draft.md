@@ -263,16 +263,270 @@ baseline_4 = baseline_loneliness_4 %>%
     geom_smooth(se = FALSE)
 
 
-
 ### Baseline 5
+
+baseline_loneliness_5 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 5 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_5 = baseline_loneliness_5 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
 
 ### Baseline 6
 
+baseline_loneliness_6 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 6 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_6 = baseline_loneliness_6 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
 ### Baseline 7
+
+baseline_loneliness_7 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 7 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_7 = baseline_loneliness_7 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
 
 ### Baseline 8
 
+baseline_loneliness_8 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 8 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_8 = baseline_loneliness_8 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
 ### Baseline 9
 
+baseline_loneliness_9 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 9 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_9 = baseline_loneliness_9 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
 ### Baseline 10
+
+baseline_loneliness_10 = wave_1_data %>% 
+  filter(MHUCLA_LONELINESS_1 == 10 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+
+baseline_10 = baseline_loneliness_10 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+(baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
 ```
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 5.2454e-017
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 2.0661e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 2.1055e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.9961e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.0184e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 2.3477e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.1404e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.2425e-016
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 1.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 0
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : span too small. fewer data values than degrees of freedom.
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 1.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 0
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+![](draft_files/figure-markdown_github/unnamed-chunk-1-1.png)
