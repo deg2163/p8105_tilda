@@ -121,12 +121,41 @@ bar_graph =
   gather(key = icd_code, value = total, total_01:total_16) %>% 
   separate(icd_code, into = c("total_char","icd_code"), sep = "_") %>% 
   select(-total_char) %>% 
-  mutate(burden = total/sum(total)*100)
+  mutate(burden = total/sum(total)*100) %>% 
+  mutate(disease = case_when(
+    icd_code == "01" ~ "Infectious diseases",
+    icd_code == "02" ~ "Neoplasms",
+    icd_code == "03" ~ "Blood diseases",
+    icd_code == "04" ~ "Nutritional/ metabolic diseases",
+    icd_code == "05" ~ "Mental/behavioral disorders",
+    icd_code == "06" ~ "Nervous system diseases",
+    icd_code == "07" ~ "Eye diseases",
+    icd_code == "08" ~ "Ear diseases",
+    icd_code == "09" ~ "Circulatory system diseases",
+    icd_code == "10" ~ "Respiratory system diseases",
+    icd_code == "11" ~ "Digestive system diseases",
+    icd_code == "12" ~ "Skin diseases",
+    icd_code == "13" ~ "Muscloskeletal system diseases",
+    icd_code == "14" ~ "Genitourinary system diseases",
+    icd_code == "15" ~ "Perinatal conditions",
+    icd_code == "16" ~ "Congenital malformations"
+  ))
  
 
 bar_graph %>% 
-  ggplot(aes(x = reorder(icd_code, -burden), y = burden)) +
-  geom_bar(stat = "identity")
+  ggplot(aes(x = reorder(disease, -burden), y = burden)) +
+  geom_bar(stat = "identity") + 
+  labs(
+    title = "Proportion of people with specified diseases",
+    x = "Disease",
+    y = "Proportion (%)"
+  ) + 
+  viridis::scale_color_viridis(
+    name = "Location", 
+    discrete = TRUE
+  ) + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, size = 7))
 ```
 
 ![](draft_files/figure-markdown_github/bar_graph-1.png)
