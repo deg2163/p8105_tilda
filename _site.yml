@@ -1,10 +1,17 @@
-name: "Yay internet!"
+name: "Final Project"
 output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "About"
+    - text: "About Us"
       href: about.html
+    - text: "Data Dashboard"
+      href: Final_Report.html
+    - icon: fa-envelope fa-lg
+      href: mailto:<deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu>
+    - icon: fa-github fa-lg
+      href: https://github.com/deg2163/p8105_tilda.github.io
+
 output:
   html_document:
     theme: flatly

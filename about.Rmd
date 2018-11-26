@@ -1,7 +1,8 @@
 ---
-title: "Holy cow!"
-output:
-  html_document: 
-    toc: true
-    toc_float: true
+title: "About"
 ---
+### The Irish Longitudinal Study on Ageing (TILDA)
+
+<br> 
+
+The project was developed from the [TILDA website](https://tilda.tcd.ie). 

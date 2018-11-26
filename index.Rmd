@@ -1,13 +1,44 @@
 ---
-title: "Welcome to my website"
+title: "Analysis of a Longitudinal Study on Ageing Conducted in Ireland"
 ---
+<br> 
+<br> 
+<center>
+<img src ="images/old_couple_1.jpg" style="width:25%">
+<img src ="images/old_couple_3.jpg" style="width:25%">
+<img src ="images/old_couple_2.png" style="width:25%">
+</center> 
+<br> 
+<br> 
 
-### Diana E. Ballesteros Gonzalez
+### Diana Ballesteros | Chris Crowe | Tanvi Jain 
 
-Welcome to my website. Please feel free to send me an e-mail if you have any questions by clicking the top right envelope or you can send me an [email](deg2163@cumc.columbia) here. 
+**The motivation for this project:**
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+* This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+**The anticipated data sources:**
+
+* The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3
+* https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726
+
+**The intended final products:** 
+
+* Descriptive statistics in the form of tables and plots that provide information on our project objective
+* Final products include: report and webpage with screencast
+
+**The planned analyses / visualizations / coding challenges:**
+
+Planned Analyses / Visualizations:
+
+* ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
+* Loneliness: spaghetti plot of loneliness over time for males who were widowed at baseline.
+* Physical & Mental/Emotional Health: hexagonal heatmap of self-rated physical health vs.  mental/emotional health among all individuals in Wave 3.
+* Quality of Life: density plots of the distribution of total scores on the CASP-19 by age group in Wave 2. 
+
+Coding challenges: 
+
+* Combining data from multiple waves with different variable names 
 
 
+<center> <img src ="images/mailman_logo.png" style="width:30%" </center> 
