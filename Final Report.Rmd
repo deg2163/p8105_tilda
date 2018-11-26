@@ -2,7 +2,7 @@
 title: "Final Report"
 author: "Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)"
 date: "11/17/2018"
-output: github_document
+output: html_document
 ---
 
 #Analysis of a Longitudinal Study on Aging Conducted in Ireland 
@@ -22,6 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(patchwork)
+library(plotly)
 ```
 
 Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726
@@ -71,7 +72,7 @@ countplot = wave_3_data %>%
         ) %>% 
   select(-PH001, -PH002, -SEX)
 
-countplot %>%
+plot_1 = countplot %>%
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
@@ -82,6 +83,8 @@ countplot %>%
   theme_bw() +
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 40, hjust = 1))
+
+ggplotly(plot_1)
 
 ```
 
@@ -166,7 +169,7 @@ bar_graph =
   ))
  
 
-bar_graph %>% 
+plot_2 = bar_graph %>% 
   ggplot(aes(x = reorder(disease, -burden), y = burden)) +
   geom_bar(stat = "identity") + 
   labs(
@@ -181,6 +184,8 @@ bar_graph %>%
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))
   
+ggplotly(plot_2)
+
 ```
 
 ```{r}
@@ -406,9 +411,9 @@ baseline_10 = baseline_loneliness_10 %>%
   ggplot(aes(x = wave, y = loneliness_value)) +
     geom_smooth(se = FALSE) + ylim(0, 10)
 
-(baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
+plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
 
-
+ggplotly(plot_3)
 ```
 
 Discussion:

@@ -14,5 +14,9 @@ navbar:
     - icon: fa-github fa-lg
       href: www.youtube.com
 output:
+<<<<<<< HEAD
   html_document: 
   theme: united
+=======
+  html_document
+>>>>>>> 44437f3106e7890da6e26fbae54bb43262c54e1c
