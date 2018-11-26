@@ -1,7 +1,18 @@
-Draft
+Final Report
 ================
-Final Project
+Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)
 11/17/2018
+
+Analysis of a Longitudinal Study on Aging Conducted in Ireland
+==============================================================
+
+Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
+
+Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <https://www.apa.org/helpcenter/aging-depression.aspx>
+
+Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+
+Data Source:
 
 Importing data
 
@@ -14,6 +25,8 @@ wave_1_data = da34315.0001
 wave_2_data = da37105.0001
 wave_3_data = da37106.0001
 ```
+
+Exploratory Analysis:
 
 Creating Graphs
 
@@ -57,7 +70,7 @@ countplot %>%
   theme(legend.position = "none")
 ```
 
-![](draft_files/figure-markdown_github/countplot-1.png)
+![](Final_Report_files/figure-markdown_github/countplot-1.png)
 
 ``` r
 wave_1_data = wave_1_data %>% 
@@ -105,7 +118,7 @@ spaghetti %>%
   theme(legend.position = "none")
 ```
 
-![](draft_files/figure-markdown_github/spaghetti-1.png)
+![](Final_Report_files/figure-markdown_github/spaghetti-1.png)
 
 ``` r
 # ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
@@ -158,7 +171,7 @@ bar_graph %>%
   theme(axis.text.x = element_text(angle = 90, size = 7))
 ```
 
-![](draft_files/figure-markdown_github/bar_graph-1.png)
+![](Final_Report_files/figure-markdown_github/bar_graph-1.png)
 
 ``` r
 ### Baseline 0
@@ -529,4 +542,6 @@ baseline_10 = baseline_loneliness_10 %>%
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
 
-![](draft_files/figure-markdown_github/unnamed-chunk-1-1.png)
+![](Final_Report_files/figure-markdown_github/unnamed-chunk-1-1.png)
+
+Discussion:
