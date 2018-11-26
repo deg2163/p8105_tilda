@@ -1,0 +1,13 @@
+---
+title: "Welcome to my website"
+---
+
+### Diana E. Ballesteros Gonzalez
+
+Welcome to my website. Please feel free to send me an e-mail if you have any questions by clicking the top right envelope or you can send me an [email](deg2163@cumc.columbia) here. 
+
+Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+
+If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+
+

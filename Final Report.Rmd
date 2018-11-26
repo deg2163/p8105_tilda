@@ -81,7 +81,6 @@ plot_1 = countplot %>%
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 40, hjust = 1))
 
-ggplotly(plot_1)
 
 ```
 
@@ -180,8 +179,7 @@ plot_2 = bar_graph %>%
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))
-  
-ggplotly(plot_2)
+
 
 ```
 
@@ -409,8 +407,6 @@ baseline_10 = baseline_loneliness_10 %>%
     geom_smooth(se = FALSE) + ylim(0, 10)
 
 plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
-
-ggplotly(plot_3)
 ```
 
 Discussion:
