@@ -1,9 +1,34 @@
 ---
-title: "About"
+title: "Analysis of a Longitudinal Study on Aging Conducted in Ireland"
 ---
 
-### About this site
+<img src ="images/mailman_logo.png" style="width:50%">
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+### Diana Ballesteros | Chris Crowe | Tanvi Jain 
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+**The motivation for this project:**
+
+* This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
+
+**The anticipated data sources:**
+
+* The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3
+* https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726
+
+**The intended final products:** 
+
+* Descriptive statistics in the form of tables and plots that provide information on our project objective
+* Final products include: report and webpage with screencast
+
+**The planned analyses / visualizations / coding challenges:**
+
+Planned Analyses / Visualizations:
+
+* ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
+* Loneliness: spaghetti plot of loneliness over time for males who were widowed at baseline.
+* Physical & Mental/Emotional Health: hexagonal heatmap of self-rated physical health vs.  mental/emotional health among all individuals in Wave 3.
+* Quality of Life: density plots of the distribution of total scores on the CASP-19 by age group in Wave 2. 
+
+Coding challenges: 
+
+* Combining data from multiple waves with different variable names 

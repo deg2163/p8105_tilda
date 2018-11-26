@@ -1,34 +1,22 @@
----
-title: "Final Report"
-author: "Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)"
-date: "11/17/2018"
-output: github_document
----
+Final Report
+================
+Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)
+11/17/2018
 
-#Analysis of a Longitudinal Study on Aging Conducted in Ireland 
+Analysis of a Longitudinal Study on Aging Conducted in Ireland
+==============================================================
 
 Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
 
-Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
+Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <https://www.apa.org/helpcenter/aging-depression.aspx>
 
-Questions: 
-Our main questions: Is physical health associated with mental health? Does loneliness change over time among widowed men?
+Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
 
-Evolution of questions: As we created the graphs we decided to also explore variations according to sex. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women.
-
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-
-library(tidyverse)
-library(patchwork)
-```
-
-Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726
+Data Source:
 
 Importing data
 
-```{r load_data}
+``` r
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
@@ -36,14 +24,13 @@ load("./data/Wave 3/DS0001/37106-0001-Data.rda")
 wave_1_data = da34315.0001
 wave_2_data = da37105.0001
 wave_3_data = da37106.0001
-
 ```
 
 Exploratory Analysis:
 
 Creating Graphs
 
-```{r countplot}
+``` r
 countplot = wave_3_data %>% 
   select(PH001, PH002, SEX) %>% 
   mutate(physical = case_when(
@@ -81,10 +68,11 @@ countplot %>%
   facet_grid(~sex) +
   theme_bw() +
   theme(legend.position = "none")
-
 ```
 
-```{r spaghetti}
+![](Final_Report_files/figure-markdown_github/countplot-1.png)
+
+``` r
 wave_1_data = wave_1_data %>% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
 
@@ -130,7 +118,9 @@ spaghetti %>%
   theme(legend.position = "none")
 ```
 
-```{r bar_graph}
+![](Final_Report_files/figure-markdown_github/spaghetti-1.png)
+
+``` r
 # ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
 bar_graph = 
   wave_3_data %>% 
@@ -149,7 +139,7 @@ bar_graph =
     icd_code == "01" ~ "Infectious diseases",
     icd_code == "02" ~ "Neoplasms",
     icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/metabolic diseases",
+    icd_code == "04" ~ "Nutritional/ metabolic diseases",
     icd_code == "05" ~ "Mental/behavioral disorders",
     icd_code == "06" ~ "Nervous system diseases",
     icd_code == "07" ~ "Eye diseases",
@@ -158,7 +148,7 @@ bar_graph =
     icd_code == "10" ~ "Respiratory system diseases",
     icd_code == "11" ~ "Digestive system diseases",
     icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Musculoskeletal system diseases",
+    icd_code == "13" ~ "Muscloskeletal system diseases",
     icd_code == "14" ~ "Genitourinary system diseases",
     icd_code == "15" ~ "Perinatal conditions",
     icd_code == "16" ~ "Congenital malformations"
@@ -179,10 +169,11 @@ bar_graph %>%
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))
-  
 ```
 
-```{r}
+![](Final_Report_files/figure-markdown_github/bar_graph-1.png)
+
+``` r
 ### Baseline 0
 
 baseline_loneliness_0 = wave_1_data %>% 
@@ -406,10 +397,151 @@ baseline_10 = baseline_loneliness_10 %>%
     geom_smooth(se = FALSE)
 
 (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
-
-
 ```
 
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 5.2454e-17
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 2.0661e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 2.1055e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.9961e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.0184e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 2.3477e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.1404e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 2.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 1.2425e-16
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 1.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 0
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : span too small. fewer data values than degrees of freedom.
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : pseudoinverse used at 0.99
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : neighborhood radius 1.01
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : reciprocal condition number 0
+
+    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+    ## parametric, : There are other near singularities as well. 4.0401
+
+![](Final_Report_files/figure-markdown_github/unnamed-chunk-1-1.png)
+
 Discussion:
-
-
