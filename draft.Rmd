@@ -67,8 +67,6 @@ plot_1 =
   facet_grid(~sex) +
   theme_bw() +
   theme(legend.position = "none")
-
-ggplotly(plot_1)
 ```
 
 ```{r spaghetti}
