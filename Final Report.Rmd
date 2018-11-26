@@ -149,7 +149,7 @@ bar_graph =
     icd_code == "01" ~ "Infectious diseases",
     icd_code == "02" ~ "Neoplasms",
     icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/ metabolic diseases",
+    icd_code == "04" ~ "Nutritional/metabolic diseases",
     icd_code == "05" ~ "Mental/behavioral disorders",
     icd_code == "06" ~ "Nervous system diseases",
     icd_code == "07" ~ "Eye diseases",
@@ -158,7 +158,7 @@ bar_graph =
     icd_code == "10" ~ "Respiratory system diseases",
     icd_code == "11" ~ "Digestive system diseases",
     icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Muscloskeletal system diseases",
+    icd_code == "13" ~ "Musculoskeletal system diseases",
     icd_code == "14" ~ "Genitourinary system diseases",
     icd_code == "15" ~ "Perinatal conditions",
     icd_code == "16" ~ "Congenital malformations"
@@ -411,4 +411,5 @@ baseline_10 = baseline_loneliness_10 %>%
 ```
 
 Discussion:
+
 
