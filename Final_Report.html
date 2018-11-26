@@ -219,6 +219,12 @@ $(document).ready(function () {
 </div>
 
 
+<div id="analysis-of-a-longitudinal-study-on-aging-conducted-in-ireland" class="section level1">
+<h1>Analysis of a Longitudinal Study on Aging Conducted in Ireland</h1>
+<p>Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.</p>
+<p>Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <a href="https://www.apa.org/helpcenter/aging-depression.aspx" class="uri">https://www.apa.org/helpcenter/aging-depression.aspx</a></p>
+<p>Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?</p>
+<p>Data Source:</p>
 <p>Importing data</p>
 <pre class="r"><code>load(&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;)
 load(&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;)
@@ -227,6 +233,7 @@ load(&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;)
 wave_1_data = da34315.0001
 wave_2_data = da37105.0001
 wave_3_data = da37106.0001</code></pre>
+<p>Exploratory Analysis:</p>
 <p>Creating Graphs</p>
 <pre class="r"><code>countplot = wave_3_data %&gt;% 
   select(PH001, PH002, SEX) %&gt;% 
@@ -675,6 +682,8 @@ baseline_10 = baseline_loneliness_10 %&gt;%
 <pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
 ## parametric, : There are other near singularities as well. 4.0401</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Discussion:</p>
+</div>
 
 
 
