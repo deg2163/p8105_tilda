@@ -11,7 +11,10 @@ Motivation: This project aims to look at the effect of sociodemographic indicato
 
 Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
 
-Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+Questions: 
+Our main questions: Is physical health associated with mental health? Does loneliness change over time among widowed men?
+
+Evolution of questions: As we created the graphs we decided to also explore variations according to sex. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women.
 
 
 ```{r setup, include=FALSE}
@@ -21,7 +24,7 @@ library(tidyverse)
 library(patchwork)
 ```
 
-Data Source:
+Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726
 
 Importing data
 
@@ -146,7 +149,7 @@ bar_graph =
     icd_code == "01" ~ "Infectious diseases",
     icd_code == "02" ~ "Neoplasms",
     icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/ metabolic diseases",
+    icd_code == "04" ~ "Nutritional/metabolic diseases",
     icd_code == "05" ~ "Mental/behavioral disorders",
     icd_code == "06" ~ "Nervous system diseases",
     icd_code == "07" ~ "Eye diseases",
@@ -155,7 +158,7 @@ bar_graph =
     icd_code == "10" ~ "Respiratory system diseases",
     icd_code == "11" ~ "Digestive system diseases",
     icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Muscloskeletal system diseases",
+    icd_code == "13" ~ "Musculoskeletal system diseases",
     icd_code == "14" ~ "Genitourinary system diseases",
     icd_code == "15" ~ "Perinatal conditions",
     icd_code == "16" ~ "Congenital malformations"
@@ -408,4 +411,5 @@ baseline_10 = baseline_loneliness_10 %>%
 ```
 
 Discussion:
+
 
