@@ -1,8 +1,5 @@
 ---
 title: "Final Report"
-author: "Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)"
-date: "11/17/2018"
-output: html_document
 ---
 
 #Analysis of a Longitudinal Study on Aging Conducted in Ireland 
