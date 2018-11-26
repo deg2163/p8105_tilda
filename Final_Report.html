@@ -590,7 +590,7 @@ baseline_loneliness_10 = wave_1_data %&gt;%
 
 baseline_10 = baseline_loneliness_10 %&gt;% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) + ylim(0, 10)
 
 (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
@@ -687,6 +687,7 @@ baseline_10 = baseline_loneliness_10 %&gt;%
 ## parametric, : There are other near singularities as well. 4.0401</code></pre>
 <p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 <p>Discussion:</p>
+<p>Graph 1: We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1 Self-rated physical and mental health are correlated Most older adults in this population report having good or very good physical and mental health Same for males and females Graph 2: Of all the incident diseases, the top 4 are: Circulatory system diseases Eye diseases Nutritional/metabolic diseases Musculoskeletal system diseases There were no incident cases of: Congenital malformations Ear diseases Infectious diseases Perinatal conditions Skin conditions Graph 3:</p>
 </div>
 
 
