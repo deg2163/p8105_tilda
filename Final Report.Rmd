@@ -80,7 +80,8 @@ countplot %>%
   ) +
   facet_grid(~sex) +
   theme_bw() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 40, hjust = 1))
 
 ```
 
