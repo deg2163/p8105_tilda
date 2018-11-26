@@ -179,7 +179,8 @@ baseline_loneliness_0 = wave_1_data %>%
 
 baseline_0 = baseline_loneliness_0 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) + 
+    ylim(0,10)
 
 ### Baseline 1
 
@@ -199,7 +200,8 @@ baseline_loneliness_1 = wave_1_data %>%
 
 baseline_1 = baseline_loneliness_1 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 2
 
@@ -219,7 +221,8 @@ baseline_loneliness_2 = wave_1_data %>%
 
 baseline_2 = baseline_loneliness_2 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 3
 
@@ -240,7 +243,8 @@ baseline_loneliness_3 = wave_1_data %>%
 
 baseline_3 = baseline_loneliness_3 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 4
 
@@ -260,7 +264,8 @@ baseline_loneliness_4 = wave_1_data %>%
 
 baseline_4 = baseline_loneliness_4 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 
 ### Baseline 5
@@ -281,7 +286,8 @@ baseline_loneliness_5 = wave_1_data %>%
 
 baseline_5 = baseline_loneliness_5 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 6
 
@@ -301,7 +307,8 @@ baseline_loneliness_6 = wave_1_data %>%
 
 baseline_6 = baseline_loneliness_6 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 7
 
@@ -321,7 +328,8 @@ baseline_loneliness_7 = wave_1_data %>%
 
 baseline_7 = baseline_loneliness_7 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 8
 
@@ -341,7 +349,8 @@ baseline_loneliness_8 = wave_1_data %>%
 
 baseline_8 = baseline_loneliness_8 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 9
 
@@ -361,7 +370,8 @@ baseline_loneliness_9 = wave_1_data %>%
 
 baseline_9 = baseline_loneliness_9 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 ### Baseline 10
 
@@ -381,7 +391,8 @@ baseline_loneliness_10 = wave_1_data %>%
 
 baseline_10 = baseline_loneliness_10 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) +
+    ylim(0,10)
 
 (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
 ```

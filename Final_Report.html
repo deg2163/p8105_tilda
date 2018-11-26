@@ -189,7 +189,10 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="draft.html">Flex Dashboard</a>
+  <a href="about.html">About Us</a>
+</li>
+<li>
+  <a href="draft.html">Data Dashboard</a>
 </li>
 <li>
   <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
@@ -199,6 +202,12 @@ $(document).ready(function () {
 </li>
 <li>
   <a href="https://github.com/deg2163/p8105_tilda.github.io">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="www.youtube.com">
     <span class="fa fa-github fa-lg"></span>
      
   </a>
@@ -272,7 +281,8 @@ countplot %&gt;%
   ) +
   facet_grid(~sex) +
   theme_bw() +
-  theme(legend.position = &quot;none&quot;)</code></pre>
+  theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
 <p><img src="Final_Report_files/figure-html/countplot-1.png" width="672" /></p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
