@@ -1,8 +1,15 @@
 ---
-title: "Analysis of a Longitudinal Study on Aging Conducted in Ireland"
+title: "Analysis of a Longitudinal Study on Ageing Conducted in Ireland"
 ---
-
-<img src ="images/mailman_logo.png" style="width:50%">
+<br> 
+<br> 
+<center>
+<img src ="images/old_couple_1.jpg" style="width:25%">
+<img src ="images/old_couple_3.jpg" style="width:25%">
+<img src ="images/old_couple_2.png" style="width:25%">
+</center> 
+<br> 
+<br> 
 
 ### Diana Ballesteros | Chris Crowe | Tanvi Jain 
 
@@ -32,3 +39,6 @@ Planned Analyses / Visualizations:
 Coding challenges: 
 
 * Combining data from multiple waves with different variable names 
+
+
+<center> <img src ="images/mailman_logo.png" style="width:30%" </center> 
