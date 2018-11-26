@@ -10,6 +10,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 library(tidyverse)
 library(patchwork)
+library(plotly)
 ```
 
 Importing data
@@ -55,7 +56,8 @@ countplot = wave_3_data %>%
         ) %>% 
   select(-PH001, -PH002, -SEX)
 
-countplot %>%
+plot_1 = 
+  countplot %>%
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
@@ -66,6 +68,7 @@ countplot %>%
   theme_bw() +
   theme(legend.position = "none")
 
+ggplotly(plot_1)
 ```
 
 ```{r spaghetti}
@@ -112,6 +115,8 @@ spaghetti %>%
   geom_line() +
   theme_bw() +
   theme(legend.position = "none")
+
+
 ```
 
 ```{r bar_graph}
