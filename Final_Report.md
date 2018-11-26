@@ -10,9 +10,11 @@ Motivation: This project aims to look at the effect of sociodemographic indicato
 
 Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <https://www.apa.org/helpcenter/aging-depression.aspx>
 
-Questions: What questions are you trying to answer? How did these questions evolve over the course of the project? What new questions did you consider in the course of your analysis?
+Questions: Our main questions: Is physical health associated with mental health? Does loneliness change over time among widowed men?
 
-Data Source:
+Evolution of questions: As we created the graphs we decided to also explore variations according to sex. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women.
+
+Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726>
 
 Importing data
 
@@ -139,7 +141,7 @@ bar_graph =
     icd_code == "01" ~ "Infectious diseases",
     icd_code == "02" ~ "Neoplasms",
     icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/ metabolic diseases",
+    icd_code == "04" ~ "Nutritional/metabolic diseases",
     icd_code == "05" ~ "Mental/behavioral disorders",
     icd_code == "06" ~ "Nervous system diseases",
     icd_code == "07" ~ "Eye diseases",
@@ -148,7 +150,7 @@ bar_graph =
     icd_code == "10" ~ "Respiratory system diseases",
     icd_code == "11" ~ "Digestive system diseases",
     icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Muscloskeletal system diseases",
+    icd_code == "13" ~ "Musculoskeletal system diseases",
     icd_code == "14" ~ "Genitourinary system diseases",
     icd_code == "15" ~ "Perinatal conditions",
     icd_code == "16" ~ "Congenital malformations"
@@ -394,7 +396,7 @@ baseline_loneliness_10 = wave_1_data %>%
 
 baseline_10 = baseline_loneliness_10 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
+    geom_smooth(se = FALSE) + ylim(0, 10)
 
 (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
 ```
@@ -545,3 +547,5 @@ baseline_10 = baseline_loneliness_10 %>%
 ![](Final_Report_files/figure-markdown_github/unnamed-chunk-1-1.png)
 
 Discussion:
+
+Graph 1: We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1 Self-rated physical and mental health are correlated Most older adults in this population report having good or very good physical and mental health Same for males and females Graph 2: Of all the incident diseases, the top 4 are: Circulatory system diseases Eye diseases Nutritional/metabolic diseases Musculoskeletal system diseases There were no incident cases of: Congenital malformations Ear diseases Infectious diseases Perinatal conditions Skin conditions Graph 3:

@@ -9,11 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)" />
 
-<meta name="date" content="2018-11-17" />
 
-<title>Final Report</title>
+<title></title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -24,9 +22,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -189,10 +184,10 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="draft.html">Flex Dashboard</a>
+  <a href="about.html">About Us</a>
 </li>
 <li>
-  <a href="about.html">About Us</a>
+  <a href="draft.html">Data Dashboard</a>
 </li>
 <li>
   <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
@@ -215,13 +210,14 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Final Report</h1>
-<h4 class="author"><em>Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383)</em></h4>
-<h4 class="date"><em>11/17/2018</em></h4>
 
 </div>
 
 
+<div id="final-report" class="section level1">
+<h1>Final Report</h1>
+<p>Diana Ballesteros Gonzalez (uni: deg2163), Chris Crowe (uni: clc2229), Tanvi Jain (uni: tj2383) 11/17/2018</p>
+</div>
 <div id="analysis-of-a-longitudinal-study-on-aging-conducted-in-ireland" class="section level1">
 <h1>Analysis of a Longitudinal Study on Aging Conducted in Ireland</h1>
 <p>Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.</p>
@@ -276,7 +272,10 @@ countplot %&gt;%
   facet_grid(~sex) +
   theme_bw() +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="Final_Report_files/figure-html/countplot-1.png" width="672" /></p>
+<div class="figure">
+<img src="Final_Report_files/figure-markdown_github/countplot-1.png" />
+
+</div>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
 
@@ -320,7 +319,10 @@ spaghetti %&gt;%
   geom_line() +
   theme_bw() +
   theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="Final_Report_files/figure-html/spaghetti-1.png" width="672" /></p>
+<div class="figure">
+<img src="Final_Report_files/figure-markdown_github/spaghetti-1.png" />
+
+</div>
 <pre class="r"><code># ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
 bar_graph = 
   wave_3_data %&gt;% 
@@ -369,7 +371,10 @@ bar_graph %&gt;%
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))</code></pre>
-<p><img src="Final_Report_files/figure-html/bar_graph-1.png" width="672" /></p>
+<div class="figure">
+<img src="Final_Report_files/figure-markdown_github/bar_graph-1.png" />
+
+</div>
 <pre class="r"><code>### Baseline 0
 
 baseline_loneliness_0 = wave_1_data %&gt;% 
@@ -593,99 +598,152 @@ baseline_10 = baseline_loneliness_10 %&gt;%
     geom_smooth(se = FALSE) + ylim(0, 10)
 
 (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 5.2454e-17</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 5.2454e-17
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 2.0661e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 2.1055e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.9961e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.0184e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 2.3477e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.1404e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.2425e-16
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small. fewer data values than degrees of freedom.
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
 ## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 2.0661e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 2.1055e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.9961e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.0184e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 2.3477e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.1404e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.2425e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 1.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 0</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : span too small. fewer data values than degrees of freedom.</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 1.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 0</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<p><img src="Final_Report_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="figure">
+<img src="Final_Report_files/figure-markdown_github/unnamed-chunk-1-1.png" />
+
+</div>
 <p>Discussion:</p>
 <p>Graph 1: We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1 Self-rated physical and mental health are correlated Most older adults in this population report having good or very good physical and mental health Same for males and females Graph 2: Of all the incident diseases, the top 4 are: Circulatory system diseases Eye diseases Nutritional/metabolic diseases Musculoskeletal system diseases There were no incident cases of: Congenital malformations Ear diseases Infectious diseases Perinatal conditions Skin conditions Graph 3:</p>
 </div>
