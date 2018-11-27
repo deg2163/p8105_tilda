@@ -1,11 +1,17 @@
-Draft
-================
-Final Project
-11/17/2018
+---
+title: "Plots"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
 
-Importing data
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(plotly)
+library(patchwork)
 
-``` r
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
@@ -15,9 +21,13 @@ wave_2_data = da37105.0001
 wave_3_data = da37106.0001
 ```
 
-Creating Graphs
+Column {data-width=600}
+-----------------------------------------------------------------------
 
-``` r
+### Plot 1
+
+```{r}
+
 countplot = wave_3_data %>% 
   select(PH001, PH002, SEX) %>% 
   mutate(physical = case_when(
@@ -45,8 +55,7 @@ countplot = wave_3_data %>%
         ) %>% 
   select(-PH001, -PH002, -SEX)
 
-plot_1 = 
-  countplot %>%
+plot_1 = countplot %>%
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
@@ -55,59 +64,20 @@ plot_1 =
   ) +
   facet_grid(~sex) +
   theme_bw() +
-  theme(legend.position = "none")
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 40, hjust = 1))
+
+ggplotly(plot_1)
+
 ```
 
-``` r
-wave_1_data = wave_1_data %>% 
-  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
+Column {data-width=400}
+-----------------------------------------------------------------------
 
-wave_2_data = wave_2_data %>% 
-  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+### Plot 2
 
-wave_3_data = wave_3_data %>% 
-  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+```{r}
 
-spaghetti = 
-  merge(wave_1_data, wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-
-  select(ID, SEX.x, CS006, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  arrange(ID) %>% 
-  mutate(sex = case_when(
-    SEX.x == "(1) Male" ~ "Male",
-    SEX.x == "(2) Female" ~ "Female"
-  ),
-    marital_status = case_when(
-      CS006 == "(1) Married" ~ "Married",
-      CS006 == "(2) Living with a partner as if married" ~ "Cohabitation",
-      CS006 == "(3) Single(never married)" ~ "Single",
-      CS006 == "(4) Separated" ~ "Separated",
-      CS006 == "(5) Divorced" ~ "Divorced",
-      CS006 == "(6) Widowed" ~ "Widowed"
-)) %>% 
-  filter(marital_status == "Widowed") %>% 
-  select(-SEX.x, -CS006) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-      wave == "MHUCLA_LONELINESS_1" ~ 1, 
-      wave == "MHUCLA_LONELINESS_2" ~ 2, 
-      wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  janitor::clean_names()
-
-spaghetti %>% 
-  filter(sex == "Male", loneliness_value != "NA") %>% 
-  ggplot(aes(x = wave, y = loneliness_value, color = id)) +
-  geom_line() +
-  theme_bw() +
-  theme(legend.position = "none")
-```
-
-![](draft_files/figure-markdown_github/spaghetti-1.png)
-
-``` r
-# ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
 bar_graph = 
   wave_3_data %>% 
   select(ID, ICD10_01:ICD10_16) %>% 
@@ -125,7 +95,7 @@ bar_graph =
     icd_code == "01" ~ "Infectious diseases",
     icd_code == "02" ~ "Neoplasms",
     icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/ metabolic diseases",
+    icd_code == "04" ~ "Nutritional/metabolic diseases",
     icd_code == "05" ~ "Mental/behavioral disorders",
     icd_code == "06" ~ "Nervous system diseases",
     icd_code == "07" ~ "Eye diseases",
@@ -134,14 +104,14 @@ bar_graph =
     icd_code == "10" ~ "Respiratory system diseases",
     icd_code == "11" ~ "Digestive system diseases",
     icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Muscloskeletal system diseases",
+    icd_code == "13" ~ "Musculoskeletal system diseases",
     icd_code == "14" ~ "Genitourinary system diseases",
     icd_code == "15" ~ "Perinatal conditions",
     icd_code == "16" ~ "Congenital malformations"
   ))
  
 
-bar_graph %>% 
+plot_2 = bar_graph %>% 
   ggplot(aes(x = reorder(disease, -burden), y = burden)) +
   geom_bar(stat = "identity") + 
   labs(
@@ -155,11 +125,24 @@ bar_graph %>%
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))
+
+ggplotly(plot_2)
+
 ```
 
-![](draft_files/figure-markdown_github/bar_graph-1.png)
+### Plot 3
 
-``` r
+```{r}
+
+wave_1_data = wave_1_data %>% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
+
+wave_2_data = wave_2_data %>% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+
+wave_3_data = wave_3_data %>% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+
 ### Baseline 0
 
 baseline_loneliness_0 = wave_1_data %>% 
@@ -178,8 +161,7 @@ baseline_loneliness_0 = wave_1_data %>%
 
 baseline_0 = baseline_loneliness_0 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) + 
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 1
 
@@ -199,8 +181,7 @@ baseline_loneliness_1 = wave_1_data %>%
 
 baseline_1 = baseline_loneliness_1 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 2
 
@@ -220,8 +201,7 @@ baseline_loneliness_2 = wave_1_data %>%
 
 baseline_2 = baseline_loneliness_2 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 3
 
@@ -242,8 +222,7 @@ baseline_loneliness_3 = wave_1_data %>%
 
 baseline_3 = baseline_loneliness_3 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 4
 
@@ -263,8 +242,7 @@ baseline_loneliness_4 = wave_1_data %>%
 
 baseline_4 = baseline_loneliness_4 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 
 ### Baseline 5
@@ -285,8 +263,7 @@ baseline_loneliness_5 = wave_1_data %>%
 
 baseline_5 = baseline_loneliness_5 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 6
 
@@ -306,8 +283,7 @@ baseline_loneliness_6 = wave_1_data %>%
 
 baseline_6 = baseline_loneliness_6 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 7
 
@@ -327,8 +303,7 @@ baseline_loneliness_7 = wave_1_data %>%
 
 baseline_7 = baseline_loneliness_7 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 8
 
@@ -348,8 +323,7 @@ baseline_loneliness_8 = wave_1_data %>%
 
 baseline_8 = baseline_loneliness_8 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 9
 
@@ -369,8 +343,7 @@ baseline_loneliness_9 = wave_1_data %>%
 
 baseline_9 = baseline_loneliness_9 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE)
 
 ### Baseline 10
 
@@ -390,153 +363,11 @@ baseline_loneliness_10 = wave_1_data %>%
 
 baseline_10 = baseline_loneliness_10 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+    geom_smooth(se = FALSE) + ylim(0, 10)
 
-(baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
+plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
+
+ggplotly(plot_3)
+  
 ```
 
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 5.2454e-017
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 2.0661e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 2.1055e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.9961e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.0184e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 2.3477e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.1404e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 2.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.2425e-016
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 1.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 0
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-    ## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : span too small. fewer data values than degrees of freedom.
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : pseudoinverse used at 0.99
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : neighborhood radius 1.01
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 0
-
-    ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : There are other near singularities as well. 4.0401
-
-![](draft_files/figure-markdown_github/unnamed-chunk-1-1.png)
