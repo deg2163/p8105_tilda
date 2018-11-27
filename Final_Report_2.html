@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Final Report</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About Us</a>
+</li>
+<li>
+  <a href="dashboard.html">Data Dashboard</a>
+</li>
+<li>
+  <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://github.com/deg2163/p8105_tilda.github.io">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Final Report</h1>
+
+</div>
+
+
+<div id="analysis-of-a-longitudinal-study-on-aging-conducted-in-ireland" class="section level1">
+<h1>Analysis of a Longitudinal Study on Aging Conducted in Ireland</h1>
+<p>Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.</p>
+<p>Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <a href="https://www.apa.org/helpcenter/aging-depression.aspx" class="uri">https://www.apa.org/helpcenter/aging-depression.aspx</a></p>
+<p>Questions: Our main questions: Is physical health associated with mental health? Does loneliness change over time among widowed men?</p>
+<p>Evolution of questions: As we created the graphs we decided to also explore variations according to sex. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women.</p>
+<p>Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <a href="https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726" class="uri">https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726</a></p>
+<p>Importing data</p>
+<pre class="r"><code>load(&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;)
+load(&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;)
+load(&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;)
+
+wave_1_data = da34315.0001
+wave_2_data = da37105.0001
+wave_3_data = da37106.0001</code></pre>
+<p>Exploratory Analysis:</p>
+<p>Creating Graphs</p>
+<pre class="r"><code>countplot = wave_3_data %&gt;% 
+  select(PH001, PH002, SEX) %&gt;% 
+  mutate(physical = case_when(
+    PH001 == &quot;(01) Excellent&quot; ~ &quot;Excellent&quot;, 
+    PH001 == &quot;(02) Very Good&quot; ~ &quot;Very Good&quot;,
+    PH001 == &quot;(03) Good&quot; ~ &quot;Good&quot;, 
+    PH001 == &quot;(04) Fair&quot; ~ &quot;Fair&quot;, 
+    PH001 == &quot;(05) Poor&quot; ~ &quot;Poor&quot;), 
+    
+  mental = case_when(
+    PH002 == &quot;(01) Excellent&quot; ~ &quot;Excellent&quot;, 
+    PH002 == &quot;(02) Very Good&quot; ~ &quot;Very Good&quot;,
+    PH002 == &quot;(03) Good&quot; ~ &quot;Good&quot;, 
+    PH002 == &quot;(04) Fair&quot; ~ &quot;Fair&quot;, 
+    PH002 == &quot;(05) Poor&quot; ~ &quot;Poor&quot;),
+  
+  sex = case_when(
+    SEX == &quot;(1) Male&quot; ~ &quot;Male&quot;,
+    SEX == &quot;(2) Female&quot; ~ &quot;Female&quot;
+  ),
+  
+  physical = factor(physical, levels = c(&quot;Excellent&quot;, &quot;Very Good&quot;, &quot;Good&quot;, &quot;Fair&quot;, &quot;Poor&quot;)), 
+  
+  mental = factor(mental, levels = c(&quot;Excellent&quot;, &quot;Very Good&quot;, &quot;Good&quot;, &quot;Fair&quot;, &quot;Poor&quot;))
+        ) %&gt;% 
+  select(-PH001, -PH002, -SEX)
+
+plot_1 = countplot %&gt;%
+  ggplot(aes(x = physical, y = mental, color = ..n..)) +
+  geom_count(alpha = 0.8) +
+  labs(
+    x = &quot;Self-Rated Physical Health&quot;,
+    y = &quot;Self-Rated Mental Health&quot;
+  ) +
+  facet_grid(~sex) +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;,
+        axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
+<pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
+
+wave_2_data = wave_2_data %&gt;% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+
+wave_3_data = wave_3_data %&gt;% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+
+spaghetti = 
+  merge(wave_1_data, wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+
+  select(ID, SEX.x, CS006, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  arrange(ID) %&gt;% 
+  mutate(sex = case_when(
+    SEX.x == &quot;(1) Male&quot; ~ &quot;Male&quot;,
+    SEX.x == &quot;(2) Female&quot; ~ &quot;Female&quot;
+  ),
+    marital_status = case_when(
+      CS006 == &quot;(1) Married&quot; ~ &quot;Married&quot;,
+      CS006 == &quot;(2) Living with a partner as if married&quot; ~ &quot;Cohabitation&quot;,
+      CS006 == &quot;(3) Single(never married)&quot; ~ &quot;Single&quot;,
+      CS006 == &quot;(4) Separated&quot; ~ &quot;Separated&quot;,
+      CS006 == &quot;(5) Divorced&quot; ~ &quot;Divorced&quot;,
+      CS006 == &quot;(6) Widowed&quot; ~ &quot;Widowed&quot;
+)) %&gt;% 
+  filter(marital_status == &quot;Widowed&quot;) %&gt;% 
+  select(-SEX.x, -CS006) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+      wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1, 
+      wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2, 
+      wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  janitor::clean_names()
+
+spaghetti %&gt;% 
+  filter(sex == &quot;Male&quot;, loneliness_value != &quot;NA&quot;) %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value, color = id)) +
+  geom_line() +
+  theme_bw() +
+  theme(legend.position = &quot;none&quot;)</code></pre>
+<p><img src="Final_Report_2_files/figure-html/spaghetti-1.png" width="672" /></p>
+<pre class="r"><code># ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
+bar_graph = 
+  wave_3_data %&gt;% 
+  select(ID, ICD10_01:ICD10_16) %&gt;% 
+  summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
+            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
+            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
+            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
+            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
+            total_16 = sum(ICD10_16)) %&gt;% 
+  gather(key = icd_code, value = total, total_01:total_16) %&gt;% 
+  separate(icd_code, into = c(&quot;total_char&quot;,&quot;icd_code&quot;), sep = &quot;_&quot;) %&gt;% 
+  select(-total_char) %&gt;% 
+  mutate(burden = total/sum(total)*100) %&gt;% 
+  mutate(disease = case_when(
+    icd_code == &quot;01&quot; ~ &quot;Infectious diseases&quot;,
+    icd_code == &quot;02&quot; ~ &quot;Neoplasms&quot;,
+    icd_code == &quot;03&quot; ~ &quot;Blood diseases&quot;,
+    icd_code == &quot;04&quot; ~ &quot;Nutritional/metabolic diseases&quot;,
+    icd_code == &quot;05&quot; ~ &quot;Mental/behavioral disorders&quot;,
+    icd_code == &quot;06&quot; ~ &quot;Nervous system diseases&quot;,
+    icd_code == &quot;07&quot; ~ &quot;Eye diseases&quot;,
+    icd_code == &quot;08&quot; ~ &quot;Ear diseases&quot;,
+    icd_code == &quot;09&quot; ~ &quot;Circulatory system diseases&quot;,
+    icd_code == &quot;10&quot; ~ &quot;Respiratory system diseases&quot;,
+    icd_code == &quot;11&quot; ~ &quot;Digestive system diseases&quot;,
+    icd_code == &quot;12&quot; ~ &quot;Skin diseases&quot;,
+    icd_code == &quot;13&quot; ~ &quot;Musculoskeletal system diseases&quot;,
+    icd_code == &quot;14&quot; ~ &quot;Genitourinary system diseases&quot;,
+    icd_code == &quot;15&quot; ~ &quot;Perinatal conditions&quot;,
+    icd_code == &quot;16&quot; ~ &quot;Congenital malformations&quot;
+  ))
+ 
+
+plot_2 = bar_graph %&gt;% 
+  ggplot(aes(x = reorder(disease, -burden), y = burden)) +
+  geom_bar(stat = &quot;identity&quot;) + 
+  labs(
+    title = &quot;Proportion of people with specified diseases&quot;,
+    x = &quot;Disease&quot;,
+    y = &quot;Proportion (%)&quot;
+  ) + 
+  viridis::scale_color_viridis(
+    name = &quot;Location&quot;, 
+    discrete = TRUE
+  ) + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 90, size = 7))</code></pre>
+<pre class="r"><code>### Baseline 0
+
+baseline_loneliness_0 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 0 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_0 = baseline_loneliness_0 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 1
+
+baseline_loneliness_1 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 1 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_1 = baseline_loneliness_1 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 2
+
+baseline_loneliness_2 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 2 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_2 = baseline_loneliness_2 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 3
+
+
+baseline_loneliness_3 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 3 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_3 = baseline_loneliness_3 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 4
+
+baseline_loneliness_4 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 4 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_4 = baseline_loneliness_4 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+
+### Baseline 5
+
+baseline_loneliness_5 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 5 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_5 = baseline_loneliness_5 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 6
+
+baseline_loneliness_6 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 6 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_6 = baseline_loneliness_6 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 7
+
+baseline_loneliness_7 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 7 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_7 = baseline_loneliness_7 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 8
+
+baseline_loneliness_8 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 8 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_8 = baseline_loneliness_8 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 9
+
+baseline_loneliness_9 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 9 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_9 = baseline_loneliness_9 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE)
+
+### Baseline 10
+
+baseline_loneliness_10 = wave_1_data %&gt;% 
+  filter(MHUCLA_LONELINESS_1 == 10 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
+  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
+  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
+  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
+  mutate(wave = case_when(
+    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
+    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
+    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
+  )) %&gt;% 
+  filter(loneliness_value != &quot;NA&quot;)
+
+baseline_10 = baseline_loneliness_10 %&gt;% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+    geom_smooth(se = FALSE) + ylim(0, 10)
+
+plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
+<p>Discussion:</p>
+<p>Graph 1: We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1 Self-rated physical and mental health are correlated Most older adults in this population report having good or very good physical and mental health Same for males and females Graph 2: Of all the incident diseases, the top 4 are: Circulatory system diseases Eye diseases Nutritional/metabolic diseases Musculoskeletal system diseases There were no incident cases of: Congenital malformations Ear diseases Infectious diseases Perinatal conditions Skin conditions Graph 3:</p>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
