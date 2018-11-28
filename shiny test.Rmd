@@ -1,0 +1,130 @@
+---
+title: "Shiny Dashboard"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(viridis)
+library(plotly)
+library(dplyr)
+
+load("./data/Wave 1/DS0001/34315-0001-Data.rda")
+load("./data/Wave 2/DS0001/37105-0001-Data.rda")
+load("./data/Wave 3/DS0001/37106-0001-Data.rda")
+
+wave_1_data = da34315.0001
+wave_2_data = da37105.0001
+wave_3_data = da37106.0001
+
+
+## plot 1 data
+
+overall = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH001, PH002, SEX.x, CS006) %>% 
+  mutate(
+    
+  physical = case_when(
+    PH001 == "(01) Excellent" ~ "Excellent", 
+    PH001 == "(02) Very Good" ~ "Very Good",
+    PH001 == "(03) Good" ~ "Good", 
+    PH001 == "(04) Fair" ~ "Fair", 
+    PH001 == "(05) Poor" ~ "Poor"), 
+    
+  mental = case_when(
+    PH002 == "(01) Excellent" ~ "Excellent", 
+    PH002 == "(02) Very Good" ~ "Very Good",
+    PH002 == "(03) Good" ~ "Good", 
+    PH002 == "(04) Fair" ~ "Fair", 
+    PH002 == "(05) Poor" ~ "Poor"),
+  
+  sex = case_when(
+    SEX.x == "(1) Male" ~ "Male",
+    SEX.x == "(2) Female" ~ "Female"
+  ),
+  
+  marital = case_when(
+    CS006 == "(1) Married" ~ "Married",
+    CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
+    CS006 == "(3) Single (never married)" ~ "Never married",
+    CS006 == "(4) Separated" ~ "Separated",
+    CS006 == "(5) Divorced" ~ "Divorced",
+    CS006 == "(6) Widowed" ~ "Widowed"
+  ),
+  
+  physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
+  
+  mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")),
+  
+  marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
+                                       "Separated", "Divorced", "Widowed"))
+  ) %>%  
+  select(-PH001, -PH002, -SEX.x, -CS006)
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+
+sex_choice = overall %>% distinct(sex) %>% pull()
+marital_choice = overall %>% distinct(marital) %>% pull()
+
+# radioButtons widget
+radioButtons("sex_choice", label = h3("Choose sex"),
+    choices = sex_choice, 
+    selected = "Male")
+
+radioButtons("marital_choice", label = h3("Choose marital status"),
+    choices = marital_choice, 
+    selected = "Married")
+
+
+
+```
+
+Column {data-width=650}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+renderPlotly({
+  plot_1 = overall %>%
+  filter(sex == input$sex_choice & marital == input$marital_choice) %>% 
+  ggplot(aes(x = physical, y = mental, color = ..n..)) +
+  geom_count(alpha = 0.8) +
+  labs(
+    x = "Self-Rated Physical Health",
+    y = "Self-Rated Mental Health"
+  ) +
+  theme_bw() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 40, hjust = 1))
+
+ggplotly(plot_1)
+
+})
+
+```
+
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+```
+
+### Chart C
+
+```{r}
+
+```
