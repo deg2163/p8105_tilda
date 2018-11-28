@@ -12,6 +12,7 @@ library(flexdashboard)
 library(viridis)
 library(plotly)
 library(dplyr)
+library(tidyverse)
 
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
@@ -21,15 +22,28 @@ wave_1_data = da34315.0001
 wave_2_data = da37105.0001
 wave_3_data = da37106.0001
 
+wave_1_data = wave_1_data %>% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
 
-## plot 1 data
+wave_2_data = wave_2_data %>% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+
+wave_3_data = wave_3_data %>% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+
+
+## overall data
 
 overall = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
-  select(PH001, PH002, SEX.x, CS006) %>% 
+  select(PH001, PH002, SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
   mutate(
-    
+  wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3), 
   physical = case_when(
     PH001 == "(01) Excellent" ~ "Excellent", 
     PH001 == "(02) Very Good" ~ "Very Good",
@@ -65,7 +79,8 @@ overall = wave_1_data %>%
   marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
                                        "Separated", "Divorced", "Widowed"))
   ) %>%  
-  select(-PH001, -PH002, -SEX.x, -CS006)
+  select(-PH001, -PH002, -SEX.x, -CS006) %>% 
+  filter(loneliness_value != "NA")
 ```
 
 Column {.sidebar}
@@ -75,8 +90,13 @@ Column {.sidebar}
 
 sex_choice = overall %>% distinct(sex) %>% pull()
 marital_choice = overall %>% distinct(marital) %>% pull()
+wave_choice = overall %>% distinct(wave) %>% pull()
 
-# radioButtons widget
+
+selectInput("wave_choice", label = h3("Select wave"),
+            choices = wave_choice, selected = "1")
+
+
 radioButtons("sex_choice", label = h3("Choose sex"),
     choices = sex_choice, 
     selected = "Male")
@@ -97,7 +117,7 @@ Column {data-width=650}
 ```{r}
 renderPlotly({
   plot_1 = overall %>%
-  filter(sex == input$sex_choice & marital == input$marital_choice) %>% 
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
