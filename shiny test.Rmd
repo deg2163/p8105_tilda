@@ -79,8 +79,35 @@ overall = wave_1_data %>%
   marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
                                        "Separated", "Divorced", "Widowed"))
   ) %>%  
-  select(-PH001, -PH002, -SEX.x, -CS006) %>% 
-  filter(loneliness_value != "NA")
+  select(-PH001, -PH002, -SEX.x, -CS006)
+
+plot_3 = 
+  wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3)  %>% 
+  mutate(
+  
+  sex = case_when(
+    SEX.x == "(1) Male" ~ "Male",
+    SEX.x == "(2) Female" ~ "Female"
+  ),
+  
+  marital = case_when(
+    CS006 == "(1) Married" ~ "Married",
+    CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
+    CS006 == "(3) Single (never married)" ~ "Never married",
+    CS006 == "(4) Separated" ~ "Separated",
+    CS006 == "(5) Divorced" ~ "Divorced",
+    CS006 == "(6) Widowed" ~ "Widowed"
+  ),
+  
+  marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
+                                       "Separated", "Divorced", "Widowed"))
+  ) %>%  
+  select(-SEX.x, -CS006)
+  
+
 ```
 
 Column {.sidebar}
@@ -93,8 +120,9 @@ marital_choice = overall %>% distinct(marital) %>% pull()
 wave_choice = overall %>% distinct(wave) %>% pull()
 
 
-selectInput("wave_choice", label = h3("Select wave"),
-            choices = wave_choice, selected = "1")
+radioButtons("wave_choice", label = h3("Choose wave"),
+    choices = wave_choice, 
+    selected = "1")
 
 
 radioButtons("sex_choice", label = h3("Choose sex"),
@@ -141,10 +169,57 @@ Column {data-width=350}
 
 ```{r}
 
+
 ```
 
 ### Chart C
 
 ```{r}
 
+renderPlotly({
+
+for (i in 0:10) {
+  
+  data = plot_3 %>% 
+  filter(MHUCLA_LONELINESS_1 == i & sex == input$sex_choice & marital == input$marital_choice) %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(wave = case_when(
+    wave == "MHUCLA_LONELINESS_1" ~ 1,
+    wave == "MHUCLA_LONELINESS_2" ~ 2,
+    wave == "MHUCLA_LONELINESS_3" ~ 3
+  )) %>% 
+  filter(loneliness_value != "NA")
+  
+  name = paste("baseline_loneliness_", i, sep = "")
+  assign(name, data )
+  
+}
+
+plot_3 = baseline_loneliness_0 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+  geom_smooth(se = FALSE) +
+  geom_smooth(data = baseline_loneliness_1, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_2, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_3, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_4, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_5, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_6, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_7, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_8, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_9, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(data = baseline_loneliness_10, aes(x = wave, y = loneliness_value), se = FALSE) +
+  scale_y_continuous(breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  scale_x_continuous(breaks = c(1, 2, 3)) +
+  theme_bw() +
+  labs(
+    x = "Wave",
+    y = "UCLA Loneliness Score",
+    title = "Trends in Loneliness Scores by Baseline Loneliness"
+  )
+
+
+ggplotly(plot_3)
+
+})
 ```
