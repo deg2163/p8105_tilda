@@ -18,8 +18,20 @@ library(plotly)
 library(dplyr)
 library(tidyverse)
 
-## Functions for cleaning variables
+## Create functions to clean variables
 
+clean_wave = function(x) {
+  
+  x %>% 
+    mutate(
+      wave = case_when(
+        str_detect(wave, "_1$") ~ 1,
+        str_detect(wave, "_2$") ~ 2,
+        str_detect(wave, "_3$") ~ 3
+    )
+  )
+  
+}
 
 clean_physical = function(x) {
   
@@ -123,11 +135,9 @@ overall_1 = wave_1_data %>%
   merge(wave_3_data, by = "ID") %>% 
   select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %>% 
   gather(wave, physical_value, PH001_1:PH001_3) %>% 
-  mutate(
-    wave = case_when(
-      wave == "PH001_1" ~ 1,
-      wave == "PH001_2" ~ 2,
-      wave == "PH001_3" ~ 3))
+  clean_wave()
+  
+
 
 ## Tidy data for self-report mental health
 
@@ -136,11 +146,8 @@ overall_2 = wave_1_data %>%
   merge(wave_3_data, by = "ID") %>% 
   select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
   gather(wave, mental_value, PH002_1:PH002_3) %>% 
-  mutate(
-    wave = case_when(
-      wave == "PH002_1" ~ 1,
-      wave == "PH002_2" ~ 2,
-      wave == "PH002_3" ~ 3))
+  clean_wave()
+
 
 ## Tidy data for loneliness
 
@@ -149,11 +156,7 @@ overall_3 = wave_1_data %>%
   merge(wave_3_data, by = "ID") %>% 
   select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
   gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(
-    wave = case_when(
-      wave == "MHUCLA_LONELINESS_1" ~ 1,
-      wave == "MHUCLA_LONELINESS_2" ~ 2,
-      wave == "MHUCLA_LONELINESS_3" ~ 3))
+  clean_wave()
   
 ## Combine data for self-report physical and mental health, create consistent, clean labels for variables, 
 ## and reorder factor variables in a reasonable order
