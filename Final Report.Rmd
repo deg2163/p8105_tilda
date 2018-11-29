@@ -9,7 +9,7 @@ Motivation: This project aims to look at the effect of sociodemographic indicato
 Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
 
 Questions: 
-Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD 10 diseases among this population?
+Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?
 
 Evolution of questions: As we created the graphs we decided to also explore variations according to sex and different marital statuses. We also explored the change over time by stratifying according to wave. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women. Instead of just looking at widowed people we looked at married, divorced, cohabitating, separated, and single.
 
@@ -187,6 +187,9 @@ plot_2 = bar_graph %>%
 
 
 ```
+
+In this plot we calculated the sum of people who had each ICD-10 disease in order to calculate the proportion of people with each disease, allowing us to visualize the burden of each disease in this population. Again, we used `case_when` to clean the values under the variables of interest. We then created a bar graph to show the proportions and ordered the bars according to decreasing burden.
+
 
 ```{r}
 ### Baseline 0

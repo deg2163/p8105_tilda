@@ -222,7 +222,7 @@ $(document).ready(function () {
 <h1>Analysis of a Longitudinal Study on Aging Conducted in Ireland</h1>
 <p>Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ years old.</p>
 <p>Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <a href="https://www.apa.org/helpcenter/aging-depression.aspx" class="uri">https://www.apa.org/helpcenter/aging-depression.aspx</a></p>
-<p>Questions: Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD 10 diseases among this population?</p>
+<p>Questions: Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?</p>
 <p>Evolution of questions: As we created the graphs we decided to also explore variations according to sex and different marital statuses. We also explored the change over time by stratifying according to wave. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women. Instead of just looking at widowed people we looked at married, divorced, cohabitating, separated, and single.</p>
 <p>Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <a href="https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726" class="uri">https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726</a> .</p>
 <p>Importing data</p>
@@ -369,6 +369,7 @@ plot_2 = bar_graph %&gt;%
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))</code></pre>
+<p>In this plot we calculated the sum of people who had each ICD-10 disease in order to calculate the proportion of people with each disease, allowing us to visualize the burden of each disease in this population. Again, we used <code>case_when</code> to clean the values under the variables of interest. We then created a bar graph to show the proportions and ordered the bars according to decreasing burden.</p>
 <pre class="r"><code>### Baseline 0
 
 baseline_loneliness_0 = wave_1_data %&gt;% 
