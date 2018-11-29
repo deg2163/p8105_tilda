@@ -85,7 +85,7 @@ plot_1 = countplot %>%
 
 For the first plot, we cleaned the values under variables using the `case_when` function and used `factor` to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size.
 
-
+Graph 2:
 ```{r spaghetti}
 wave_1_data = wave_1_data %>% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
@@ -131,6 +131,9 @@ spaghetti %>%
   theme_bw() +
   theme(legend.position = "none")
 ```
+
+
+
 
 ```{r bar_graph}
 # ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 

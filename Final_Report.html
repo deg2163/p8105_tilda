@@ -274,6 +274,7 @@ plot_1 = countplot %&gt;%
   theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
 <p>For the first plot, we cleaned the values under variables using the <code>case_when</code> function and used <code>factor</code> to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size.</p>
+<p>Graph 2:</p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
 
