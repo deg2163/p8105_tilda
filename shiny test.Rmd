@@ -9,16 +9,92 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
+
+## Load required libraries
+
 library(flexdashboard)
 library(viridis)
 library(plotly)
 library(dplyr)
 library(tidyverse)
 
+## Functions for cleaning variables
+
+
+clean_physical = function(x) {
+  
+  x %>% 
+    mutate(
+      physical = case_when(
+        physical_value == "(1) Excellent" ~ "Excellent", 
+        physical_value == "(2) Very good" ~ "Very Good",
+        physical_value == "(3) Good" ~ "Good", 
+        physical_value == "(4) Fair" ~ "Fair", 
+        physical_value == "(5) Poor" ~ "Poor",
+        physical_value == "(01) Excellent" ~ "Excellent", 
+        physical_value == "(02) Very Good" ~ "Very Good",
+        physical_value == "(03) Good" ~ "Good", 
+        physical_value == "(04) Fair" ~ "Fair", 
+        physical_value == "(05) Poor" ~ "Poor"),
+      physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor"))
+    )
+  
+}
+
+clean_mental = function(x) {
+  
+  x %>% 
+    mutate(
+      mental = case_when(
+        mental_value == "(1) Excellent" ~ "Excellent", 
+        mental_value == "(2) Very good" ~ "Very Good",
+        mental_value == "(3) Good" ~ "Good", 
+        mental_value == "(4) Fair" ~ "Fair", 
+        mental_value == "(5) Poor" ~ "Poor",
+        mental_value == "(01) Excellent" ~ "Excellent", 
+        mental_value == "(02) Very Good" ~ "Very Good",
+        mental_value == "(03) Good" ~ "Good", 
+        mental_value == "(04) Fair" ~ "Fair", 
+        mental_value == "(05) Poor" ~ "Poor"),
+      mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor"))
+    )
+}
+
+clean_marital = function(x) {
+  
+  x %>% 
+    mutate(
+      marital = case_when(
+        CS006 == "(1) Married" ~ "Married",
+        CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
+        CS006 == "(3) Single (never married)" ~ "Never married",
+        CS006 == "(4) Separated" ~ "Separated",
+        CS006 == "(5) Divorced" ~ "Divorced",
+        CS006 == "(6) Widowed" ~ "Widowed"),
+      marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
+                                       "Separated", "Divorced", "Widowed"))
+    )
+  
+}
+
+clean_sex = function(x) {
+  
+   x %>% 
+    mutate(
+      sex = case_when(
+        SEX == "(1) Male" ~ "Male",
+        SEX == "(2) Female" ~ "Female")
+    )
+  
+}
+
+## Load in data from local file
 
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
+
+## Assign data from each wave to a new object with common variable names given unique names
 
 wave_1_data = da34315.0001 %>% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
@@ -40,6 +116,8 @@ wave_3_data = da37106.0001 %>%
 
 ## Data for Physical Health vs. Mental Health
 
+## Tidy data for self-report physical health
+
 overall_1 = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
@@ -51,6 +129,8 @@ overall_1 = wave_1_data %>%
       wave == "PH001_2" ~ 2,
       wave == "PH001_3" ~ 3))
 
+## Tidy data for self-report mental health
+
 overall_2 = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
@@ -61,81 +141,49 @@ overall_2 = wave_1_data %>%
       wave == "PH002_1" ~ 1,
       wave == "PH002_2" ~ 2,
       wave == "PH002_3" ~ 3))
+
+## Tidy data for loneliness
+
+overall_3 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
+  gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  mutate(
+    wave = case_when(
+      wave == "MHUCLA_LONELINESS_1" ~ 1,
+      wave == "MHUCLA_LONELINESS_2" ~ 2,
+      wave == "MHUCLA_LONELINESS_3" ~ 3))
   
+## Combine data for self-report physical and mental health, create consistent, clean labels for variables, 
+## and reorder factor variables in a reasonable order
+
 final = overall_1 %>% 
   merge(overall_2, by = c("ID", "wave")) %>% 
-  select(ID, wave, SEX.x.x, CS006.x, physical_value, mental_value) %>% 
+  merge(overall_3, by = c("ID", "wave")) %>% 
+  select(ID, wave, SEX.x, CS006.x, physical_value, mental_value, loneliness_value) %>% 
+  clean_physical() %>% 
+  clean_mental() %>% 
   mutate(
-    physical = case_when(
-      physical_value == "(1) Excellent" ~ "Excellent", 
-      physical_value == "(2) Very good" ~ "Very Good",
-      physical_value == "(3) Good" ~ "Good", 
-      physical_value == "(4) Fair" ~ "Fair", 
-      physical_value == "(5) Poor" ~ "Poor",
-      physical_value == "(01) Excellent" ~ "Excellent", 
-      physical_value == "(02) Very Good" ~ "Very Good",
-      physical_value == "(03) Good" ~ "Good", 
-      physical_value == "(04) Fair" ~ "Fair", 
-      physical_value == "(05) Poor" ~ "Poor"), 
-      
-    mental = case_when(
-      mental_value == "(1) Excellent" ~ "Excellent", 
-      mental_value == "(2) Very good" ~ "Very Good",
-      mental_value == "(3) Good" ~ "Good", 
-      mental_value == "(4) Fair" ~ "Fair", 
-      mental_value == "(5) Poor" ~ "Poor",
-      mental_value == "(01) Excellent" ~ "Excellent", 
-      mental_value == "(02) Very Good" ~ "Very Good",
-      mental_value == "(03) Good" ~ "Good", 
-      mental_value == "(04) Fair" ~ "Fair", 
-      mental_value == "(05) Poor" ~ "Poor"),
-  
-    sex = case_when(
-      SEX.x.x == "(1) Male" ~ "Male",
-      SEX.x.x == "(2) Female" ~ "Female"),
-    
-    marital = case_when(
-      CS006.x == "(1) Married" ~ "Married",
-      CS006.x == "(2) Living with a partner as if married" ~ "Living w/ Partner",
-      CS006.x == "(3) Single (never married)" ~ "Never married",
-      CS006.x == "(4) Separated" ~ "Separated",
-      CS006.x == "(5) Divorced" ~ "Divorced",
-      CS006.x == "(6) Widowed" ~ "Widowed"),
-  
-    physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
-  
-    mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")),
-  
-    marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
-                                       "Separated", "Divorced", "Widowed"))
+    CS006 = CS006.x,
+    SEX = SEX.x
   ) %>% 
-  select(-physical_value, -mental_value, -SEX.x.x, -CS006.x)
+  clean_marital() %>% 
+  clean_sex() %>% 
+  select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
+
 
 plot_3 = 
-  wave_1_data %>%  
+  wave_1_data %>% 
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
   select(SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3)  %>% 
   mutate(
-  
-  sex = case_when(
-    SEX.x == "(1) Male" ~ "Male",
-    SEX.x == "(2) Female" ~ "Female"
-  ),
-  
-  marital = case_when(
-    CS006 == "(1) Married" ~ "Married",
-    CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
-    CS006 == "(3) Single (never married)" ~ "Never married",
-    CS006 == "(4) Separated" ~ "Separated",
-    CS006 == "(5) Divorced" ~ "Divorced",
-    CS006 == "(6) Widowed" ~ "Widowed"
-  ),
-  
-  marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
-                                       "Separated", "Divorced", "Widowed"))
-  ) %>%  
-  select(-SEX.x, -CS006)
+    SEX = SEX.x
+  ) %>% 
+  clean_sex() %>% 
+  clean_marital() %>% 
+  select(-SEX.x, -CS006, -SEX)
 
 plot_2 =  
   wave_1_data %>% 
