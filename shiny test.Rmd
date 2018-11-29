@@ -16,74 +16,113 @@ library(dplyr)
 library(tidyverse)
 
 
-
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
 
-wave_1_data = da34315.0001
-wave_2_data = da37105.0001
-wave_3_data = da37106.0001
+wave_1_data = da34315.0001 %>% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
+         PH001_1 = PH001,
+         PH002_1 = PH002)
+ 
 
-wave_1_data = wave_1_data %>% 
-  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
 
-wave_2_data = wave_2_data %>% 
-  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+wave_2_data = da37105.0001 %>% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS,
+         PH001_2 = PH001,
+         PH002_2 = PH002)
 
-wave_3_data = wave_3_data %>% 
-  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+  
+wave_3_data = da37106.0001 %>% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS,
+         PH001_3 = PH001,
+         PH002_3 = PH002)
 
 
 ## overall data
 
-overall = wave_1_data %>%  
+overall_1 = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
-  select(PH001, PH002, SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  select(SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
   mutate(
-  wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3), 
-  physical = case_when(
-    PH001 == "(01) Excellent" ~ "Excellent", 
-    PH001 == "(02) Very Good" ~ "Very Good",
-    PH001 == "(03) Good" ~ "Good", 
-    PH001 == "(04) Fair" ~ "Fair", 
-    PH001 == "(05) Poor" ~ "Poor"), 
-    
-  mental = case_when(
-    PH002 == "(01) Excellent" ~ "Excellent", 
-    PH002 == "(02) Very Good" ~ "Very Good",
-    PH002 == "(03) Good" ~ "Good", 
-    PH002 == "(04) Fair" ~ "Fair", 
-    PH002 == "(05) Poor" ~ "Poor"),
-  
-  sex = case_when(
-    SEX.x == "(1) Male" ~ "Male",
-    SEX.x == "(2) Female" ~ "Female"
-  ),
-  
-  marital = case_when(
-    CS006 == "(1) Married" ~ "Married",
-    CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
-    CS006 == "(3) Single (never married)" ~ "Never married",
-    CS006 == "(4) Separated" ~ "Separated",
-    CS006 == "(5) Divorced" ~ "Divorced",
-    CS006 == "(6) Widowed" ~ "Widowed"
-  ),
-  
-  physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
-  
-  mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")),
-  
-  marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
-                                       "Separated", "Divorced", "Widowed"))
-  ) %>%  
-  select(-PH001, -PH002, -SEX.x, -CS006)
+    wave = case_when(
+      wave == "MHUCLA_LONELINESS_1" ~ 1,
+      wave == "MHUCLA_LONELINESS_2" ~ 2,
+      wave == "MHUCLA_LONELINESS_3" ~ 3))
 
+overall_2 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %>% 
+  gather(wave, physical_value, PH001_1:PH001_3) %>% 
+  mutate(
+    wave = case_when(
+      wave == "PH001_1" ~ 1,
+      wave == "PH001_2" ~ 2,
+      wave == "PH001_3" ~ 3))
+
+overall_3 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
+  gather(wave, mental_value, PH002_1:PH002_3) %>% 
+  mutate(
+    wave = case_when(
+      wave == "PH002_1" ~ 1,
+      wave == "PH002_2" ~ 2,
+      wave == "PH002_3" ~ 3))
+  
+final = overall_1 %>% 
+  merge(overall_2, by = c("ID", "wave")) %>% 
+  merge(overall_3, by = c("ID", "wave")) %>% 
+  select(ID, wave, SEX.x, CS006.x, loneliness_value, physical_value, mental_value) %>% 
+  mutate(
+    physical = case_when(
+      physical_value == "(1) Excellent" ~ "Excellent", 
+      physical_value == "(2) Very good" ~ "Very Good",
+      physical_value == "(3) Good" ~ "Good", 
+      physical_value == "(4) Fair" ~ "Fair", 
+      physical_value == "(5) Poor" ~ "Poor",
+      physical_value == "(01) Excellent" ~ "Excellent", 
+      physical_value == "(02) Very Good" ~ "Very Good",
+      physical_value == "(03) Good" ~ "Good", 
+      physical_value == "(04) Fair" ~ "Fair", 
+      physical_value == "(05) Poor" ~ "Poor"), 
+      
+    mental = case_when(
+      mental_value == "(1) Excellent" ~ "Excellent", 
+      mental_value == "(2) Very good" ~ "Very Good",
+      mental_value == "(3) Good" ~ "Good", 
+      mental_value == "(4) Fair" ~ "Fair", 
+      mental_value == "(5) Poor" ~ "Poor",
+      mental_value == "(01) Excellent" ~ "Excellent", 
+      mental_value == "(02) Very Good" ~ "Very Good",
+      mental_value == "(03) Good" ~ "Good", 
+      mental_value == "(04) Fair" ~ "Fair", 
+      mental_value == "(05) Poor" ~ "Poor"),
+  
+    sex = case_when(
+      SEX.x == "(1) Male" ~ "Male",
+      SEX.x == "(2) Female" ~ "Female"),
+    
+    marital = case_when(
+      CS006.x == "(1) Married" ~ "Married",
+      CS006.x == "(2) Living with a partner as if married" ~ "Living w/ Partner",
+      CS006.x == "(3) Single (never married)" ~ "Never married",
+      CS006.x == "(4) Separated" ~ "Separated",
+      CS006.x == "(5) Divorced" ~ "Divorced",
+      CS006.x == "(6) Widowed" ~ "Widowed"),
+  
+    physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
+  
+    mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")),
+  
+    marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
+                                       "Separated", "Divorced", "Widowed"))
+  ) %>% 
+  select(-physical_value, -mental_value, -SEX.x, -CS006.x)
 
 plot_3 = 
   wave_1_data %>%  
@@ -173,9 +212,13 @@ Column {.sidebar}
 
 
 
-sex_choice = overall %>% distinct(sex) %>% pull()
-marital_choice = overall %>% distinct(marital) %>% pull()
+sex_choice = final %>% distinct(sex) %>% pull()
+marital_choice = final %>% distinct(marital) %>% pull()
+wave_choice = final %>% distinct(wave) %>% pull()
 
+radioButtons("wave_choice", label = h3("Choose wave"),
+    choices = wave_choice, 
+    selected = 1)
 
 radioButtons("sex_choice", label = h3("Choose sex"),
     choices = sex_choice, 
@@ -251,8 +294,8 @@ Column {data-width=350}
 
 ```{r}
 renderPlotly({
-  plot_1 = overall %>%
-  filter(sex == input$sex_choice & marital == input$marital_choice & wave == 3) %>% 
+  plot_1 = final %>%
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice ) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
@@ -266,6 +309,8 @@ renderPlotly({
 ggplotly(plot_1)
 
 })
+
+
 
 ```
 
