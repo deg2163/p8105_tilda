@@ -4,14 +4,14 @@ title: "Final Report"
 
 #Analysis of a Longitudinal Study on Aging Conducted in Ireland 
 
-Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ yrs.
+Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ years old.
 
-Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members researhc interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
+Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
 
 Questions: 
-Our main questions: Is physical health associated with mental health? Does loneliness change over time among widowed men?
+Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD 10 diseases among this population?
 
-Evolution of questions: As we created the graphs we decided to also explore variations according to sex. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women.
+Evolution of questions: As we created the graphs we decided to also explore variations according to sex and different marital statuses. We also explored the change over time by stratifying according to wave. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women. Instead of just looking at widowed people we looked at married, divorced, cohabitating, separated, and single.
 
 
 ```{r setup, include=FALSE}
@@ -22,7 +22,7 @@ library(patchwork)
 library(plotly)
 ```
 
-Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726
+Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726 .
 
 Importing data
 
@@ -37,10 +37,9 @@ wave_3_data = da37106.0001
 
 ```
 
-Exploratory Analysis:
+Exploratory Analysis- creating graphs
 
-Creating Graphs
-
+Graph 1:
 ```{r countplot}
 countplot = wave_3_data %>% 
   select(PH001, PH002, SEX) %>% 
@@ -83,6 +82,9 @@ plot_1 = countplot %>%
 
 
 ```
+
+For the first plot, we cleaned the values under variables using the `case_when` function and used `factor` to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size.
+
 
 ```{r spaghetti}
 wave_1_data = wave_1_data %>% 
@@ -411,7 +413,7 @@ plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + basel
 
 Discussion:
 
-Graph 1: We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1
+We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1
 Self-rated physical and mental health are correlated
 Most older adults in this population report having good or very good physical and mental health
 Same for males and females
