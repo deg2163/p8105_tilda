@@ -83,8 +83,8 @@ clean_marital = function(x) {
         CS006 == "(4) Separated" ~ "Separated",
         CS006 == "(5) Divorced" ~ "Divorced",
         CS006 == "(6) Widowed" ~ "Widowed"),
-      marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
-                                       "Separated", "Divorced", "Widowed"))
+      marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married",
+                                           "Separated", "Divorced", "Widowed"))
     )
   
 }
@@ -106,7 +106,7 @@ load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
 
-## Assign data from each wave to a new object with common variable names given unique names
+## Assign data from each wave to a new object where common variable names are given unique names
 
 wave_1_data = da34315.0001 %>% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
@@ -117,13 +117,14 @@ wave_1_data = da34315.0001 %>%
 wave_2_data = da37105.0001 %>% 
   mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS,
          PH001_2 = PH001,
-         PH002_2 = PH002)
-
-  
+         PH002_2 = PH002
+  )
+      
 wave_3_data = da37106.0001 %>% 
   mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS,
          PH001_3 = PH001,
-         PH002_3 = PH002)
+         PH002_3 = PH002
+  )
 
 
 ## Data for Physical Health vs. Mental Health
@@ -157,9 +158,19 @@ overall_3 = wave_1_data %>%
   select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
   gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
   clean_wave()
+
+## Tidy data for ICD codes
+
+overall_4 = wave_1_data %>%  
+  merge(wave_3_data, by = "ID") %>% 
+  select(ICD10_01:ICD10_16, ID, SEX.x, CS006) %>% 
+  mutate(SEX = SEX.x) %>% 
+  clean_sex() %>% 
+  clean_marital() %>% 
+  select(-SEX.x, -SEX, -CS006)
+ 
   
-## Combine data for self-report physical and mental health, create consistent, clean labels for variables, 
-## and reorder factor variables in a reasonable order
+## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
 
 final = overall_1 %>% 
   merge(overall_2, by = c("ID", "wave")) %>% 
@@ -176,6 +187,8 @@ final = overall_1 %>%
   select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
 
 
+## Prepare data for loneliness plot
+
 plot_3 = 
   wave_1_data %>% 
   merge(wave_2_data, by = "ID") %>% 
@@ -188,57 +201,8 @@ plot_3 =
   clean_marital() %>% 
   select(-SEX.x, -CS006, -SEX)
 
-plot_2 =  
-  wave_1_data %>% 
-  select(CS006, ID) %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, ICD10_01:ICD10_16, CS006, SEX) %>% 
-  mutate(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
-            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
-            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
-            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
-            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
-            total_16 = sum(ICD10_16)) %>% 
-  gather(key = icd_code, value = total, total_01:total_16) %>% 
-  separate(icd_code, into = c("total_char","icd_code"), sep = "_") %>% 
-  select(-total_char) %>% 
-  mutate(burden = total/sum(total)*100) %>% 
-  mutate(disease = case_when(
-    icd_code == "01" ~ "Infectious diseases",
-    icd_code == "02" ~ "Neoplasms",
-    icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/metabolic diseases",
-    icd_code == "05" ~ "Mental/behavioral disorders",
-    icd_code == "06" ~ "Nervous system diseases",
-    icd_code == "07" ~ "Eye diseases",
-    icd_code == "08" ~ "Ear diseases",
-    icd_code == "09" ~ "Circulatory system diseases",
-    icd_code == "10" ~ "Respiratory system diseases",
-    icd_code == "11" ~ "Digestive system diseases",
-    icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Musculoskeletal system diseases",
-    icd_code == "14" ~ "Genitourinary system diseases",
-    icd_code == "15" ~ "Perinatal conditions",
-    icd_code == "16" ~ "Congenital malformations"
-  ),
-  
-    sex = case_when(
-    SEX == "(1) Male" ~ "Male",
-    SEX == "(2) Female" ~ "Female"
-  ),
-  
-  marital = case_when(
-    CS006 == "(1) Married" ~ "Married",
-    CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
-    CS006 == "(3) Single (never married)" ~ "Never married",
-    CS006 == "(4) Separated" ~ "Separated",
-    CS006 == "(5) Divorced" ~ "Divorced",
-    CS006 == "(6) Widowed" ~ "Widowed"
-  ),
-  
-  marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married", 
-                                       "Separated", "Divorced", "Widowed"))
-  )
+## Prepare data for ICD plot
+
   
 
 ```
@@ -285,11 +249,7 @@ for (i in 0:10) {
   filter(MHUCLA_LONELINESS_1 == i & sex == input$sex_choice & marital == input$marital_choice) %>% 
   select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
   gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
+  clean_wave() %>% 
   filter(loneliness_value != "NA")
   
   name = paste("baseline_loneliness_", i, sep = "")
@@ -332,6 +292,7 @@ Column {data-width=350}
 
 ```{r}
 renderPlotly({
+  
   plot_1 = final %>%
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice ) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
@@ -348,8 +309,6 @@ ggplotly(plot_1)
 
 })
 
-
-
 ```
 
 ### Chart C
@@ -358,8 +317,36 @@ ggplotly(plot_1)
 renderPlotly({
 
 
-plot_2a = plot_2 %>% 
+icd_plot = overall_4 %>% 
   filter(sex == input$sex_choice & marital == input$marital_choice) %>% 
+  summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
+            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
+            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
+            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
+            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
+            total_16 = sum(ICD10_16)) %>% 
+  gather(key = icd_code, value = total, total_01:total_16) %>% 
+  separate(icd_code, into = c("total_char","icd_code"), sep = "_") %>% 
+  select(-total_char) %>% 
+  mutate(burden = total/sum(total)*100) %>% 
+  mutate(disease = case_when(
+    icd_code == "01" ~ "Infectious diseases",
+    icd_code == "02" ~ "Neoplasms",
+    icd_code == "03" ~ "Blood diseases",
+    icd_code == "04" ~ "Nutritional/metabolic diseases",
+    icd_code == "05" ~ "Mental/behavioral disorders",
+    icd_code == "06" ~ "Nervous system diseases",
+    icd_code == "07" ~ "Eye diseases",
+    icd_code == "08" ~ "Ear diseases",
+    icd_code == "09" ~ "Circulatory system diseases",
+    icd_code == "10" ~ "Respiratory system diseases",
+    icd_code == "11" ~ "Digestive system diseases",
+    icd_code == "12" ~ "Skin diseases",
+    icd_code == "13" ~ "Musculoskeletal system diseases",
+    icd_code == "14" ~ "Genitourinary system diseases",
+    icd_code == "15" ~ "Perinatal conditions",
+    icd_code == "16" ~ "Congenital malformations"
+  )) %>% 
   ggplot(aes(x = reorder(disease, -burden), y = burden)) +
   geom_bar(stat = "identity") + 
   labs(
@@ -370,7 +357,7 @@ plot_2a = plot_2 %>%
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))
 
-ggplotly(plot_2a)
+ggplotly(icd_plot)
 
 })
 ```
