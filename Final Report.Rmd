@@ -9,7 +9,7 @@ Motivation: This project aims to look at the effect of sociodemographic indicato
 Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
 
 Questions: 
-Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD 10 diseases among this population?
+Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?
 
 Evolution of questions: As we created the graphs we decided to also explore variations according to sex and different marital statuses. We also explored the change over time by stratifying according to wave. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women. Instead of just looking at widowed people we looked at married, divorced, cohabitating, separated, and single.
 
@@ -83,7 +83,7 @@ plot_1 = countplot %>%
 
 ```
 
-For the first plot, we cleaned the values under variables using the `case_when` function and used `factor` to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size.
+For the first plot, we cleaned the values under the variables of interest using the `case_when` function and used the `factor` function to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size. We used `shiny` to stratify this plot by sex and across waves to visualize the trend over time.
 
 Graph 2:
 ```{r spaghetti}
@@ -132,9 +132,9 @@ spaghetti %>%
   theme(legend.position = "none")
 ```
 
+(DELETING THIS GRAPH 2?)
 
-
-
+Graph 3:
 ```{r bar_graph}
 # ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
 bar_graph = 
@@ -188,6 +188,9 @@ plot_2 = bar_graph %>%
 
 ```
 
+In this plot we calculated the sum of people who had each ICD-10 disease in order to calculate the proportion of people with each disease, allowing us to visualize the burden of each disease in this population. Again, we used `case_when` to clean the values under the variables of interest. We then created a bar graph to show the proportions and ordered the bars according to decreasing burden.
+
+Graph 2 (extended):
 ```{r}
 ### Baseline 0
 
@@ -414,24 +417,12 @@ baseline_10 = baseline_loneliness_10 %>%
 plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
 ```
 
+For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used `case_when` to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each loneliness value (scale from 1-10). We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in the 10 loneliness values. The use of `shiny` allowed us to further stratify by sex and marital status.
+
+
 Discussion:
+Graph 1: We anticipated that physical health and mental health would be correlated and from graph 1 we discovered that this was true. Those who felt they had good physical health also had good mental health and vice versa. We also found a larger concentration of older adults reporting `Very Good` or `Good` physical and mental health. This trend remained consistent across sex and over time. Unfortunately, this means that there was minimal improvement in physical and mental health, but also minimal decline in physical and mental health.
 
-We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1
-Self-rated physical and mental health are correlated
-Most older adults in this population report having good or very good physical and mental health
-Same for males and females
-Graph 2:
-Of all the incident diseases, the top 4 are:
-Circulatory system diseases
-Eye diseases
-Nutritional/metabolic diseases
-Musculoskeletal system diseases
-There were no incident cases of:
-Congenital malformations
-Ear diseases
-Infectious diseases
-Perinatal conditions
-Skin conditions
-Graph 3:
+Graph 3: Our hypothesis for this plot was more broad in that we expected the proportion of people with chronic diseases to be higher, simply because the cohort is older and in Ireland, which may not have a high prevalence of parasitic, infectious, or perinatal diseases and conditions. The bar graph specified that the 4 diseases with the highest proportion were circulatory system diseases, eye diseases, nutritional/metabolic diseases, and musculoskeletal system diseases. As predicted there were no incident cases of infectious diseases or perinatal conditions. Additionally, there were no cases of congenital malformations, ear diseases, or skin conditions.
 
-
+Graph 2 (extended): We expected that loneliness would increase over time for widowed men more than widowed women. According to graph 2 we found this to be true. For widowed men, those with a loneliness of 2 or higher seemed to decrease their loneliness across waves and those with a loneliness of 1 seemed to increase their loneliness across waves. As we expected, widowed women stayed at relatively the same loneliness level across all waves with the exception of an an outlier at level 8 loneliness. In contrast, married men seemed to decrease in loneliness at every baseline point, while women stayed relatively the same from wave 1 to wave 3.
