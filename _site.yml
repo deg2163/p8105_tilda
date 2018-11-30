@@ -11,8 +11,9 @@ navbar:
       href: mailto:<deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: https://github.com/deg2163/p8105_tilda.github.io
+    - icon: fas fa-video
+      href: youtube.com
         
-
 output:
   html_document:
     theme: flatly
