@@ -132,7 +132,7 @@ spaghetti %>%
   theme(legend.position = "none")
 ```
 
-(DELETING THIS GRAPH?)
+(DELETING THIS GRAPH 2?)
 
 Graph 3:
 ```{r bar_graph}
