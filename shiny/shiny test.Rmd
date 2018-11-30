@@ -1,5 +1,5 @@
 ---
-title: "Shiny"
+title: "Exploratory Analyses for The Irish Longitudinal Study on Ageing (TILDA)"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -96,6 +96,7 @@ clean_sex = function(x) {
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
+
 ## Assign data from each wave to a new object where common variable names are given unique names
 wave_1_data = da34315.0001 %>% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
@@ -237,7 +238,7 @@ icd_plot =
   geom_bar(stat = "identity") + 
   labs(
     x = "Disease",
-    y = "Proportion (%)"
+    y = "Percentage"
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 65, size = 7))
