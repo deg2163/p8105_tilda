@@ -11,6 +11,7 @@ runtime: shiny
 ```{r setup, include=FALSE}
 ## Load required libraries
 library(flexdashboard)
+library(shinydashboard)
 library(viridis)
 library(plotly)
 library(dplyr)
