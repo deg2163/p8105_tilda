@@ -6,7 +6,7 @@ navbar:
     - text: "About Us"
       href: about.html
     - text: "Data Dashboard"
-      href: dashboard.html
+      href: 
     - icon: fa-envelope fa-lg
       href: mailto:<deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu>
     - icon: fa-github fa-lg
