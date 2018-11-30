@@ -1,10 +1,11 @@
 ---
-title: "Shiny"
+runtime: shiny
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
     vertical_layout: fill
-runtime: shiny
+    source_code: embed
+
 
 ---
 
@@ -15,6 +16,8 @@ library(viridis)
 library(plotly)
 library(dplyr)
 library(tidyverse)
+library(rsconnect) 
+
 ## Create functions to clean variables
 clean_wave = function(x) {
   
@@ -178,7 +181,7 @@ plot_3 =
 Column {.sidebar}
 -----------------------------------------------------------------------
 
-```{r}
+```{r echo = FALSE}
 sex_choice = final %>% distinct(sex) %>% pull()
 marital_choice = final %>% distinct(marital) %>% pull()
 wave_choice = final %>% distinct(wave) %>% pull()
@@ -198,7 +201,7 @@ Column {data-width=650}
 
 ### Proportion of Incident Disease Burden in Wave 3 Attributable to Specified Disease
 
-```{r}
+```{r echo = FALSE}
 renderPlotly({
 icd_data = overall_4 %>% 
   filter(sex == input$sex_choice & marital == input$marital_choice) %>% 
@@ -249,7 +252,7 @@ Column {data-width=350}
 
 ### Self-Rated Mental vs. Physical Health Status
 
-```{r}
+```{r echo = FALSE}
 renderPlotly({
   
   plot_1 = final %>%
@@ -269,7 +272,7 @@ ggplotly(plot_1)
 
 ### Trends in Loneliness Scores by Baseline Loneliness Score
 
-```{r}
+```{r echo = FALSE}
 renderPlotly({
 for (i in 0:10) {
   

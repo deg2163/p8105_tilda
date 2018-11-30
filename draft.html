@@ -4,719 +4,547 @@
 
 <head>
 
-<meta charset="utf-8" />
+<meta charset="utf-8">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-
-<meta name="author" content="Final Project" />
-
-<meta name="date" content="2018-11-17" />
-
-<title>Draft</title>
-
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
-<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
-<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
-<script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
-<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
-<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
-<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
-
-<style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
-<script type="text/javascript">
-if (window.hljs) {
-  hljs.configure({languages: []});
-  hljs.initHighlightingOnLoad();
-  if (document.readyState && document.readyState === "complete") {
-    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
-  }
-}
-</script>
-
-
-
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
+<link href="data:text/css;charset=utf-8,%0A%40font%2Dface%20%7B%0Afont%2Dfamily%3A%20octicons%2Dlink%3B%0Asrc%3A%20url%28data%3Afont%2Fwoff%3Bcharset%3Dutf%2D8%3Bbase64%2Cd09GRgABAAAAAAZwABAAAAAACFQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABEU0lHAAAGaAAAAAgAAAAIAAAAAUdTVUIAAAZcAAAACgAAAAoAAQAAT1MvMgAAAyQAAABJAAAAYFYEU3RjbWFwAAADcAAAAEUAAACAAJThvmN2dCAAAATkAAAABAAAAAQAAAAAZnBnbQAAA7gAAACyAAABCUM%2B8IhnYXNwAAAGTAAAABAAAAAQABoAI2dseWYAAAFsAAABPAAAAZwcEq9taGVhZAAAAsgAAAA0AAAANgh4a91oaGVhAAADCAAAABoAAAAkCA8DRGhtdHgAAAL8AAAADAAAAAwGAACfbG9jYQAAAsAAAAAIAAAACABiATBtYXhwAAACqAAAABgAAAAgAA8ASm5hbWUAAAToAAABQgAAAlXu73sOcG9zdAAABiwAAAAeAAAAME3QpOBwcmVwAAAEbAAAAHYAAAB%2FaFGpk3jaTY6xa8JAGMW%2FO62BDi0tJLYQincXEypYIiGJjSgHniQ6umTsUEyLm5BV6NDBP8Tpts6F0v%2Bk%2F0an2i%2BitHDw3v2%2B9%2BDBKTzsJNnWJNTgHEy4BgG3EMI9DCEDOGEXzDADU5hBKMIgNPZqoD3SilVaXZCER3%2FI7AtxEJLtzzuZfI%2BVVkprxTlXShWKb3TBecG11rwoNlmmn1P2WYcJczl32etSpKnziC7lQyWe1smVPy%2FLt7Kc%2B0vWY%2FgAgIIEqAN9we0pwKXreiMasxvabDQMM4riO%2BqxM2ogwDGOZTXxwxDiycQIcoYFBLj5K3EIaSctAq2kTYiw%2Bymhce7vwM9jSqO8JyVd5RH9gyTt2%2BJ%2FyUmYlIR0s04n6%2B7Vm1ozezUeLEaUjhaDSuXHwVRgvLJn1tQ7xiuVv%2FocTRF42mNgZGBgYGbwZOBiAAFGJBIMAAizAFoAAABiAGIAznjaY2BkYGAA4in8zwXi%2BW2%2BMjCzMIDApSwvXzC97Z4Ig8N%2FBxYGZgcgl52BCSQKAA3jCV8CAABfAAAAAAQAAEB42mNgZGBg4f3vACQZQABIMjKgAmYAKEgBXgAAeNpjYGY6wTiBgZWBg2kmUxoDA4MPhGZMYzBi1AHygVLYQUCaawqDA4PChxhmh%2F8ODDEsvAwHgMKMIDnGL0x7gJQCAwMAJd4MFwAAAHjaY2BgYGaA4DAGRgYQkAHyGMF8NgYrIM3JIAGVYYDT%2BAEjAwuDFpBmA9KMDEwMCh9i%2Fv8H8sH0%2F4dQc1iAmAkALaUKLgAAAHjaTY9LDsIgEIbtgqHUPpDi3gPoBVyRTmTddOmqTXThEXqrob2gQ1FjwpDvfwCBdmdXC5AVKFu3e5MfNFJ29KTQT48Ob9%2FlqYwOGZxeUelN2U2R6%2BcArgtCJpauW7UQBqnFkUsjAY%2FkOU1cP%2BDAgvxwn1chZDwUbd6CFimGXwzwF6tPbFIcjEl%2BvvmM%2FbyA48e6tWrKArm4ZJlCbdsrxksL1AwWn%2FyBSJKpYbq8AXaaTb8AAHja28jAwOC00ZrBeQNDQOWO%2F%2FsdBBgYGRiYWYAEELEwMTE4uzo5Zzo5b2BxdnFOcALxNjA6b2ByTswC8jYwg0VlNuoCTWAMqNzMzsoK1rEhNqByEyerg5PMJlYuVueETKcd%2F89uBpnpvIEVomeHLoMsAAe1Id4AAAAAAAB42oWQT07CQBTGv0JBhagk7HQzKxca2sJCE1hDt4QF%2B9JOS0nbaaYDCQfwCJ7Au3AHj%2BLO13FMmm6cl7785vven0kBjHCBhfpYuNa5Ph1c0e2Xu3jEvWG7UdPDLZ4N92nOm%2BEBXuAbHmIMSRMs%2B4aUEd4Nd3CHD8NdvOLTsA2GL8M9PODbcL%2BhD7C1xoaHeLJSEao0FEW14ckxC%2BTU8TxvsY6X0eLPmRhry2WVioLpkrbp84LLQPGI7c6sOiUzpWIWS5GzlSgUzzLBSikOPFTOXqly7rqx0Z1Q5BAIoZBSFihQYQOOBEdkCOgXTOHA07HAGjGWiIjaPZNW13%2F%2Blm6S9FT7rLHFJ6fQbkATOG1j2OFMucKJJsxIVfQORl%2B9Jyda6Sl1dUYhSCm1dyClfoeDve4qMYdLEbfqHf3O%2FAdDumsjAAB42mNgYoAAZQYjBmyAGYQZmdhL8zLdDEydARfoAqIAAAABAAMABwAKABMAB%2F%2F%2FAA8AAQAAAAAAAAAAAAAAAAABAAAAAA%3D%3D%29%20format%28%27woff%27%29%3B%0A%7D%0Abody%20%7B%0A%2Dwebkit%2Dtext%2Dsize%2Dadjust%3A%20100%25%3B%0Atext%2Dsize%2Dadjust%3A%20100%25%3B%0Acolor%3A%20%23333%3B%0Afont%2Dfamily%3A%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20%22Segoe%20UI%22%2C%20Arial%2C%20freesans%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0Afont%2Dsize%3A%2016px%3B%0Aline%2Dheight%3A%201%2E6%3B%0Aword%2Dwrap%3A%20break%2Dword%3B%0A%7D%0Aa%20%7B%0Abackground%2Dcolor%3A%20transparent%3B%0A%7D%0Aa%3Aactive%2C%0Aa%3Ahover%20%7B%0Aoutline%3A%200%3B%0A%7D%0Astrong%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%202em%3B%0Amargin%3A%200%2E67em%200%3B%0A%7D%0Aimg%20%7B%0Aborder%3A%200%3B%0A%7D%0Ahr%20%7B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Aheight%3A%200%3B%0A%7D%0Apre%20%7B%0Aoverflow%3A%20auto%3B%0A%7D%0Acode%2C%0Akbd%2C%0Apre%20%7B%0Afont%2Dfamily%3A%20monospace%2C%20monospace%3B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ainput%20%7B%0Acolor%3A%20inherit%3B%0Afont%3A%20inherit%3B%0Amargin%3A%200%3B%0A%7D%0Ahtml%20input%5Bdisabled%5D%20%7B%0Acursor%3A%20default%3B%0A%7D%0Ainput%20%7B%0Aline%2Dheight%3A%20normal%3B%0A%7D%0Ainput%5Btype%3D%22checkbox%22%5D%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0Apadding%3A%200%3B%0A%7D%0Atable%20%7B%0Aborder%2Dcollapse%3A%20collapse%3B%0Aborder%2Dspacing%3A%200%3B%0A%7D%0Atd%2C%0Ath%20%7B%0Apadding%3A%200%3B%0A%7D%0A%2A%20%7B%0Abox%2Dsizing%3A%20border%2Dbox%3B%0A%7D%0Ainput%20%7B%0Afont%3A%2013px%20%2F%201%2E4%20Helvetica%2C%20arial%2C%20nimbussansl%2C%20liberationsans%2C%20freesans%2C%20clean%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%234078c0%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%2C%0Aa%3Aactive%20%7B%0Atext%2Ddecoration%3A%20underline%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%200%3B%0Amargin%3A%2015px%200%3B%0Aoverflow%3A%20hidden%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23ddd%3B%0A%7D%0Ahr%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ahr%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%2015px%3B%0Amargin%2Dbottom%3A%2015px%3B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah1%20%7B%0Afont%2Dsize%3A%2030px%3B%0A%7D%0Ah2%20%7B%0Afont%2Dsize%3A%2021px%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%2016px%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%2014px%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%2011px%3B%0A%7D%0Ablockquote%20%7B%0Amargin%3A%200%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Aol%20ol%2C%0Aul%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Droman%3B%0A%7D%0Aul%20ul%20ol%2C%0Aul%20ol%20ol%2C%0Aol%20ul%20ol%2C%0Aol%20ol%20ol%20%7B%0Alist%2Dstyle%2Dtype%3A%20lower%2Dalpha%3B%0A%7D%0Add%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Afont%2Dsize%3A%2012px%3B%0A%7D%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0Afont%3A%2012px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0A%7D%0A%2Eselect%3A%3A%2Dms%2Dexpand%20%7B%0Aopacity%3A%200%3B%0A%7D%0A%2Eocticon%20%7B%0Afont%3A%20normal%20normal%20normal%2016px%2F1%20octicons%2Dlink%3B%0Adisplay%3A%20inline%2Dblock%3B%0Atext%2Ddecoration%3A%20none%3B%0Atext%2Drendering%3A%20auto%3B%0A%2Dwebkit%2Dfont%2Dsmoothing%3A%20antialiased%3B%0A%2Dmoz%2Dosx%2Dfont%2Dsmoothing%3A%20grayscale%3B%0A%2Dwebkit%2Duser%2Dselect%3A%20none%3B%0A%2Dmoz%2Duser%2Dselect%3A%20none%3B%0A%2Dms%2Duser%2Dselect%3A%20none%3B%0Auser%2Dselect%3A%20none%3B%0A%7D%0A%2Eocticon%2Dlink%3Abefore%20%7B%0Acontent%3A%20%27%5Cf05c%27%3B%0A%7D%0A%2Emarkdown%2Dbody%3Abefore%20%7B%0Adisplay%3A%20table%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3Aafter%20%7B%0Adisplay%3A%20table%3B%0Aclear%3A%20both%3B%0Acontent%3A%20%22%22%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%20%21important%3B%0A%7D%0A%2Emarkdown%2Dbody%3E%2A%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%20%21important%3B%0A%7D%0Aa%3Anot%28%5Bhref%5D%29%20%7B%0Acolor%3A%20inherit%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0A%2Eanchor%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%2Dright%3A%202px%3B%0Amargin%2Dleft%3A%20%2D18px%3B%0A%7D%0A%2Eanchor%3Afocus%20%7B%0Aoutline%3A%20none%3B%0A%7D%0Ah1%2C%0Ah2%2C%0Ah3%2C%0Ah4%2C%0Ah5%2C%0Ah6%20%7B%0Amargin%2Dtop%3A%201em%3B%0Amargin%2Dbottom%3A%2016px%3B%0Afont%2Dweight%3A%20bold%3B%0Aline%2Dheight%3A%201%2E4%3B%0A%7D%0Ah1%20%2Eocticon%2Dlink%2C%0Ah2%20%2Eocticon%2Dlink%2C%0Ah3%20%2Eocticon%2Dlink%2C%0Ah4%20%2Eocticon%2Dlink%2C%0Ah5%20%2Eocticon%2Dlink%2C%0Ah6%20%2Eocticon%2Dlink%20%7B%0Acolor%3A%20%23000%3B%0Avertical%2Dalign%3A%20middle%3B%0Avisibility%3A%20hidden%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%2C%0Ah2%3Ahover%20%2Eanchor%2C%0Ah3%3Ahover%20%2Eanchor%2C%0Ah4%3Ahover%20%2Eanchor%2C%0Ah5%3Ahover%20%2Eanchor%2C%0Ah6%3Ahover%20%2Eanchor%20%7B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Ah1%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah2%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah3%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah4%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah5%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%2C%0Ah6%3Ahover%20%2Eanchor%20%2Eocticon%2Dlink%20%7B%0Avisibility%3A%20visible%3B%0A%7D%0Ah1%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%202%2E25em%3B%0Aline%2Dheight%3A%201%2E2%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah1%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah2%20%7B%0Apadding%2Dbottom%3A%200%2E3em%3B%0Afont%2Dsize%3A%201%2E75em%3B%0Aline%2Dheight%3A%201%2E225%3B%0Aborder%2Dbottom%3A%201px%20solid%20%23eee%3B%0A%7D%0Ah2%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%3B%0A%7D%0Ah3%20%7B%0Afont%2Dsize%3A%201%2E5em%3B%0Aline%2Dheight%3A%201%2E43%3B%0A%7D%0Ah3%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah4%20%7B%0Afont%2Dsize%3A%201%2E25em%3B%0A%7D%0Ah4%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E2%3B%0A%7D%0Ah5%20%7B%0Afont%2Dsize%3A%201em%3B%0A%7D%0Ah5%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ah6%20%7B%0Afont%2Dsize%3A%201em%3B%0Acolor%3A%20%23777%3B%0A%7D%0Ah6%20%2Eanchor%20%7B%0Aline%2Dheight%3A%201%2E1%3B%0A%7D%0Ap%2C%0Ablockquote%2C%0Aul%2C%0Aol%2C%0Adl%2C%0Atable%2C%0Apre%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ahr%20%7B%0Aheight%3A%204px%3B%0Apadding%3A%200%3B%0Amargin%3A%2016px%200%3B%0Abackground%2Dcolor%3A%20%23e7e7e7%3B%0Aborder%3A%200%20none%3B%0A%7D%0Aul%2C%0Aol%20%7B%0Apadding%2Dleft%3A%202em%3B%0A%7D%0Aul%20ul%2C%0Aul%20ol%2C%0Aol%20ol%2C%0Aol%20ul%20%7B%0Amargin%2Dtop%3A%200%3B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Ali%3Ep%20%7B%0Amargin%2Dtop%3A%2016px%3B%0A%7D%0Adl%20%7B%0Apadding%3A%200%3B%0A%7D%0Adl%20dt%20%7B%0Apadding%3A%200%3B%0Amargin%2Dtop%3A%2016px%3B%0Afont%2Dsize%3A%201em%3B%0Afont%2Dstyle%3A%20italic%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Adl%20dd%20%7B%0Apadding%3A%200%2016px%3B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0Ablockquote%20%7B%0Apadding%3A%200%2015px%3B%0Acolor%3A%20%23777%3B%0Aborder%2Dleft%3A%204px%20solid%20%23ddd%3B%0A%7D%0Ablockquote%3E%3Afirst%2Dchild%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Ablockquote%3E%3Alast%2Dchild%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Atable%20%7B%0Adisplay%3A%20block%3B%0Awidth%3A%20100%25%3B%0Aoverflow%3A%20auto%3B%0Aword%2Dbreak%3A%20normal%3B%0Aword%2Dbreak%3A%20keep%2Dall%3B%0A%7D%0Atable%20th%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Atable%20th%2C%0Atable%20td%20%7B%0Apadding%3A%206px%2013px%3B%0Aborder%3A%201px%20solid%20%23ddd%3B%0A%7D%0Atable%20tr%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Aborder%2Dtop%3A%201px%20solid%20%23ccc%3B%0A%7D%0Atable%20tr%3Anth%2Dchild%282n%29%20%7B%0Abackground%2Dcolor%3A%20%23f8f8f8%3B%0A%7D%0Aimg%20%7B%0Amax%2Dwidth%3A%20100%25%3B%0Abox%2Dsizing%3A%20content%2Dbox%3B%0Abackground%2Dcolor%3A%20%23fff%3B%0A%7D%0Acode%20%7B%0Apadding%3A%200%3B%0Apadding%2Dtop%3A%200%2E2em%3B%0Apadding%2Dbottom%3A%200%2E2em%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%2085%25%3B%0Abackground%2Dcolor%3A%20rgba%280%2C0%2C0%2C0%2E04%29%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0Acode%3Abefore%2C%0Acode%3Aafter%20%7B%0Aletter%2Dspacing%3A%20%2D0%2E2em%3B%0Acontent%3A%20%22%5C00a0%22%3B%0A%7D%0Apre%3Ecode%20%7B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Afont%2Dsize%3A%20100%25%3B%0Aword%2Dbreak%3A%20normal%3B%0Awhite%2Dspace%3A%20pre%3B%0Abackground%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0A%2Ehighlight%20%7B%0Amargin%2Dbottom%3A%2016px%3B%0A%7D%0A%2Ehighlight%20pre%2C%0Apre%20%7B%0Apadding%3A%2016px%3B%0Aoverflow%3A%20auto%3B%0Afont%2Dsize%3A%2085%25%3B%0Aline%2Dheight%3A%201%2E45%3B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0A%7D%0A%2Ehighlight%20pre%20%7B%0Amargin%2Dbottom%3A%200%3B%0Aword%2Dbreak%3A%20normal%3B%0A%7D%0Apre%20%7B%0Aword%2Dwrap%3A%20normal%3B%0A%7D%0Apre%20code%20%7B%0Adisplay%3A%20inline%3B%0Amax%2Dwidth%3A%20initial%3B%0Apadding%3A%200%3B%0Amargin%3A%200%3B%0Aoverflow%3A%20initial%3B%0Aline%2Dheight%3A%20inherit%3B%0Aword%2Dwrap%3A%20normal%3B%0Abackground%2Dcolor%3A%20transparent%3B%0Aborder%3A%200%3B%0A%7D%0Apre%20code%3Abefore%2C%0Apre%20code%3Aafter%20%7B%0Acontent%3A%20normal%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%2Dsize%3A%2011px%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Epl%2Dc%20%7B%0Acolor%3A%20%23969896%3B%0A%7D%0A%2Epl%2Dc1%2C%0A%2Epl%2Ds%20%2Epl%2Dv%20%7B%0Acolor%3A%20%230086b3%3B%0A%7D%0A%2Epl%2De%2C%0A%2Epl%2Den%20%7B%0Acolor%3A%20%23795da3%3B%0A%7D%0A%2Epl%2Ds%20%2Epl%2Ds1%2C%0A%2Epl%2Dsmi%20%7B%0Acolor%3A%20%23333%3B%0A%7D%0A%2Epl%2Dent%20%7B%0Acolor%3A%20%2363a35c%3B%0A%7D%0A%2Epl%2Dk%20%7B%0Acolor%3A%20%23a71d5d%3B%0A%7D%0A%2Epl%2Dpds%2C%0A%2Epl%2Ds%2C%0A%2Epl%2Ds%20%2Epl%2Dpse%20%2Epl%2Ds1%2C%0A%2Epl%2Dsr%2C%0A%2Epl%2Dsr%20%2Epl%2Dcce%2C%0A%2Epl%2Dsr%20%2Epl%2Dsra%2C%0A%2Epl%2Dsr%20%2Epl%2Dsre%20%7B%0Acolor%3A%20%23183691%3B%0A%7D%0A%2Epl%2Dv%20%7B%0Acolor%3A%20%23ed6a43%3B%0A%7D%0A%2Epl%2Did%20%7B%0Acolor%3A%20%23b52a1d%3B%0A%7D%0A%2Epl%2Dii%20%7B%0Abackground%2Dcolor%3A%20%23b52a1d%3B%0Acolor%3A%20%23f8f8f8%3B%0A%7D%0A%2Epl%2Dsr%20%2Epl%2Dcce%20%7B%0Acolor%3A%20%2363a35c%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dml%20%7B%0Acolor%3A%20%23693a17%3B%0A%7D%0A%2Epl%2Dmh%2C%0A%2Epl%2Dmh%20%2Epl%2Den%2C%0A%2Epl%2Dms%20%7B%0Acolor%3A%20%231d3e81%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmq%20%7B%0Acolor%3A%20%23008080%3B%0A%7D%0A%2Epl%2Dmi%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dstyle%3A%20italic%3B%0A%7D%0A%2Epl%2Dmb%20%7B%0Acolor%3A%20%23333%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmd%20%7B%0Abackground%2Dcolor%3A%20%23ffecec%3B%0Acolor%3A%20%23bd2c00%3B%0A%7D%0A%2Epl%2Dmi1%20%7B%0Abackground%2Dcolor%3A%20%23eaffea%3B%0Acolor%3A%20%2355a532%3B%0A%7D%0A%2Epl%2Dmdr%20%7B%0Acolor%3A%20%23795da3%3B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0A%2Epl%2Dmo%20%7B%0Acolor%3A%20%231d3e81%3B%0A%7D%0Akbd%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0Apadding%3A%203px%205px%3B%0Afont%3A%2011px%20Consolas%2C%20%22Liberation%20Mono%22%2C%20Menlo%2C%20Courier%2C%20monospace%3B%0Aline%2Dheight%3A%2010px%3B%0Acolor%3A%20%23555%3B%0Avertical%2Dalign%3A%20middle%3B%0Abackground%2Dcolor%3A%20%23fcfcfc%3B%0Aborder%3A%20solid%201px%20%23ccc%3B%0Aborder%2Dbottom%2Dcolor%3A%20%23bbb%3B%0Aborder%2Dradius%3A%203px%3B%0Abox%2Dshadow%3A%20inset%200%20%2D1px%200%20%23bbb%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20%7B%0Alist%2Dstyle%2Dtype%3A%20none%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%2B%2Etask%2Dlist%2Ditem%20%7B%0Amargin%2Dtop%3A%203px%3B%0A%7D%0A%2Etask%2Dlist%2Ditem%20input%20%7B%0Amargin%3A%200%200%2E35em%200%2E25em%20%2D1%2E6em%3B%0Avertical%2Dalign%3A%20middle%3B%0A%7D%0A%3Achecked%2B%2Eradio%2Dlabel%20%7B%0Az%2Dindex%3A%201%3B%0Aposition%3A%20relative%3B%0Aborder%2Dcolor%3A%20%234078c0%3B%0A%7D%0A%2EsourceLine%20%7B%0Adisplay%3A%20inline%2Dblock%3B%0A%7D%0Acode%20%2Ekw%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Edt%20%7B%20color%3A%20%23ed6a43%3B%20%7D%0Acode%20%2Edv%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ebn%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Efl%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Ech%20%7B%20color%3A%20%23009999%3B%20%7D%0Acode%20%2Est%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eco%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Eot%20%7B%20color%3A%20%230086b3%3B%20%7D%0Acode%20%2Eal%20%7B%20color%3A%20%23a61717%3B%20%7D%0Acode%20%2Efu%20%7B%20color%3A%20%2363a35c%3B%20%7D%0Acode%20%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%0Acode%20%2Ewa%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ecn%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Esc%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Evs%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Ess%20%7B%20color%3A%20%23183691%3B%20%7D%0Acode%20%2Eim%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eva%20%7Bcolor%3A%20%23008080%3B%20%7D%0Acode%20%2Ecf%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eop%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Ebu%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Eex%20%7B%20color%3A%20%23000000%3B%20%7D%0Acode%20%2Epp%20%7B%20color%3A%20%23999999%3B%20%7D%0Acode%20%2Eat%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Edo%20%7B%20color%3A%20%23969896%3B%20%7D%0Acode%20%2Ean%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ecv%20%7B%20color%3A%20%23008080%3B%20%7D%0Acode%20%2Ein%20%7B%20color%3A%20%23008080%3B%20%7D%0A" rel="stylesheet">
+<style>
+body {
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 45px;
+  padding-top: 0px;
 }
 </style>
-
 
 </head>
 
 <body>
 
-<style type = "text/css">
-.main-container {
-  max-width: 940px;
-  margin-left: auto;
-  margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
-}
-img {
-  max-width:100%;
-  height: auto;
-}
-.tabbed-pane {
-  padding-top: 12px;
-}
-.html-widget {
-  margin-bottom: 20px;
-}
-button.code-folding-btn:focus {
-  outline: none;
-}
-</style>
-
-
-<style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-</style>
-
-<script>
-// manage active state of menu based on current page
-$(document).ready(function () {
-  // active menu anchor
-  href = window.location.pathname
-  href = href.substr(href.lastIndexOf('/') + 1)
-  if (href === "")
-    href = "index.html";
-  var menuAnchor = $('a[href="' + href + '"]');
-
-  // mark it active
-  menuAnchor.parent().addClass('active');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
-});
-</script>
-
-
-<div class="container-fluid main-container">
-
-<!-- tabsets -->
-<script>
-$(document).ready(function () {
-  window.buildTabsets("TOC");
-});
-</script>
-
-<!-- code folding -->
-
-
-
-
-
-
-<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="index.html">Home</a>
-    </div>
-    <div id="navbar" class="navbar-collapse collapse">
-      <ul class="nav navbar-nav">
-        
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-        <li>
-  <a href="about.html">About Us</a>
-</li>
-<li>
-  <a href="dashboard.html">Data Dashboard</a>
-</li>
-<li>
-  <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
-    <span class="fa fa-envelope fa-lg"></span>
-     
-  </a>
-</li>
-<li>
-  <a href="https://github.com/deg2163/p8105_tilda.github.io">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
-    </div><!--/.nav-collapse -->
-  </div><!--/.container -->
-</div><!--/.navbar -->
-
-<div class="fluid-row" id="header">
-
-
-
-<h1 class="title toc-ignore">Draft</h1>
-<h4 class="author"><em>Final Project</em></h4>
-<h4 class="date"><em>11/17/2018</em></h4>
-
-</div>
-
-
+<h1 id="draft">Draft</h1>
+<p>Final Project<br />
+11/17/2018</p>
 <p>Importing data</p>
-<pre class="r"><code>load(&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;)
-load(&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;)
-load(&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load</span>(<span class="st">&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;</span>)
+<span class="kw">load</span>(<span class="st">&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;</span>)
 
-wave_1_data = da34315.0001
-wave_2_data = da37105.0001
-wave_3_data = da37106.0001</code></pre>
+wave_1_data =<span class="st"> </span>da34315.<span class="dv">0001</span>
+wave_2_data =<span class="st"> </span>da37105.<span class="dv">0001</span>
+wave_3_data =<span class="st"> </span>da37106.<span class="dv">0001</span></code></pre></div>
 <p>Creating Graphs</p>
-<pre class="r"><code>countplot = wave_3_data %&gt;% 
-  select(PH001, PH002, SEX) %&gt;% 
-  mutate(physical = case_when(
-    PH001 == &quot;(01) Excellent&quot; ~ &quot;Excellent&quot;, 
-    PH001 == &quot;(02) Very Good&quot; ~ &quot;Very Good&quot;,
-    PH001 == &quot;(03) Good&quot; ~ &quot;Good&quot;, 
-    PH001 == &quot;(04) Fair&quot; ~ &quot;Fair&quot;, 
-    PH001 == &quot;(05) Poor&quot; ~ &quot;Poor&quot;), 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">countplot =<span class="st"> </span>wave_3_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(PH001, PH002, SEX) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">physical =</span> <span class="kw">case_when</span>(
+    PH001 <span class="op">==</span><span class="st"> &quot;(01) Excellent&quot;</span> <span class="op">~</span><span class="st"> &quot;Excellent&quot;</span>, 
+    PH001 <span class="op">==</span><span class="st"> &quot;(02) Very Good&quot;</span> <span class="op">~</span><span class="st"> &quot;Very Good&quot;</span>,
+    PH001 <span class="op">==</span><span class="st"> &quot;(03) Good&quot;</span> <span class="op">~</span><span class="st"> &quot;Good&quot;</span>, 
+    PH001 <span class="op">==</span><span class="st"> &quot;(04) Fair&quot;</span> <span class="op">~</span><span class="st"> &quot;Fair&quot;</span>, 
+    PH001 <span class="op">==</span><span class="st"> &quot;(05) Poor&quot;</span> <span class="op">~</span><span class="st"> &quot;Poor&quot;</span>), 
     
-  mental = case_when(
-    PH002 == &quot;(01) Excellent&quot; ~ &quot;Excellent&quot;, 
-    PH002 == &quot;(02) Very Good&quot; ~ &quot;Very Good&quot;,
-    PH002 == &quot;(03) Good&quot; ~ &quot;Good&quot;, 
-    PH002 == &quot;(04) Fair&quot; ~ &quot;Fair&quot;, 
-    PH002 == &quot;(05) Poor&quot; ~ &quot;Poor&quot;),
+  <span class="dt">mental =</span> <span class="kw">case_when</span>(
+    PH002 <span class="op">==</span><span class="st"> &quot;(01) Excellent&quot;</span> <span class="op">~</span><span class="st"> &quot;Excellent&quot;</span>, 
+    PH002 <span class="op">==</span><span class="st"> &quot;(02) Very Good&quot;</span> <span class="op">~</span><span class="st"> &quot;Very Good&quot;</span>,
+    PH002 <span class="op">==</span><span class="st"> &quot;(03) Good&quot;</span> <span class="op">~</span><span class="st"> &quot;Good&quot;</span>, 
+    PH002 <span class="op">==</span><span class="st"> &quot;(04) Fair&quot;</span> <span class="op">~</span><span class="st"> &quot;Fair&quot;</span>, 
+    PH002 <span class="op">==</span><span class="st"> &quot;(05) Poor&quot;</span> <span class="op">~</span><span class="st"> &quot;Poor&quot;</span>),
   
-  sex = case_when(
-    SEX == &quot;(1) Male&quot; ~ &quot;Male&quot;,
-    SEX == &quot;(2) Female&quot; ~ &quot;Female&quot;
+  <span class="dt">sex =</span> <span class="kw">case_when</span>(
+    SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">~</span><span class="st"> &quot;Male&quot;</span>,
+    SEX <span class="op">==</span><span class="st"> &quot;(2) Female&quot;</span> <span class="op">~</span><span class="st"> &quot;Female&quot;</span>
   ),
   
-  physical = factor(physical, levels = c(&quot;Excellent&quot;, &quot;Very Good&quot;, &quot;Good&quot;, &quot;Fair&quot;, &quot;Poor&quot;)), 
+  <span class="dt">physical =</span> <span class="kw">factor</span>(physical, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Poor&quot;</span>)), 
   
-  mental = factor(mental, levels = c(&quot;Excellent&quot;, &quot;Very Good&quot;, &quot;Good&quot;, &quot;Fair&quot;, &quot;Poor&quot;))
-        ) %&gt;% 
-  select(-PH001, -PH002, -SEX)
+  <span class="dt">mental =</span> <span class="kw">factor</span>(mental, <span class="dt">levels =</span> <span class="kw">c</span>(<span class="st">&quot;Excellent&quot;</span>, <span class="st">&quot;Very Good&quot;</span>, <span class="st">&quot;Good&quot;</span>, <span class="st">&quot;Fair&quot;</span>, <span class="st">&quot;Poor&quot;</span>))
+        ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>PH001, <span class="op">-</span>PH002, <span class="op">-</span>SEX)
 
-plot_1 = 
-  countplot %&gt;%
-  ggplot(aes(x = physical, y = mental, color = ..n..)) +
-  geom_count(alpha = 0.8) +
-  labs(
-    x = &quot;Self-Rated Physical Health&quot;,
-    y = &quot;Self-Rated Mental Health&quot;
-  ) +
-  facet_grid(~sex) +
-  theme_bw() +
-  theme(legend.position = &quot;none&quot;)</code></pre>
-<pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
-  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
+plot_<span class="dv">1</span> =<span class="st"> </span>
+<span class="st">  </span>countplot <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> physical, <span class="dt">y =</span> mental, <span class="dt">color =</span> ..n..)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_count</span>(<span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">x =</span> <span class="st">&quot;Self-Rated Physical Health&quot;</span>,
+    <span class="dt">y =</span> <span class="st">&quot;Self-Rated Mental Health&quot;</span>
+  ) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(<span class="op">~</span>sex) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">wave_1_data =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MHUCLA_LONELINESS_1 =</span> MHUCLA_LONELINESS)
 
-wave_2_data = wave_2_data %&gt;% 
-  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
+wave_2_data =<span class="st"> </span>wave_2_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MHUCLA_LONELINESS_2 =</span> MHUCLA_LONELINESS)
 
-wave_3_data = wave_3_data %&gt;% 
-  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
+wave_3_data =<span class="st"> </span>wave_3_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">MHUCLA_LONELINESS_3 =</span> MHUCLA_LONELINESS)
 
-spaghetti = 
-  merge(wave_1_data, wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
+spaghetti =<span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_1_data, wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 
-  select(ID, SEX.x, CS006, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  arrange(ID) %&gt;% 
-  mutate(sex = case_when(
-    SEX.x == &quot;(1) Male&quot; ~ &quot;Male&quot;,
-    SEX.x == &quot;(2) Female&quot; ~ &quot;Female&quot;
+<span class="st">  </span><span class="kw">select</span>(ID, SEX.x, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">arrange</span>(ID) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sex =</span> <span class="kw">case_when</span>(
+    SEX.x <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">~</span><span class="st"> &quot;Male&quot;</span>,
+    SEX.x <span class="op">==</span><span class="st"> &quot;(2) Female&quot;</span> <span class="op">~</span><span class="st"> &quot;Female&quot;</span>
   ),
-    marital_status = case_when(
-      CS006 == &quot;(1) Married&quot; ~ &quot;Married&quot;,
-      CS006 == &quot;(2) Living with a partner as if married&quot; ~ &quot;Cohabitation&quot;,
-      CS006 == &quot;(3) Single(never married)&quot; ~ &quot;Single&quot;,
-      CS006 == &quot;(4) Separated&quot; ~ &quot;Separated&quot;,
-      CS006 == &quot;(5) Divorced&quot; ~ &quot;Divorced&quot;,
-      CS006 == &quot;(6) Widowed&quot; ~ &quot;Widowed&quot;
-)) %&gt;% 
-  filter(marital_status == &quot;Widowed&quot;) %&gt;% 
-  select(-SEX.x, -CS006) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-      wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1, 
-      wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2, 
-      wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  janitor::clean_names()
+    <span class="dt">marital_status =</span> <span class="kw">case_when</span>(
+      CS006 <span class="op">==</span><span class="st"> &quot;(1) Married&quot;</span> <span class="op">~</span><span class="st"> &quot;Married&quot;</span>,
+      CS006 <span class="op">==</span><span class="st"> &quot;(2) Living with a partner as if married&quot;</span> <span class="op">~</span><span class="st"> &quot;Cohabitation&quot;</span>,
+      CS006 <span class="op">==</span><span class="st"> &quot;(3) Single(never married)&quot;</span> <span class="op">~</span><span class="st"> &quot;Single&quot;</span>,
+      CS006 <span class="op">==</span><span class="st"> &quot;(4) Separated&quot;</span> <span class="op">~</span><span class="st"> &quot;Separated&quot;</span>,
+      CS006 <span class="op">==</span><span class="st"> &quot;(5) Divorced&quot;</span> <span class="op">~</span><span class="st"> &quot;Divorced&quot;</span>,
+      CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span> <span class="op">~</span><span class="st"> &quot;Widowed&quot;</span>
+)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(marital_status <span class="op">==</span><span class="st"> &quot;Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>SEX.x, <span class="op">-</span>CS006) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+      wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>, 
+      wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>, 
+      wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span>janitor<span class="op">::</span><span class="kw">clean_names</span>()
 
-spaghetti %&gt;% 
-  filter(sex == &quot;Male&quot;, loneliness_value != &quot;NA&quot;) %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value, color = id)) +
-  geom_line() +
-  theme_bw() +
-  theme(legend.position = &quot;none&quot;)</code></pre>
-<p><img src="draft_files/figure-html/spaghetti-1.png" width="672" /></p>
-<pre class="r"><code># ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
-bar_graph = 
-  wave_3_data %&gt;% 
-  select(ID, ICD10_01:ICD10_16) %&gt;% 
-  summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
-            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
-            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
-            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
-            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
-            total_16 = sum(ICD10_16)) %&gt;% 
-  gather(key = icd_code, value = total, total_01:total_16) %&gt;% 
-  separate(icd_code, into = c(&quot;total_char&quot;,&quot;icd_code&quot;), sep = &quot;_&quot;) %&gt;% 
-  select(-total_char) %&gt;% 
-  mutate(burden = total/sum(total)*100) %&gt;% 
-  mutate(disease = case_when(
-    icd_code == &quot;01&quot; ~ &quot;Infectious diseases&quot;,
-    icd_code == &quot;02&quot; ~ &quot;Neoplasms&quot;,
-    icd_code == &quot;03&quot; ~ &quot;Blood diseases&quot;,
-    icd_code == &quot;04&quot; ~ &quot;Nutritional/ metabolic diseases&quot;,
-    icd_code == &quot;05&quot; ~ &quot;Mental/behavioral disorders&quot;,
-    icd_code == &quot;06&quot; ~ &quot;Nervous system diseases&quot;,
-    icd_code == &quot;07&quot; ~ &quot;Eye diseases&quot;,
-    icd_code == &quot;08&quot; ~ &quot;Ear diseases&quot;,
-    icd_code == &quot;09&quot; ~ &quot;Circulatory system diseases&quot;,
-    icd_code == &quot;10&quot; ~ &quot;Respiratory system diseases&quot;,
-    icd_code == &quot;11&quot; ~ &quot;Digestive system diseases&quot;,
-    icd_code == &quot;12&quot; ~ &quot;Skin diseases&quot;,
-    icd_code == &quot;13&quot; ~ &quot;Muscloskeletal system diseases&quot;,
-    icd_code == &quot;14&quot; ~ &quot;Genitourinary system diseases&quot;,
-    icd_code == &quot;15&quot; ~ &quot;Perinatal conditions&quot;,
-    icd_code == &quot;16&quot; ~ &quot;Congenital malformations&quot;
+spaghetti <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(sex <span class="op">==</span><span class="st"> &quot;Male&quot;</span>, loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value, <span class="dt">color =</span> id)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</code></pre></div>
+<p><img src="data:image/png;base64,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" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. </span>
+bar_graph =<span class="st"> </span>
+<span class="st">  </span>wave_3_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, ICD10_<span class="dv">01</span><span class="op">:</span>ICD10_<span class="dv">16</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">total_01 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">01</span>), <span class="dt">total_02 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">02</span>), <span class="dt">total_03 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">03</span>), 
+            <span class="dt">total_04 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">04</span>), <span class="dt">total_05 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">05</span>), <span class="dt">total_06 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">06</span>), 
+            <span class="dt">total_07 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">07</span>), <span class="dt">total_08 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">08</span>), <span class="dt">total_09 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">09</span>),
+            <span class="dt">total_10 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">10</span>), <span class="dt">total_11 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">11</span>), <span class="dt">total_12 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">12</span>),
+            <span class="dt">total_13 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">13</span>), <span class="dt">total_14 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">14</span>), <span class="dt">total_15 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">15</span>),
+            <span class="dt">total_16 =</span> <span class="kw">sum</span>(ICD10_<span class="dv">16</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> icd_code, <span class="dt">value =</span> total, total_<span class="dv">01</span><span class="op">:</span>total_<span class="dv">16</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">separate</span>(icd_code, <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;total_char&quot;</span>,<span class="st">&quot;icd_code&quot;</span>), <span class="dt">sep =</span> <span class="st">&quot;_&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>total_char) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">burden =</span> total<span class="op">/</span><span class="kw">sum</span>(total)<span class="op">*</span><span class="dv">100</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">disease =</span> <span class="kw">case_when</span>(
+    icd_code <span class="op">==</span><span class="st"> &quot;01&quot;</span> <span class="op">~</span><span class="st"> &quot;Infectious diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;02&quot;</span> <span class="op">~</span><span class="st"> &quot;Neoplasms&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;03&quot;</span> <span class="op">~</span><span class="st"> &quot;Blood diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;04&quot;</span> <span class="op">~</span><span class="st"> &quot;Nutritional/ metabolic diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;05&quot;</span> <span class="op">~</span><span class="st"> &quot;Mental/behavioral disorders&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;06&quot;</span> <span class="op">~</span><span class="st"> &quot;Nervous system diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;07&quot;</span> <span class="op">~</span><span class="st"> &quot;Eye diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;08&quot;</span> <span class="op">~</span><span class="st"> &quot;Ear diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;09&quot;</span> <span class="op">~</span><span class="st"> &quot;Circulatory system diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;10&quot;</span> <span class="op">~</span><span class="st"> &quot;Respiratory system diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;11&quot;</span> <span class="op">~</span><span class="st"> &quot;Digestive system diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;12&quot;</span> <span class="op">~</span><span class="st"> &quot;Skin diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;13&quot;</span> <span class="op">~</span><span class="st"> &quot;Muscloskeletal system diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;14&quot;</span> <span class="op">~</span><span class="st"> &quot;Genitourinary system diseases&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;15&quot;</span> <span class="op">~</span><span class="st"> &quot;Perinatal conditions&quot;</span>,
+    icd_code <span class="op">==</span><span class="st"> &quot;16&quot;</span> <span class="op">~</span><span class="st"> &quot;Congenital malformations&quot;</span>
   ))
  
 
-bar_graph %&gt;% 
-  ggplot(aes(x = reorder(disease, -burden), y = burden)) +
-  geom_bar(stat = &quot;identity&quot;) + 
-  labs(
-    title = &quot;Proportion of people with specified diseases&quot;,
-    x = &quot;Disease&quot;,
-    y = &quot;Proportion (%)&quot;
-  ) + 
-  viridis::scale_color_viridis(
-    name = &quot;Location&quot;, 
-    discrete = TRUE
-  ) + 
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, size = 7))</code></pre>
-<p><img src="draft_files/figure-html/bar_graph-1.png" width="672" /></p>
-<pre class="r"><code>### Baseline 0
+bar_graph <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">reorder</span>(disease, <span class="op">-</span>burden), <span class="dt">y =</span> burden)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_bar</span>(<span class="dt">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">title =</span> <span class="st">&quot;Proportion of people with specified diseases&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Disease&quot;</span>,
+    <span class="dt">y =</span> <span class="st">&quot;Proportion (%)&quot;</span>
+  ) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span>viridis<span class="op">::</span><span class="kw">scale_color_viridis</span>(
+    <span class="dt">name =</span> <span class="st">&quot;Location&quot;</span>, 
+    <span class="dt">discrete =</span> <span class="ot">TRUE</span>
+  ) <span class="op">+</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">size =</span> <span class="dv">7</span>))</code></pre></div>
+<p><img src="data:image/png;base64,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" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">### Baseline 0
 
-baseline_loneliness_0 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 0 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">0</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">0</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_0 = baseline_loneliness_0 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) + 
-    ylim(0,10)
+baseline_<span class="dv">0</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">0</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 1
 
-baseline_loneliness_1 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 1 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">1</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_1 = baseline_loneliness_1 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">1</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">1</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 2
 
-baseline_loneliness_2 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 2 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">2</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">2</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_2 = baseline_loneliness_2 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">2</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">2</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 3
 
 
-baseline_loneliness_3 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 3 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">3</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">3</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_3 = baseline_loneliness_3 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">3</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">3</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 4
 
-baseline_loneliness_4 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 4 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">4</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">4</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_4 = baseline_loneliness_4 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">4</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">4</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 
 ### Baseline 5
 
-baseline_loneliness_5 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 5 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">5</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">5</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_5 = baseline_loneliness_5 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">5</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">5</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 6
 
-baseline_loneliness_6 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 6 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">6</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">6</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_6 = baseline_loneliness_6 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">6</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">6</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 7
 
-baseline_loneliness_7 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 7 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">7</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">7</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_7 = baseline_loneliness_7 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">7</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">7</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 8
 
-baseline_loneliness_8 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 8 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">8</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">8</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_8 = baseline_loneliness_8 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">8</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">8</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 9
 
-baseline_loneliness_9 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 9 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">9</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">9</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_9 = baseline_loneliness_9 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">9</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">9</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
 ### Baseline 10
 
-baseline_loneliness_10 = wave_1_data %&gt;% 
-  filter(MHUCLA_LONELINESS_1 == 10 &amp; SEX == &quot;(1) Male&quot; &amp; CS006 == &quot;(6) Widowed&quot;) %&gt;% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %&gt;% 
-  merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
-  merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %&gt;% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
-  mutate(wave = case_when(
-    wave == &quot;MHUCLA_LONELINESS_1&quot; ~ 1,
-    wave == &quot;MHUCLA_LONELINESS_2&quot; ~ 2,
-    wave == &quot;MHUCLA_LONELINESS_3&quot; ~ 3
-  )) %&gt;% 
-  filter(loneliness_value != &quot;NA&quot;)
+baseline_loneliness_<span class="dv">10</span> =<span class="st"> </span>wave_1_data <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(MHUCLA_LONELINESS_<span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">10</span> <span class="op">&amp;</span><span class="st"> </span>SEX <span class="op">==</span><span class="st"> &quot;(1) Male&quot;</span> <span class="op">&amp;</span><span class="st"> </span>CS006 <span class="op">==</span><span class="st"> &quot;(6) Widowed&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, SEX, CS006, MHUCLA_LONELINESS_<span class="dv">1</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_2_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">merge</span>(wave_3_data, <span class="dt">by =</span> <span class="st">&quot;ID&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(ID, MHUCLA_LONELINESS_<span class="dv">1</span>, MHUCLA_LONELINESS_<span class="dv">2</span>, MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">gather</span>(<span class="dt">key =</span> wave, <span class="dt">value =</span> loneliness_value, MHUCLA_LONELINESS_<span class="dv">1</span><span class="op">:</span>MHUCLA_LONELINESS_<span class="dv">3</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">wave =</span> <span class="kw">case_when</span>(
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_1&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">1</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_2&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">2</span>,
+    wave <span class="op">==</span><span class="st"> &quot;MHUCLA_LONELINESS_3&quot;</span> <span class="op">~</span><span class="st"> </span><span class="dv">3</span>
+  )) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(loneliness_value <span class="op">!=</span><span class="st"> &quot;NA&quot;</span>)
 
-baseline_10 = baseline_loneliness_10 %&gt;% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) +
-    ylim(0,10)
+baseline_<span class="dv">10</span> =<span class="st"> </span>baseline_loneliness_<span class="dv">10</span> <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wave, <span class="dt">y =</span> loneliness_value)) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">se =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">10</span>)
 
-(baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 5.2454e-17</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+(baseline_<span class="dv">0</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">1</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">2</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">3</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">4</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">5</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">6</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">7</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">8</span> <span class="op">+</span><span class="st"> </span>baseline_<span class="dv">9</span>)</code></pre></div>
+<pre><code>## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 5.2454e-017
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 2.0661e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 2.1055e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.9961e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.0184e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 2.3477e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.1404e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 2.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 1.2425e-016
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : There are other near singularities as well. 4.0401
+
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : span too small. fewer data values than degrees of freedom.
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : pseudoinverse used at 0.99
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : neighborhood radius 1.01
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
+## parametric, : reciprocal condition number 0
+
+## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
 ## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 2.0661e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 2.1055e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.9961e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.0184e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 2.3477e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.1404e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 2.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 1.2425e-16</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 1.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 0</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<pre><code>## `geom_smooth()` using method = &#39;loess&#39; and formula &#39;y ~ x&#39;</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : span too small. fewer data values than degrees of freedom.</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : pseudoinverse used at 0.99</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : neighborhood radius 1.01</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : reciprocal condition number 0</code></pre>
-<pre><code>## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-## parametric, : There are other near singularities as well. 4.0401</code></pre>
-<p><img src="draft_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-
-
-
-
-</div>
-
-<script>
-
-// add bootstrap table styles to pandoc tables
-function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
-}
-$(document).ready(function () {
-  bootstrapStylePandocTables();
-});
-
-
-</script>
-
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
+<p><img src="data:image/png;base64,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" /></p>
 
 </body>
 </html>
