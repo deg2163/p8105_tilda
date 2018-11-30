@@ -273,7 +273,7 @@ plot_1 = countplot %&gt;%
   theme_bw() +
   theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
-<p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex.</p>
+<p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex and across waves to visualize the trend over time.</p>
 <p>Graph 2:</p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
@@ -595,8 +595,8 @@ baseline_10 = baseline_loneliness_10 %&gt;%
 
 plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
 <p>For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used <code>case_when</code> to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each loneliness value (scale from 1-10). We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in the 10 loneliness values. The use of <code>shiny</code> allowed us to further stratify by sex and marital status.</p>
-<p>Discussion:</p>
-<p>We anticipated that those who felt they had good physical health would also have good mental health and vice versa. From Graph 1 Self-rated physical and mental health are correlated Most older adults in this population report having good or very good physical and mental health Same for males and females Graph 2: Of all the incident diseases, the top 4 are: Circulatory system diseases Eye diseases Nutritional/metabolic diseases Musculoskeletal system diseases There were no incident cases of: Congenital malformations Ear diseases Infectious diseases Perinatal conditions Skin conditions Graph 3:</p>
+<p>Discussion: Graph 1: We anticipated that physical health and mental health would be correlated and from graph 1 we discovered that this was true. Those who felt they had good physical health also had good mental health and vice versa. We also found a larger concentration of older adults reporting <code>Very Good</code> or <code>Good</code> physical and mental health. This trend remained consistent across sex and over time. Unfortunately, this means that there was minimal improvement in physical and mental health, but also minimal decline in physical and mental health.</p>
+<p>Graph 2: Of all the incident diseases, the top 4 are: Circulatory system diseases Eye diseases Nutritional/metabolic diseases Musculoskeletal system diseases There were no incident cases of: Congenital malformations Ear diseases Infectious diseases Perinatal conditions Skin conditions Graph 3:</p>
 </div>
 
 
