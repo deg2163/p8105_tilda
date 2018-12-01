@@ -89,6 +89,12 @@ plot_1 = countplot %>%
 
 For the first plot, we cleaned the values under the variables of interest using the `case_when` function and used the `factor` function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used `shiny` to stratify this plot by sex, marital status, and across waves to observe trends over time. 
 
+Chi-squared test between mental health and physical health
+```{r}
+
+```
+
+
 Graph 2:
 ```{r spaghetti}
 wave_1_data = wave_1_data %>% 

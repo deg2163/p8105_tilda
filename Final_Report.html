@@ -189,9 +189,8 @@ $(document).ready(function () {
         <li>
   <a href="about.html">About</a>
 </li>
-<li class="dropdown-header">Shiny Dashboard</li>
 <li>
-  <a href="https://clc2229.shinyapps.io/shiny_test/">Final Report</a>
+  <a href="https://clc2229.shinyapps.io/shiny_test/">Shiny Dashboard</a>
 </li>
 <li>
   <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
@@ -290,6 +289,7 @@ plot_1 = countplot %&gt;%
   theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
 <p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex, marital status, and across waves to observe trends over time.</p>
+<p>Chi-squared test between mental health and physical health</p>
 <p>Graph 2:</p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
