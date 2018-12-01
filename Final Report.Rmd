@@ -13,6 +13,8 @@ Our main questions- Is physical health associated with mental health? Does lonel
 
 Evolution of questions: As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.
 
+Evolution of methods: In our initial proposal we wanted to look at `Quality of Life`. However, the nature of this variable seemed ambiguous to us so instead we looked at variables such as `mental health`, `physical health`, and `loneliness` as a proxy for quality of life. We also planned to use a hexagonal heat map for graph 1 but according to the distribution of our data this map was not visually aesthetic, instead we used a geom_count to display the concentrations of data within a scatterplot.
+
 Loading the necessary libraries:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
