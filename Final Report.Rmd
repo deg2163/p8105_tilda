@@ -24,7 +24,7 @@ library(plotly)
 ```
 
 
-Importing data:
+Instructions for importing the data: download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.
 ```{r load_data}
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
@@ -89,11 +89,12 @@ plot_1 = countplot %>%
 
 For the first plot, we cleaned the values under the variables of interest using the `case_when` function and used the `factor` function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used `shiny` to stratify this plot by sex, marital status, and across waves to observe trends over time. 
 
-Chi-squared test between mental health and physical health
+We ran a chi-squared test between mental health and physical health. First, we checked to make sure the expected cell counts were greater than 5. Then we ran code to calculate the chi-squared test statistic in order to determine if there is an association between mental health and physical heatlh.
 ```{r}
 
 ```
 
+At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = , p-value= ).
 
 Graph 2:
 ```{r spaghetti}

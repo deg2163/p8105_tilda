@@ -232,7 +232,7 @@ $(document).ready(function () {
 <p>Evolution of questions: As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.</p>
 <p>Evolution of methods: In our initial proposal we wanted to look at <code>Quality of Life</code>. However, the nature of this variable seemed ambiguous to us so instead we looked at variables such as <code>mental health</code>, <code>physical health</code>, and <code>loneliness</code> as a proxy for quality of life. We also planned to use a hexagonal heat map for graph 1 but according to the distribution of our data this map was not visually aesthetic, instead we used a geom_count to display the concentrations of data within a scatterplot.</p>
 <p>Loading the necessary libraries:</p>
-<p>Importing data:</p>
+<p>Instructions for importing the data: download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.</p>
 <pre class="r"><code>load(&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;)
 load(&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;)
 load(&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;)
@@ -289,7 +289,8 @@ plot_1 = countplot %&gt;%
   theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
 <p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex, marital status, and across waves to observe trends over time.</p>
-<p>Chi-squared test between mental health and physical health</p>
+<p>We ran a chi-squared test between mental health and physical health. First, we checked to make sure the expected cell counts were greater than 5. Then we ran code to calculate the chi-squared test statistic in order to determine if there is an association between mental health and physical heatlh.</p>
+<p>At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = , p-value= ).</p>
 <p>Graph 2:</p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
