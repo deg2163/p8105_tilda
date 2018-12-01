@@ -41,8 +41,6 @@ nrow(wave_3_data)
 
 Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726 . We did not delete any participants from our dataset to ensure completeness of our code, in case a participant who is null right now responds in a future wave. Our sample size for wave 1 was n =`r nrow(wave_1_data)`, for wave 2 n = `r nrow(wave_2_data)`, for wave 3 n = `r nrow(wave_3_data)`.
 
-
-
 Exploratory Analysis- creating graphs
 
 Graph 1:
@@ -89,7 +87,7 @@ plot_1 = countplot %>%
 
 ```
 
-For the first plot, we cleaned the values under the variables of interest using the `case_when` function and used the `factor` function to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size. We used `shiny` to stratify this plot by sex and across waves to visualize the trend over time.
+For the first plot, we cleaned the values under the variables of interest using the `case_when` function and used the `factor` function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used `shiny` to stratify this plot by sex and across waves to observe trends over time. 
 
 Graph 2:
 ```{r spaghetti}

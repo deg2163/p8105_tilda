@@ -289,7 +289,7 @@ plot_1 = countplot %&gt;%
   theme_bw() +
   theme(legend.position = &quot;none&quot;,
         axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
-<p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex and across waves to visualize the trend over time.</p>
+<p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex and across waves to observe trends over time.</p>
 <p>Graph 2:</p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
