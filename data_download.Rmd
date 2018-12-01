@@ -1,0 +1,32 @@
+---
+title: "Untitled"
+author: "Christopher Crowe"
+date: "December 1, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r}
+library(googledrive)
+library(httr)
+library(tidyverse)
+
+drive_download("34315-0001-Data.rda", overwrite = TRUE)
+drive_download("37105-0001-Data.rda", overwrite = TRUE)
+drive_download("37106-0001-Data.rda", overwrite = TRUE)
+
+load("./34315-0001-Data.rda")
+load("./37105-0001-Data.rda")
+load("./37106-0001-Data.rda")
+
+
+wave_1_data = da34315.0001
+wave_2_data = da37105.0001
+wave_3_data = da37106.0001
+
+```
+ 
