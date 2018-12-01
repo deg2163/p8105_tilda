@@ -1,0 +1,10 @@
+name: shiny_test
+title:
+username:
+account: clc2229
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 598659
+bundleId: 1732975
+url: https://clc2229.shinyapps.io/shiny_test/
+when: 1543682564.00525
