@@ -11,12 +11,11 @@ Related Work: This project is a broad examination of the implications of aging o
 Questions: 
 Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?
 
-Evolution of questions: As we created the graphs we decided to also explore variations according to sex and different marital statuses. We also explored the change over time by stratifying according to wave. For example, we also explored loneliness among widowed women over time and saw that loneliness increased more for men compared to women. Instead of just looking at widowed people we looked at married, divorced, cohabitating, separated, and single.
+Evolution of questions: As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.
 
-
+Loading the necessary libraries:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-
 library(tidyverse)
 library(patchwork)
 library(plotly)
@@ -24,8 +23,7 @@ library(plotly)
 
 Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726 .
 
-Importing data
-
+Importing data:
 ```{r load_data}
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
@@ -34,7 +32,6 @@ load("./data/Wave 3/DS0001/37106-0001-Data.rda")
 wave_1_data = da34315.0001
 wave_2_data = da37105.0001
 wave_3_data = da37106.0001
-
 ```
 
 Exploratory Analysis- creating graphs
