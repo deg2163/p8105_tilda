@@ -6,7 +6,6 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Shiny Dashboard"
-    - text: "Final Report"
       href: https://clc2229.shinyapps.io/shiny_test/ 
     - icon: fa-envelope fa-lg
       href: mailto:<deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu>
