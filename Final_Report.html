@@ -233,7 +233,6 @@ $(document).ready(function () {
 <p>Evolution of questions: As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.</p>
 <p>Evolution of methods: In our initial proposal we wanted to look at <code>Quality of Life</code>. However, the nature of this variable seemed ambiguous to us so instead we looked at variables such as <code>mental health</code>, <code>physical health</code>, and <code>loneliness</code> as a proxy for quality of life. We also planned to use a hexagonal heat map for graph 1 but according to the distribution of our data this map was not visually aesthetic, instead we used a geom_count to display the concentrations of data within a scatterplot.</p>
 <p>Loading the necessary libraries:</p>
-<p>Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <a href="https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726" class="uri">https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726</a> .</p>
 <p>Importing data:</p>
 <pre class="r"><code>load(&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;)
 load(&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;)
@@ -241,7 +240,15 @@ load(&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;)
 
 wave_1_data = da34315.0001
 wave_2_data = da37105.0001
-wave_3_data = da37106.0001</code></pre>
+wave_3_data = da37106.0001
+
+nrow(wave_1_data)</code></pre>
+<pre><code>## [1] 8504</code></pre>
+<pre class="r"><code>nrow(wave_2_data)</code></pre>
+<pre><code>## [1] 7207</code></pre>
+<pre class="r"><code>nrow(wave_3_data)</code></pre>
+<pre><code>## [1] 6400</code></pre>
+<p>Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <a href="https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726" class="uri">https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726</a> . We did not delete any participants from our dataset to ensure completeness of our code, in case a participant who is null right now responds in a future wave. Our sample size for wave 1 was n =8504, for wave 2 n = 7207, for wave 3 n = 6400.</p>
 <p>Exploratory Analysis- creating graphs</p>
 <p>Graph 1:</p>
 <pre class="r"><code>countplot = wave_3_data %&gt;% 

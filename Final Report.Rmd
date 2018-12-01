@@ -23,7 +23,6 @@ library(patchwork)
 library(plotly)
 ```
 
-Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726 .
 
 Importing data:
 ```{r load_data}
@@ -34,7 +33,15 @@ load("./data/Wave 3/DS0001/37106-0001-Data.rda")
 wave_1_data = da34315.0001
 wave_2_data = da37105.0001
 wave_3_data = da37106.0001
+
+nrow(wave_1_data)
+nrow(wave_2_data)
+nrow(wave_3_data)
 ```
+
+Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726 . We did not delete any participants from our dataset to ensure completeness of our code, in case a participant who is null right now responds in a future wave. Our sample size for wave 1 was n =`r nrow(wave_1_data)`, for wave 2 n = `r nrow(wave_2_data)`, for wave 3 n = `r nrow(wave_3_data)`.
+
+
 
 Exploratory Analysis- creating graphs
 
