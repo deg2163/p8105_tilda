@@ -654,3 +654,5 @@ Graph 3: Our hypothesis for this plot was more broad in that we expected the pro
 Graph 2 (real): We expected that loneliness would increase over time for widowed men more than widowed women. According to graph 2 we found this to be true. For widowed men, those with a loneliness of 2 or higher seemed to decrease their loneliness across waves and those with a loneliness of 1 seemed to increase their loneliness across waves. As we expected, widowed women stayed at relatively the same loneliness level across all waves with the exception of an an outlier at level 8 loneliness. In contrast, married men seemed to decrease in loneliness at every baseline point, while women stayed relatively the same from wave 1 to wave 3.
 
 Regression Model and results: We wanted to conduct a simple linear regression testing the association between disease type and proportion of people with burden. 
+
+Hello, just checking. 
