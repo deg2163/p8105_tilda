@@ -15,10 +15,13 @@ library(googledrive)
 library(httr)
 library(tidyverse)
 
-drive_download("34315-0001-Data.rda", overwrite = TRUE)
-drive_download("37105-0001-Data.rda", overwrite = TRUE)
-drive_download("37106-0001-Data.rda", overwrite = TRUE)
+drive_download("34315-0001-Data.rda", path = "./shiny/34315-0001-Data.rda", overwrite = TRUE)
+drive_download("37105-0001-Data.rda", path = "./shiny/37105-0001-Data.rda", overwrite = TRUE)
+drive_download("37106-0001-Data.rda", path = "./shiny/37106-0001-Data.rda", overwrite = TRUE)
 
+drive_download("34315-0001-Data.rda", path = "./34315-0001-Data.rda", overwrite = TRUE)
+drive_download("37105-0001-Data.rda", path = "./37105-0001-Data.rda", overwrite = TRUE)
+drive_download("37106-0001-Data.rda", path = "./37106-0001-Data.rda", overwrite = TRUE)
 
 ```
  

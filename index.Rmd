@@ -17,21 +17,27 @@ MPHc, 2019 [Columbia University Mailman School of Public Health](https://www.mai
 <br>
 <br>
 <center>
+<b>
 Overview:
+</b>
 </center>
-Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Center for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life.
+Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Center for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life among an Irish cohort.
 
 To access a screencast overview of our project on this website please see the attached YOUTUBE link.
 <br>
 <br>
 <center>
+<b>
 Data sources:
+</b>
 </center>
 The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follow this link to the [Dataset](https://deg2163.github.io/p8105_tilda.github.io/about.html) tab to learn more.
 <br>
 <br>
 <center>
+<b>
 Research Questions & Analysis:
+</b>
 </center>
 Is physical health associated with mental health? Stratified by sex, marital status, and wave.
 <br>
@@ -40,21 +46,33 @@ Is physical health associated with mental health? Stratified by sex, marital sta
 <br>
 Does loneliness change over time? Stratified by sex and marital status?
 <br>
-&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains our results in an interactive spaghetti plot.
+&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains an interactive spaghetti plot of our results.
 <br>
 <br>
 What is the proportion of various ICD-10 diseases among this population in wave 3? Stratified by sex and marital status.
 <br>
-&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains our results in an interactive bar chart.
+&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains an interactive bar chart of our results.
 <br>
 <br>
 <center>
+<b>
 Discussion & Conclusions:
+</b>
 </center>
 The results from our study indicate that there are sociodemographic variations in quality of life measures: mental health, physical health, and loneliness as well as the prevalence of disease. 
 <br>
 <br>
-&emsp; 1. Those who felt they had good physical health also had good mental health and vice versa. We also found a larger concentration of older adults reporting "Very Good" or "Good" physical and mental health. This trend remained consistent across sex and over time. Unfortunately, this means that there was minimal improvement in physical and mental health, but also minimal decline in physical and mental health. TALK ABOUT CHI SQUARED TEST
+&emsp; 1. Those who felt they had good physical health also had good mental health and vice versa. We also found a larger concentration of older adults reporting "Very Good" or "Good" physical and mental health. This trend remained consistent across sex and over time. Unfortunately, this means that there was minimal improvement in physical and mental health, but also minimal decline in physical and mental health. Since our graph depicted a correlation between mental health and physical health we anticipated an association. Our null hypothesis was that there is no association between mental health and physical health and the alternate hypothesis was that there is an association between mental health and physical health. We set alpha to 0.05 and calculated the chi-squared test statistic (4078.8) and p-value (0), which was significant. At the 5% level of significance, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health, which matches graph 1.
+<br>
+&emsp; &emsp; a. We used shiny to further stratify the analysis. At the 5% level of significance, among married females in wave 1, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; b. At the 5% level of significance, among married males in wave 2, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; c. At the 5% level of significance, among married females in wave 2, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; d. At the 5% level of significance, among married males in wave 3, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; e. At the 5% level of significance, among married females in wave 3, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
 <br>
 <br>
 &emsp; 2. We expected that loneliness would increase over time for widowed men more than widowed women. According to graph 2 we found this to be true. For widowed men, those with a loneliness of 2 or higher seemed to decrease their loneliness across waves and those with a loneliness of 1 seemed to increase their loneliness across waves. As we expected, widowed women stayed at relatively the same loneliness level across all waves with the exception of an an outlier at level 8 loneliness. In contrast, married men seemed to decrease in loneliness at every baseline point, while women stayed relatively the same from wave 1 to wave 3.
