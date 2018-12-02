@@ -469,8 +469,26 @@ results = chi %&gt;%
   mutate(df = parameter,
          chi_stat = statistic) %&gt;%
   select(chi_stat, df, p_value) %&gt;%
-  knitr::kable()</code></pre>
-<p>At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X2 = , p-value = ).</p>
+  knitr::kable()
+
+results</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">chi_stat</th>
+<th align="right">df</th>
+<th align="right">p_value</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">4078.847</td>
+<td align="right">16</td>
+<td align="right">0</td>
+</tr>
+</tbody>
+</table>
+<p>At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = , p-value = ).</p>
 <p>Graph 2:</p>
 <pre class="r"><code>wave_1_data = wave_1_data %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
