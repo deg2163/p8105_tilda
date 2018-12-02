@@ -197,6 +197,9 @@ $(document).ready(function () {
   <a href="https://clc2229.shinyapps.io/shiny_analysis/">Shiny Data Analysis</a>
 </li>
 <li>
+  <a href="Final_Report.html">Final Report</a>
+</li>
+<li>
   <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
@@ -816,7 +819,7 @@ baseline_10 = baseline_loneliness_10 %&gt;%
     geom_smooth(se = FALSE) + ylim(0, 10)
 
 plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
-<p>For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used <code>case_when</code> to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each baseline loneliness value (scale from 0-10). Although there is no one at loneliness 10 we kept this in our code for future replication of this code, if a participant were to respond as 10. We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in across loneliness values. The use of <code>shiny</code> allowed us to further stratify by sex and marital status. We also incorporated a color grid to depict the different trends.</p>
+<p>For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used <code>case_when</code> to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each baseline loneliness value (scale from 1-10). Although there is no one at loneliness 10 we kept this in our code for future replication of this code, if a participant were to respond as 10. We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in across loneliness values. The use of <code>shiny</code> allowed us to further stratify by sex and marital status. We also incorporated a color grid to depict the different trends.</p>
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
 <p>Chi-Square Test:</p>
