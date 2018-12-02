@@ -10,8 +10,9 @@ title: "Analysis of a Longitudinal Study on Ageing Conducted in Ireland"
 </center> 
 <br> 
 <br> 
-
+<center>
 ### Diana Ballesteros | Chris Crowe | Tanvi Jain 
+</center>
 <br>
 <br>
 <center>
@@ -20,8 +21,20 @@ Overview:
 Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Center for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life.
 
 To access a screencase overview of our project on this website please see the attached YOUTUBE link.
-
+<br>
+<br>
+<center>
 Data sources:
+</center>
+The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follow this LINK TO DATASET TAB to learn more.
+<br>
+<br>
+<center>
+Research Questions:
+</center>
+Is physical health associated with mental health? Does loneliness change over time? What is the proportion of various ICD-10 diseases among this population? Stratified by sex, marital status, and wave.
+
+
 
 Analyses:
 include links to the plots
