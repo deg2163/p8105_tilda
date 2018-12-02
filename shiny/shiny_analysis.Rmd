@@ -1,0 +1,287 @@
+---
+title: "Analysis of Self-Rated Physical & Mental Health"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+
+library(flexdashboard)
+library(viridis)
+library(plotly)
+library(dplyr)
+library(tidyverse)
+library(MASS)
+
+select = dplyr::select
+
+load("./34315-0001-Data.rda")
+load("./37105-0001-Data.rda")
+load("./37106-0001-Data.rda")
+
+clean_wave = function(x) {
+  
+  x %>% 
+    mutate(
+      wave = case_when(
+        str_detect(wave, "_1$") ~ 1,
+        str_detect(wave, "_2$") ~ 2,
+        str_detect(wave, "_3$") ~ 3
+    )
+  )
+  
+}
+clean_physical = function(x) {
+  
+  x %>% 
+    mutate(
+      physical = case_when(
+        physical_value == "(1) Excellent" ~ "Excellent", 
+        physical_value == "(2) Very good" ~ "Very Good",
+        physical_value == "(3) Good" ~ "Good", 
+        physical_value == "(4) Fair" ~ "Fair", 
+        physical_value == "(5) Poor" ~ "Poor",
+        physical_value == "(01) Excellent" ~ "Excellent", 
+        physical_value == "(02) Very Good" ~ "Very Good",
+        physical_value == "(03) Good" ~ "Good", 
+        physical_value == "(04) Fair" ~ "Fair", 
+        physical_value == "(05) Poor" ~ "Poor"),
+      physical = factor(physical, levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"))
+    )
+  
+}
+clean_mental = function(x) {
+  
+  x %>% 
+    mutate(
+      mental = case_when(
+        mental_value == "(1) Excellent" ~ "Excellent", 
+        mental_value == "(2) Very good" ~ "Very Good",
+        mental_value == "(3) Good" ~ "Good", 
+        mental_value == "(4) Fair" ~ "Fair", 
+        mental_value == "(5) Poor" ~ "Poor",
+        mental_value == "(01) Excellent" ~ "Excellent", 
+        mental_value == "(02) Very Good" ~ "Very Good",
+        mental_value == "(03) Good" ~ "Good", 
+        mental_value == "(04) Fair" ~ "Fair", 
+        mental_value == "(05) Poor" ~ "Poor"),
+      mental = factor(mental, levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"))
+    )
+}
+clean_marital = function(x) {
+  
+  x %>% 
+    mutate(
+      marital = case_when(
+        CS006 == "(1) Married" ~ "Married",
+        CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
+        CS006 == "(3) Single (never married)" ~ "Never married",
+        CS006 == "(4) Separated" ~ "Separated",
+        CS006 == "(5) Divorced" ~ "Divorced",
+        CS006 == "(6) Widowed" ~ "Widowed"),
+      marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married",
+                                           "Separated", "Divorced", "Widowed"))
+    )
+  
+}
+clean_sex = function(x) {
+  
+   x %>% 
+    mutate(
+      sex = case_when(
+        SEX == "(1) Male" ~ "Male",
+        SEX == "(2) Female" ~ "Female")
+    )
+  
+}
+
+
+```
+
+
+```{r}
+
+## Assign data from each wave to a new object where common variable names are given unique names
+wave_1_data = da34315.0001 %>% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
+         PH001_1 = PH001,
+         PH002_1 = PH002)
+ 
+wave_2_data = da37105.0001 %>% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS,
+         PH001_2 = PH001,
+         PH002_2 = PH002
+  )
+      
+wave_3_data = da37106.0001 %>% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS,
+         PH001_3 = PH001,
+         PH002_3 = PH002
+  )
+## Data for Physical Health vs. Mental Health
+## Tidy data for self-report physical health
+overall_1 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %>% 
+  gather(wave, physical_value, PH001_1:PH001_3) %>% 
+  clean_wave()
+  
+## Tidy data for self-report mental health
+overall_2 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
+  gather(wave, mental_value, PH002_1:PH002_3) %>% 
+  clean_wave()
+## Tidy data for loneliness
+overall_3 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
+  gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  clean_wave()
+  
+## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
+final = overall_1 %>% 
+  merge(overall_2, by = c("ID", "wave")) %>% 
+  merge(overall_3, by = c("ID", "wave")) %>% 
+  select(ID, wave, SEX.x, CS006.x, physical_value, mental_value, loneliness_value) %>% 
+  clean_physical() %>% 
+  clean_mental() %>% 
+  mutate(
+    CS006 = CS006.x,
+    SEX = SEX.x
+  ) %>% 
+  clean_marital() %>% 
+  clean_sex() %>% 
+  select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
+
+
+```
+
+Column {.sidebar}
+-----------------------------------------------------------------------
+
+```{r}
+
+sex_choice = final %>% distinct(sex) %>% pull()
+marital_choice = final %>% distinct(marital) %>% pull()
+wave_choice = final %>% distinct(wave) %>% pull()
+radioButtons("wave_choice", label = h3("Choose wave"),
+    choices = wave_choice,
+    selected = 1)
+radioButtons("sex_choice", label = h3("Choose sex"),
+    choices = sex_choice, 
+    selected = "Male")
+radioButtons("marital_choice", label = h3("Choose marital status"),
+    choices = marital_choice, 
+    selected = "Married")
+
+
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Self-Rated Physical vs. Mental Health Status
+
+```{r}
+
+renderPlotly({
+  
+  plot_1 = final %>%
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice) %>% 
+  ggplot(aes(x = physical, y = mental, color = ..n..)) +
+  geom_count(alpha = 0.8) +
+  labs(
+    x = "Self-Rated Physical Health",
+    y = "Self-Rated Mental Health"
+  ) +
+  theme_bw() +
+  theme(legend.position = "none",
+        axis.text.x = element_text(angle = 65, hjust = 1))
+ggplotly(plot_1)
+})
+
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+#### Observed Cell Counts
+
+```{r}
+
+renderTable({
+  
+final =
+  final %>% 
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
+  
+chi = chisq.test(table(final$mental, final$physical))
+
+observed = chi$observed
+
+as.data.frame.matrix(observed) %>% 
+  mutate("Health Status" = c("Poor", "Fair", "Good", "Very Good", "Excellent")) %>% 
+  select("Health Status", "Poor", "Fair", "Good", "Very Good", "Excellent")
+  
+})
+
+
+```
+
+
+#### Expected Cell Counts
+
+```{r}
+
+renderTable({
+  
+  final =
+  final %>% 
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
+  
+chi = chisq.test(table(final$mental, final$physical))
+
+expected = chi$expected
+
+as.data.frame.matrix(expected) %>% 
+  mutate("Health Status" = c("Poor", "Fair", "Good", "Very Good", "Excellent")) %>% 
+  select("Health Status", "Poor", "Fair", "Good", "Very Good", "Excellent")
+  
+})
+
+```
+
+
+#### Chi-Squared Test of Independence
+
+```{r}
+
+renderTable({
+  
+  final =
+  final %>% 
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
+  
+chi = chisq.test(table(final$mental, final$physical))
+
+results = chi %>% 
+  broom::tidy() %>% 
+  janitor::clean_names() %>% 
+  mutate(df = format(round((parameter), digits = 0)),
+         Chi2 = statistic,
+         p = p_value) %>% 
+  select(Chi2, df, p) 
+
+as.data.frame.matrix(results) 
+
+  
+})
+
+```
