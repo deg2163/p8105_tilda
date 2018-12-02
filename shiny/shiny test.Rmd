@@ -5,7 +5,6 @@ output:
     orientation: columns
     vertical_layout: fill
 runtime: shiny
-
 ---
 
 ```{r setup, include=FALSE}
@@ -19,12 +18,15 @@ library(MASS)
 
 select = dplyr::select
 
-
 load("./34315-0001-Data.rda")
 load("./37105-0001-Data.rda")
 load("./37106-0001-Data.rda")
+```
 
+```{r clean_data}
 ## Create functions to clean variables
+
+## Clean Waves
 clean_wave = function(x) {
   
   x %>% 
@@ -37,6 +39,8 @@ clean_wave = function(x) {
   )
   
 }
+
+## Clean self-rated physical health 
 clean_physical = function(x) {
   
   x %>% 
@@ -56,6 +60,8 @@ clean_physical = function(x) {
     )
   
 }
+
+## Clean self-rated mental health 
 clean_mental = function(x) {
   
   x %>% 
@@ -74,6 +80,8 @@ clean_mental = function(x) {
       mental = factor(mental, levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"))
     )
 }
+
+### Clean marital status
 clean_marital = function(x) {
   
   x %>% 
@@ -101,12 +109,9 @@ clean_sex = function(x) {
   
 }
 
-
 ```
 
-
 ```{r}
-
 ## Assign data from each wave to a new object where common variable names are given unique names
 wave_1_data = da34315.0001 %>% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
@@ -140,6 +145,7 @@ overall_2 = wave_1_data %>%
   select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
   gather(wave, mental_value, PH002_1:PH002_3) %>% 
   clean_wave()
+
 ## Tidy data for loneliness
 overall_3 = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
@@ -147,6 +153,7 @@ overall_3 = wave_1_data %>%
   select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
   gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
   clean_wave()
+
 ## Tidy data for ICD codes
 overall_4 = wave_1_data %>%  
   merge(wave_3_data, by = "ID") %>% 
@@ -155,7 +162,6 @@ overall_4 = wave_1_data %>%
   clean_sex() %>% 
   clean_marital() %>% 
   select(-SEX.x, -SEX, -CS006)
- 
   
 ## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
 final = overall_1 %>% 
@@ -171,6 +177,7 @@ final = overall_1 %>%
   clean_marital() %>% 
   clean_sex() %>% 
   select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
+
 ## Prepare data for loneliness plot
 plot_3 = 
   wave_1_data %>% 
@@ -183,8 +190,6 @@ plot_3 =
   clean_sex() %>% 
   clean_marital() %>% 
   select(-SEX.x, -CS006, -SEX)
-## Prepare data for ICD plot
-  
 ```
 
 Column {.sidebar}
@@ -244,23 +249,25 @@ icd_data = overall_4 %>%
   ))
 icd_plot = 
   icd_data %>% 
-  ggplot(aes(x = reorder(disease, -burden), y = burden)) +
+  mutate(disease = reorder(disease, -burden)) %>% 
+  ggplot(aes(x = disease, y = burden, fill = disease)) +
   geom_bar(stat = "identity") + 
   labs(
     x = "Disease",
-    y = "Percentage"
+    y = "Burden of Disease (%)"
   ) + 
   theme_bw() +
-  theme(axis.text.x = element_text(angle = 65, size = 7))
-ggplotly(icd_plot)
+  theme(axis.text.x = element_text(angle = 65, size = 7)) + 
+  theme(legend.position = "none") 
+
+ggplotly(icd_plot, tooltip = c("x", "y"))
 })
 ```
 
 Column {data-width=450}
 -----------------------------------------------------------------------
 
-### Self-Rated Mental vs. Physical Health Status
-
+### Self-Rated Physical vs. Mental Health Status
 ```{r}
 renderPlotly({
   
@@ -277,8 +284,6 @@ renderPlotly({
         axis.text.x = element_text(angle = 65, hjust = 1))
 ggplotly(plot_1)
 })
-
-  
 
 ```
 
@@ -301,17 +306,17 @@ for (i in 0:10) {
 }
 plot_3 = baseline_loneliness_0 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
-  geom_smooth(se = FALSE) +
-  geom_smooth(data = baseline_loneliness_1, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_2, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_3, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_4, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_5, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_6, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_7, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_8, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_9, aes(x = wave, y = loneliness_value), se = FALSE) +
-  geom_smooth(data = baseline_loneliness_10, aes(x = wave, y = loneliness_value), se = FALSE) +
+  geom_smooth(se = FALSE, color = "#47FF00") +
+  geom_smooth(data = baseline_loneliness_1, aes(x = wave, y = loneliness_value), se = FALSE, color = "#6AF00") +
+  geom_smooth(data = baseline_loneliness_2, aes(x = wave, y = loneliness_value, color = loneliness_value), se = FALSE, color = "#8DFF00") +
+  geom_smooth(data = baseline_loneliness_3, aes(x = wave, y = loneliness_value, color = loneliness_value), se = FALSE, color = "#B0FF00") +
+  geom_smooth(data = baseline_loneliness_4, aes(x = wave, y = loneliness_value), se = FALSE, color = "#D4FF00") +
+  geom_smooth(data = baseline_loneliness_5, aes(x = wave, y = loneliness_value), se = FALSE, color = "#F7FF00") +
+  geom_smooth(data = baseline_loneliness_6, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FFE400") +
+  geom_smooth(data = baseline_loneliness_7, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FFC100") +
+  geom_smooth(data = baseline_loneliness_8, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FF9E00") +
+  geom_smooth(data = baseline_loneliness_9, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FF7B00") +
+  geom_smooth(data = baseline_loneliness_10, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FF5700") +
   scale_y_continuous(breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
   scale_x_continuous(breaks = c(1, 2, 3)) +
   theme_bw() +
