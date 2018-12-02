@@ -5,8 +5,10 @@ navbar:
   right:
     - text: "About"
       href: about.html
-    - text: "Shiny Dashboard"
+    - text: "Shiny Data Visualizations"
       href: https://clc2229.shinyapps.io/shiny_test/ 
+    - text: "Shiny Data Analysis"
+      href: https://clc2229.shinyapps.io/shiny_analysis/ 
     - text: "Final Report"
       href: final report.html
     - icon: fa-envelope fa-lg
