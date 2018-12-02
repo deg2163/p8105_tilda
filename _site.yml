@@ -13,7 +13,7 @@ navbar:
       href: https://github.com/deg2163/p8105_tilda.github.io
     - icon: fas fa-video
       href: https://www.youtube.com/
-    - icon: "Final Report"
+    - text: "Final Report"
       href: final report.html
     
 output:
