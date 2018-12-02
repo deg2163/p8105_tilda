@@ -12,6 +12,7 @@ title: "Analysis of a Longitudinal Study on Ageing Conducted in Ireland"
 <br> 
 <center>
 ### Diana Ballesteros | Chris Crowe | Tanvi Jain 
+MPHc, 2019 [Columbia University Mailman School of Public Health](https://www.mailman.columbia.edu/)
 </center>
 <br>
 <br>
@@ -33,10 +34,12 @@ The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follo
 Research Questions:
 </center>
 Is physical health associated with mental health? Does loneliness change over time? What is the proportion of various ICD-10 diseases among this population? Stratified by sex, marital status, and wave.
-
-
-
+<br>
+<br>
+<center>
 Analyses:
 include links to the plots
+</center>
+
 
 Conclusions and Future implications:
