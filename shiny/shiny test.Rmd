@@ -20,9 +20,9 @@ library(MASS)
 select = dplyr::select
 
 
-load("../34315-0001-Data.rda")
-load("../37105-0001-Data.rda")
-load("../37106-0001-Data.rda")
+load("./34315-0001-Data.rda")
+load("./37105-0001-Data.rda")
+load("./37106-0001-Data.rda")
 
 ## Create functions to clean variables
 clean_wave = function(x) {
