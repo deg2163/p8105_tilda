@@ -21,7 +21,7 @@ MPHc, 2019 [Columbia University Mailman School of Public Health](https://www.mai
 Overview:
 </b>
 </center>
-Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Center for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life.
+Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Center for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life among an Irish cohort.
 
 To access a screencast overview of our project on this website please see the attached YOUTUBE link.
 <br>
