@@ -1,5 +1,8 @@
 ---
 title: "Final Report"
+author: "Diana Ballesteros (deg2163), Chris Crowe (clc2229), Tanvi Jain (uni: tj2383) "
+date: "December 4th, 2018"
+output: github_document
 ---
 
 #Analysis of a Longitudinal Study on Aging Conducted in Ireland 
@@ -9,7 +12,7 @@ Motivation: This project aims to look at the effect of sociodemographic indicato
 Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. https://www.apa.org/helpcenter/aging-depression.aspx 
 
 Questions: 
-Our main questions- Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?
+Our main questions - Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?
 
 Evolution of questions: As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.
 
@@ -21,8 +24,10 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(patchwork)
 library(plotly)
+library(viridis)
+library(plotly)
+library(tidyverse)
 ```
-
 
 Instructions for importing the data: download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.
 ```{r load_data}
@@ -39,9 +44,167 @@ nrow(wave_2_data)
 nrow(wave_3_data)
 ```
 
+
+Tidying the data: 
+```{r}
+## Create functions to clean variables
+clean_wave = function(x) {
+  
+  x %>% 
+    mutate(
+      wave = case_when(
+        str_detect(wave, "_1$") ~ 1,
+        str_detect(wave, "_2$") ~ 2,
+        str_detect(wave, "_3$") ~ 3
+    )
+  )
+  
+}
+clean_physical = function(x) {
+  
+  x %>% 
+    mutate(
+      physical = case_when(
+        physical_value == "(1) Excellent" ~ "Excellent", 
+        physical_value == "(2) Very good" ~ "Very Good",
+        physical_value == "(3) Good" ~ "Good", 
+        physical_value == "(4) Fair" ~ "Fair", 
+        physical_value == "(5) Poor" ~ "Poor",
+        physical_value == "(01) Excellent" ~ "Excellent", 
+        physical_value == "(02) Very Good" ~ "Very Good",
+        physical_value == "(03) Good" ~ "Good", 
+        physical_value == "(04) Fair" ~ "Fair", 
+        physical_value == "(05) Poor" ~ "Poor"),
+      physical = factor(physical, levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"))
+    )
+  
+}
+clean_mental = function(x) {
+  
+  x %>% 
+    mutate(
+      mental = case_when(
+        mental_value == "(1) Excellent" ~ "Excellent", 
+        mental_value == "(2) Very good" ~ "Very Good",
+        mental_value == "(3) Good" ~ "Good", 
+        mental_value == "(4) Fair" ~ "Fair", 
+        mental_value == "(5) Poor" ~ "Poor",
+        mental_value == "(01) Excellent" ~ "Excellent", 
+        mental_value == "(02) Very Good" ~ "Very Good",
+        mental_value == "(03) Good" ~ "Good", 
+        mental_value == "(04) Fair" ~ "Fair", 
+        mental_value == "(05) Poor" ~ "Poor"),
+      mental = factor(mental, levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"))
+    )
+}
+clean_marital = function(x) {
+  
+  x %>% 
+    mutate(
+      marital = case_when(
+        CS006 == "(1) Married" ~ "Married",
+        CS006 == "(2) Living with a partner as if married" ~ "Living w/ Partner",
+        CS006 == "(3) Single (never married)" ~ "Never married",
+        CS006 == "(4) Separated" ~ "Separated",
+        CS006 == "(5) Divorced" ~ "Divorced",
+        CS006 == "(6) Widowed" ~ "Widowed"),
+      marital = factor(marital, levels = c("Married", "Living w/ Partner", "Never married",
+                                           "Separated", "Divorced", "Widowed"))
+    )
+  
+}
+clean_sex = function(x) {
+  
+   x %>% 
+    mutate(
+      sex = case_when(
+        SEX == "(1) Male" ~ "Male",
+        SEX == "(2) Female" ~ "Female")
+    )
+  
+}
+
+## Assign data from each wave to a new object where common variable names are given unique names
+wave_1_data = da34315.0001 %>% 
+  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
+         PH001_1 = PH001,
+         PH002_1 = PH002)
+ 
+wave_2_data = da37105.0001 %>% 
+  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS,
+         PH001_2 = PH001,
+         PH002_2 = PH002
+  )
+      
+wave_3_data = da37106.0001 %>% 
+  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS,
+         PH001_3 = PH001,
+         PH002_3 = PH002
+  )
+## Data for Physical Health vs. Mental Health
+## Tidy data for self-report physical health
+overall_1 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %>% 
+  gather(wave, physical_value, PH001_1:PH001_3) %>% 
+  clean_wave()
+  
+## Tidy data for self-report mental health
+overall_2 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
+  gather(wave, mental_value, PH002_1:PH002_3) %>% 
+  clean_wave()
+## Tidy data for loneliness
+overall_3 = wave_1_data %>%  
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
+  gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  clean_wave()
+## Tidy data for ICD codes
+overall_4 = wave_1_data %>%  
+  merge(wave_3_data, by = "ID") %>% 
+  select(ICD10_01:ICD10_16, ID, SEX.x, CS006) %>% 
+  mutate(SEX = SEX.x) %>% 
+  clean_sex() %>% 
+  clean_marital() %>% 
+  select(-SEX.x, -SEX, -CS006)
+  
+## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
+final = overall_1 %>% 
+  merge(overall_2, by = c("ID", "wave")) %>% 
+  merge(overall_3, by = c("ID", "wave")) %>% 
+  select(ID, wave, SEX.x, CS006.x, physical_value, mental_value, loneliness_value) %>% 
+  clean_physical() %>% 
+  clean_mental() %>% 
+  mutate(
+    CS006 = CS006.x,
+    SEX = SEX.x
+  ) %>% 
+  clean_marital() %>% 
+  clean_sex() %>% 
+  select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
+
+## Prepare data for loneliness plot
+plot_3 = 
+  wave_1_data %>% 
+  merge(wave_2_data, by = "ID") %>% 
+  merge(wave_3_data, by = "ID") %>% 
+  select(SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3)  %>% 
+  mutate(
+    SEX = SEX.x
+  ) %>% 
+  clean_sex() %>% 
+  clean_marital() %>% 
+  select(-SEX.x, -CS006, -SEX)
+```
+
 Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726 . We did not delete any participants from our dataset to ensure completeness of our code, in case a participant who is null right now responds in a future wave. Our sample size for wave 1 was n =`r nrow(wave_1_data)`, for wave 2 n = `r nrow(wave_2_data)`, for wave 3 n = `r nrow(wave_3_data)`.
 
-Exploratory Analysis- creating graphs
+Exploratory Analysis - creating graphs
 
 Graph 1:
 ```{r countplot}
@@ -91,10 +254,28 @@ For the first plot, we cleaned the values under the variables of interest using 
 
 We ran a chi-squared test between mental health and physical health. First, we checked to make sure the expected cell counts were greater than 5. Then we ran code to calculate the chi-squared test statistic in order to determine if there is an association between mental health and physical heatlh.
 ```{r}
-
+final =
+  final %>%
+  filter(wave == 3)
+ 
+chi = chisq.test(table(final$mental, final$physical))
+ 
+observed = chi$observed %>%
+  knitr::kable()
+ 
+expected = chi$expected %>%
+  knitr::kable()
+ 
+results = chi %>%
+  broom::tidy() %>%
+  janitor::clean_names() %>%
+  mutate(df = parameter,
+         chi_stat = statistic) %>%
+  select(chi_stat, df, p_value) %>%
+  knitr::kable()
 ```
 
-At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = , p-value= ).
+At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = , p-value = ).
 
 Graph 2:
 ```{r spaghetti}
@@ -187,7 +368,7 @@ plot_2 = bar_graph %>%
   labs(
     title = "Proportion of people with specified diseases",
     x = "Disease",
-    y = "Proportion (%)"
+    y = "Percentage"
   ) + 
   viridis::scale_color_viridis(
     name = "Location", 
@@ -195,7 +376,6 @@ plot_2 = bar_graph %>%
   ) + 
   theme_bw() +
   theme(axis.text.x = element_text(angle = 90, size = 7))
-
 
 ```
 
@@ -432,8 +612,32 @@ For the second plot we renamed the loneliness variable so that it was consistent
 
 
 
-
-**Code chunk for linear regression
+Chi-Square Test: 
+```{r}
+final =
+  final %>%
+  filter(wave == 3)
+ 
+chi = chisq.test(table(final$mental, final$physical))
+ 
+observed = chi$observed %>%
+  knitr::kable()
+ 
+expected = chi$expected %>%
+  knitr::kable()
+ 
+results = chi %>%
+  broom::tidy() %>%
+  janitor::clean_names() %>%
+  mutate(df = parameter,
+         chi_stat = statistic) %>%
+  select(chi_stat, df, p_value) %>%
+  knitr::kable()
+ 
+## observed
+## expected
+## results
+```
 
 
 Discussion:
@@ -445,4 +649,4 @@ Graph 3: Our hypothesis for this plot was more broad in that we expected the pro
 
 Graph 2 (real): We expected that loneliness would increase over time for widowed men more than widowed women. According to graph 2 we found this to be true. For widowed men, those with a loneliness of 2 or higher seemed to decrease their loneliness across waves and those with a loneliness of 1 seemed to increase their loneliness across waves. As we expected, widowed women stayed at relatively the same loneliness level across all waves with the exception of an an outlier at level 8 loneliness. In contrast, married men seemed to decrease in loneliness at every baseline point, while women stayed relatively the same from wave 1 to wave 3.
 
-Regression Model and results: We wanted to conduct a simple linear regression testing the association between disease type and proportion of people with burden.
+Regression Model and results: We wanted to conduct a simple linear regression testing the association between disease type and proportion of people with burden. 
