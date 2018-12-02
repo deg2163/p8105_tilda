@@ -46,12 +46,12 @@ Is physical health associated with mental health? Stratified by sex, marital sta
 <br>
 Does loneliness change over time? Stratified by sex and marital status?
 <br>
-&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains our results in an interactive spaghetti plot.
+&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains an interactive spaghetti plot of our results.
 <br>
 <br>
 What is the proportion of various ICD-10 diseases among this population in wave 3? Stratified by sex and marital status.
 <br>
-&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains our results in an interactive bar chart.
+&emsp;- The [Shiny Data Visualizations](https://clc2229.shinyapps.io/shiny_test/) tab contains an interactive bar chart of our results.
 <br>
 <br>
 <center>
