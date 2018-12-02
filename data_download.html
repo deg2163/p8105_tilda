@@ -191,7 +191,10 @@ $(document).ready(function () {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="https://clc2229.shinyapps.io/shiny_test/">Shiny Dashboard</a>
+  <a href="https://clc2229.shinyapps.io/shiny_test/">Shiny Data Visualizations</a>
+</li>
+<li>
+  <a href="https://clc2229.shinyapps.io/shiny_analysis/">Shiny Data Analysis</a>
 </li>
 <li>
   <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
@@ -230,29 +233,44 @@ $(document).ready(function () {
 <pre class="r"><code>library(googledrive)
 library(httr)
 library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages ------------------------------------------------------------------------------------ tidyverse 1.2.1 --</code></pre>
+<pre><code>## -- Attaching packages --------------------------------------------------------------- tidyverse 1.2.1 --</code></pre>
 <pre><code>## v ggplot2 3.0.0     v purrr   0.2.5
 ## v tibble  1.4.2     v dplyr   0.7.6
 ## v tidyr   0.8.1     v stringr 1.3.1
 ## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## -- Conflicts --------------------------------------------------------------------------------------- tidyverse_conflicts() --
+<pre><code>## -- Conflicts ------------------------------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>drive_download(&quot;34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre class="r"><code>drive_download(&quot;34315-0001-Data.rda&quot;, path = &quot;./shiny/34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
 <pre><code>## File downloaded:
 ##   * 34315-0001-Data.rda
 ## Saved locally as:
-##   * 34315-0001-Data.rda</code></pre>
-<pre class="r"><code>drive_download(&quot;37105-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+##   * ./shiny/34315-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37105-0001-Data.rda&quot;, path = &quot;./shiny/37105-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
 <pre><code>## File downloaded:
 ##   * 37105-0001-Data.rda
 ## Saved locally as:
-##   * 37105-0001-Data.rda</code></pre>
-<pre class="r"><code>drive_download(&quot;37106-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+##   * ./shiny/37105-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37106-0001-Data.rda&quot;, path = &quot;./shiny/37106-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
 <pre><code>## File downloaded:
 ##   * 37106-0001-Data.rda
 ## Saved locally as:
-##   * 37106-0001-Data.rda</code></pre>
+##   * ./shiny/37106-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;34315-0001-Data.rda&quot;, path = &quot;./34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 34315-0001-Data.rda
+## Saved locally as:
+##   * ./34315-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37105-0001-Data.rda&quot;, path = &quot;./37105-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 37105-0001-Data.rda
+## Saved locally as:
+##   * ./37105-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37106-0001-Data.rda&quot;, path = &quot;./37106-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 37106-0001-Data.rda
+## Saved locally as:
+##   * ./37106-0001-Data.rda</code></pre>
 
 
 
