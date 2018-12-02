@@ -12,5 +12,18 @@ title: "Analysis of a Longitudinal Study on Ageing Conducted in Ireland"
 <br> 
 
 ### Diana Ballesteros | Chris Crowe | Tanvi Jain 
+<br>
+<br>
+<center>
+Overview:
+</center>
+Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Center for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life.
 
-[insert report overview here]
+To access a screencase overview of our project on this website please see the attached YOUTUBE link.
+
+Data sources:
+
+Analyses:
+include links to the plots
+
+Conclusions and Future implications:
