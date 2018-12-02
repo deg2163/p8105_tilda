@@ -62,7 +62,17 @@ Discussion & Conclusions:
 The results from our study indicate that there are sociodemographic variations in quality of life measures: mental health, physical health, and loneliness as well as the prevalence of disease. 
 <br>
 <br>
-&emsp; 1. Those who felt they had good physical health also had good mental health and vice versa. We also found a larger concentration of older adults reporting "Very Good" or "Good" physical and mental health. This trend remained consistent across sex and over time. Unfortunately, this means that there was minimal improvement in physical and mental health, but also minimal decline in physical and mental health. TALK ABOUT CHI SQUARED TEST
+&emsp; 1. Those who felt they had good physical health also had good mental health and vice versa. We also found a larger concentration of older adults reporting "Very Good" or "Good" physical and mental health. This trend remained consistent across sex and over time. Unfortunately, this means that there was minimal improvement in physical and mental health, but also minimal decline in physical and mental health. Since our graph depicted a correlation between mental health and physical health we anticipated an association. Our null hypothesis was that there is no association between mental health and physical health and the alternate hypothesis was that there is an association between mental health and physical health. We set alpha to 0.05 and calculated the chi-squared test statistic (4078.8) and p-value (0), which was significant. At the 5% level of significance, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health, which matches graph 1.
+<br>
+&emsp; &emsp; a. We used shiny to further stratify the analysis. At the 5% level of significance, among married females in wave 1, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; b. At the 5% level of significance, among married males in wave 2, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; c. At the 5% level of significance, among married females in wave 2, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; d. At the 5% level of significance, among married males in wave 3, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
+<br>
+&emsp; &emsp; e. At the 5% level of significance, among married females in wave 3, there is enough evidence to reject the null hypothesis and conclude that there is an association between mental health and physical health.
 <br>
 <br>
 &emsp; 2. We expected that loneliness would increase over time for widowed men more than widowed women. According to graph 2 we found this to be true. For widowed men, those with a loneliness of 2 or higher seemed to decrease their loneliness across waves and those with a loneliness of 1 seemed to increase their loneliness across waves. As we expected, widowed women stayed at relatively the same loneliness level across all waves with the exception of an an outlier at level 8 loneliness. In contrast, married men seemed to decrease in loneliness at every baseline point, while women stayed relatively the same from wave 1 to wave 3.
