@@ -14,7 +14,7 @@ navbar:
     - icon: fas fa-video
       href: https://www.youtube.com/
     - icon: "Final Report"
-      href: final report.Rmd
+      href: final report.html
     
 output:
   html_document:
