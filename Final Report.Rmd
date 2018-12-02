@@ -615,9 +615,9 @@ plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + basel
 For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used `case_when` to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each baseline loneliness value (scale from 0-10). Although there is no one at loneliness 10 we kept this in our code for future replication of this code, if a participant were to respond as 10. We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in across loneliness values. The use of `shiny` allowed us to further stratify by sex and marital status. We also incorporated a color grid to depict the different trends.
 
 
-
+### Analysis 
 Chi-Square Test: 
-```{r}
+```{r chi_square}
 final =
   final %>%
   filter(wave == 3)
