@@ -405,7 +405,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 5.2454e-17
+    ## parametric, : reciprocal condition number 5.2454e-017
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -419,7 +419,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 2.0661e-16
+    ## parametric, : reciprocal condition number 2.0661e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -433,7 +433,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 2.1055e-16
+    ## parametric, : reciprocal condition number 2.1055e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -447,7 +447,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.9961e-16
+    ## parametric, : reciprocal condition number 1.9961e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -461,7 +461,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.0184e-16
+    ## parametric, : reciprocal condition number 1.0184e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -475,7 +475,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 2.3477e-16
+    ## parametric, : reciprocal condition number 2.3477e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -489,7 +489,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.1404e-16
+    ## parametric, : reciprocal condition number 1.1404e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401
@@ -503,7 +503,7 @@ baseline_10 = baseline_loneliness_10 %>%
     ## parametric, : neighborhood radius 2.01
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
-    ## parametric, : reciprocal condition number 1.2425e-16
+    ## parametric, : reciprocal condition number 1.2425e-016
 
     ## Warning in simpleLoess(y, x, w, span, degree = degree, parametric =
     ## parametric, : There are other near singularities as well. 4.0401

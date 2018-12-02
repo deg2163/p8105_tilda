@@ -11,11 +11,19 @@ runtime: shiny
 ```{r setup, include=FALSE}
 ## Load required libraries
 library(flexdashboard)
-library(shinydashboard)
 library(viridis)
 library(plotly)
 library(dplyr)
 library(tidyverse)
+library(MASS)
+
+select = dplyr::select
+
+
+load("../34315-0001-Data.rda")
+load("../37105-0001-Data.rda")
+load("../37106-0001-Data.rda")
+
 ## Create functions to clean variables
 clean_wave = function(x) {
   
@@ -92,10 +100,12 @@ clean_sex = function(x) {
     )
   
 }
-## Load in data from local file
-load("./data/Wave 1/DS0001/34315-0001-Data.rda")
-load("./data/Wave 2/DS0001/37105-0001-Data.rda")
-load("./data/Wave 3/DS0001/37106-0001-Data.rda")
+
+
+```
+
+
+```{r}
 
 ## Assign data from each wave to a new object where common variable names are given unique names
 wave_1_data = da34315.0001 %>% 
@@ -195,7 +205,7 @@ radioButtons("marital_choice", label = h3("Choose marital status"),
     selected = "Married")
 ```
 
-Column {data-width=650}
+Column {data-width=550}
 -----------------------------------------------------------------------
 
 ### Proportion of Incident Disease Burden in Wave 3 Attributable to Specified Disease
@@ -246,7 +256,7 @@ ggplotly(icd_plot)
 })
 ```
 
-Column {data-width=350}
+Column {data-width=450}
 -----------------------------------------------------------------------
 
 ### Self-Rated Mental vs. Physical Health Status
@@ -267,6 +277,30 @@ renderPlotly({
         axis.text.x = element_text(angle = 65, hjust = 1))
 ggplotly(plot_1)
 })
+
+renderTable({
+  
+  final = final %>% 
+    filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
+  
+  chi = chisq.test(table(final$mental, final$physical))
+
+observed = chi$observed 
+
+expected = chi$expected
+
+results = chi %>% 
+  broom::tidy() %>% 
+  janitor::clean_names() %>% 
+  mutate(df = parameter,
+         chi_stat = statistic) %>% 
+  select(chi_stat, df, p_value)
+
+results
+  
+})
+  
+
 ```
 
 ### Trends in Loneliness Scores by Baseline Loneliness Score

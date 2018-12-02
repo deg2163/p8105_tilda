@@ -188,10 +188,10 @@ $(document).ready(function () {
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>
-  <a href="about.html">About Us</a>
+  <a href="about.html">About</a>
 </li>
 <li>
-  <a href="https://clc2229.shinyapps.io/shiny_test/">Data Dashboard</a>
+  <a href="https://clc2229.shinyapps.io/shiny_test/">Shiny Dashboard</a>
 </li>
 <li>
   <a href="mailto:&lt;deg2163@cumc.columbia.edu, clc2229@cumc.columbia.edu, tj2383@cumc.columbia.edu&gt;">
@@ -202,6 +202,12 @@ $(document).ready(function () {
 <li>
   <a href="https://github.com/deg2163/p8105_tilda.github.io">
     <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.youtube.com/">
+    <span class="fas fa fas fa-video"></span>
      
   </a>
 </li>
@@ -222,17 +228,15 @@ $(document).ready(function () {
 
 
 <pre class="r"><code>library(googledrive)
-library(httr)
-library(tidyverse)</code></pre>
-<pre><code>## -- Attaching packages ------------------------------------------------------------------------------------ tidyverse 1.2.1 --</code></pre>
-<pre><code>## v ggplot2 3.0.0     v purrr   0.2.5
-## v tibble  1.4.2     v dplyr   0.7.6
-## v tidyr   0.8.1     v stringr 1.3.1
-## v readr   1.1.1     v forcats 0.3.0</code></pre>
-<pre><code>## -- Conflicts --------------------------------------------------------------------------------------- tidyverse_conflicts() --
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<pre class="r"><code>drive_download(&quot;34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+library(httr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;httr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:plotly&#39;:
+## 
+##     config</code></pre>
+<pre class="r"><code>library(tidyverse)
+
+drive_download(&quot;34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
 <pre><code>## File downloaded:
 ##   * 34315-0001-Data.rda
 ## Saved locally as:
@@ -247,14 +251,6 @@ library(tidyverse)</code></pre>
 ##   * 37106-0001-Data.rda
 ## Saved locally as:
 ##   * 37106-0001-Data.rda</code></pre>
-<pre class="r"><code>load(&quot;./34315-0001-Data.rda&quot;)
-load(&quot;./37105-0001-Data.rda&quot;)
-load(&quot;./37106-0001-Data.rda&quot;)
-
-
-wave_1_data = da34315.0001
-wave_2_data = da37105.0001
-wave_3_data = da37106.0001</code></pre>
 
 
 
