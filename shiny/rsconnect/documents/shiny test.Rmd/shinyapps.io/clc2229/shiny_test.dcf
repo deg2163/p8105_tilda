@@ -5,6 +5,6 @@ account: clc2229
 server: shinyapps.io
 hostUrl: https://api.shinyapps.io/v1
 appId: 598659
-bundleId: 1733516
+bundleId: 1734902
 url: https://clc2229.shinyapps.io/shiny_test/
-when: 1543714076.69646
+when: 1543792136.25207
