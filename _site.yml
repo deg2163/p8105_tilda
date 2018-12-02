@@ -3,7 +3,7 @@ output_dir: "."
 navbar:
   title: "Home"
   right:
-    - text: "Dataset"
+    - text: "About"
       href: about.html
     - text: "Shiny Data Visualizations"
       href: https://clc2229.shinyapps.io/shiny_test/ 
