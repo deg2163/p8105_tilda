@@ -278,27 +278,6 @@ renderPlotly({
 ggplotly(plot_1)
 })
 
-renderTable({
-  
-  final = final %>% 
-    filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
-  
-  chi = chisq.test(table(final$mental, final$physical))
-
-observed = chi$observed 
-
-expected = chi$expected
-
-results = chi %>% 
-  broom::tidy() %>% 
-  janitor::clean_names() %>% 
-  mutate(df = parameter,
-         chi_stat = statistic) %>% 
-  select(chi_stat, df, p_value)
-
-results
-  
-})
   
 
 ```
