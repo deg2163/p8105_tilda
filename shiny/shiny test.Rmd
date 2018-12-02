@@ -318,7 +318,8 @@ plot_3 = baseline_loneliness_0 %>%
   labs(
     x = "Wave",
     y = "UCLA Loneliness Score"
-  )
+  ) 
+  
 ggplotly(plot_3)
 })
 ```
