@@ -2,7 +2,6 @@
 title: "Final Report"
 author: "Diana Ballesteros (deg2163), Chris Crowe (clc2229), Tanvi Jain (uni: tj2383) "
 date: "December 4th, 2018"
-output: github_document
 ---
 
 #Analysis of a Longitudinal Study on Aging Conducted in Ireland 
@@ -27,6 +26,9 @@ library(plotly)
 library(viridis)
 library(plotly)
 library(tidyverse)
+library(MASS)
+
+select = dplyr::select
 ```
 
 Instructions for importing the data: download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.
@@ -273,6 +275,8 @@ results = chi %>%
          chi_stat = statistic) %>%
   select(chi_stat, df, p_value) %>%
   knitr::kable()
+
+results
 ```
 
 At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = , p-value = ).
