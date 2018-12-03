@@ -34,7 +34,7 @@ To access a screencast overview of our project on this website please click the 
 Data sources:
 </b>
 </center>
-The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follow this link to the [Dataset](https://deg2163.github.io/p8105_tilda.github.io/about.html) tab to learn more.
+The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follow this link to the [About](https://deg2163.github.io/p8105_tilda.github.io/about.html) tab to learn more.
 <br>
 <br>
 <center>
