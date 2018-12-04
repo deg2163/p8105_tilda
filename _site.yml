@@ -16,7 +16,7 @@ navbar:
     - icon: fa-github fa-lg
       href: https://github.com/deg2163/p8105_tilda.github.io
     - icon: fas fa-video
-      href: https://www.youtube.com/
+      href: https://youtu.be/1a7Bqk2KSXw
       
 output:
   html_document:
