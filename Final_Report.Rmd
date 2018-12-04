@@ -246,48 +246,120 @@ lone_data =
 <b>Exploratory Analysis - creating graphs</b>
 
 Graph 1:
-```{r countplot}
-countplot = wave_3_data %>% 
-  select(PH001, PH002, SEX) %>% 
-  mutate(physical = case_when(
-    PH001 == "(01) Excellent" ~ "Excellent", 
-    PH001 == "(02) Very Good" ~ "Very Good",
-    PH001 == "(03) Good" ~ "Good", 
-    PH001 == "(04) Fair" ~ "Fair", 
-    PH001 == "(05) Poor" ~ "Poor"), 
-    
-  mental = case_when(
-    PH002 == "(01) Excellent" ~ "Excellent", 
-    PH002 == "(02) Very Good" ~ "Very Good",
-    PH002 == "(03) Good" ~ "Good", 
-    PH002 == "(04) Fair" ~ "Fair", 
-    PH002 == "(05) Poor" ~ "Poor"),
-  
-  sex = case_when(
-    SEX == "(1) Male" ~ "Male",
-    SEX == "(2) Female" ~ "Female"
-  ),
-  
-  physical = factor(physical, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor")), 
-  
-  mental = factor(mental, levels = c("Excellent", "Very Good", "Good", "Fair", "Poor"))
-        ) %>% 
-  select(-PH001, -PH002, -SEX)
 
-phys_ment_plot = countplot %>%
+```{r}
+renderPlotly({
+icd_data = overall_icd %>% 
+  filter(sex == input$sex_choice & marital == input$marital_choice) %>% 
+  summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
+            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
+            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
+            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
+            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
+            total_16 = sum(ICD10_16)) %>% 
+  gather(key = icd_code, value = total, total_01:total_16) %>% 
+  separate(icd_code, into = c("total_char","icd_code"), sep = "_") %>% 
+  select(-total_char) %>% 
+  mutate(burden = total/sum(total)*100) %>% 
+  mutate(disease = case_when(
+    icd_code == "01" ~ "Infectious diseases",
+    icd_code == "02" ~ "Neoplasms",
+    icd_code == "03" ~ "Blood diseases",
+    icd_code == "04" ~ "Nutritional/metabolic diseases",
+    icd_code == "05" ~ "Mental/behavioral disorders",
+    icd_code == "06" ~ "Nervous system diseases",
+    icd_code == "07" ~ "Eye diseases",
+    icd_code == "08" ~ "Ear diseases",
+    icd_code == "09" ~ "Circulatory system diseases",
+    icd_code == "10" ~ "Respiratory system diseases",
+    icd_code == "11" ~ "Digestive system diseases",
+    icd_code == "12" ~ "Skin diseases",
+    icd_code == "13" ~ "Musculoskeletal system diseases",
+    icd_code == "14" ~ "Genitourinary system diseases",
+    icd_code == "15" ~ "Perinatal conditions",
+    icd_code == "16" ~ "Congenital malformations"
+  ))
+icd_plot = 
+  icd_data %>% 
+  mutate(disease = reorder(disease, -burden)) %>% 
+  ggplot(aes(x = disease, y = burden, fill = disease)) +
+  geom_bar(stat = "identity") + 
+  labs(
+    x = "Disease",
+    y = "Burden of Disease (%)"
+  ) + 
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 65, size = 7)) + 
+  theme(legend.position = "none") 
+
+ggplotly(icd_plot, tooltip = c("x", "y"))
+})
+```
+
+Graph 2:
+
+```{r}
+renderPlotly({
+for (i in 0:10) {
+  
+  data = lone_data %>% 
+  filter(MHUCLA_LONELINESS_1 == i & sex == input$sex_choice & marital == input$marital_choice) %>% 
+  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
+  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
+  clean_wave() %>% 
+  filter(loneliness_value != "NA")
+  
+  name = paste("baseline_loneliness_", i, sep = "")
+  assign(name, data )
+  
+}
+  
+lone_data = baseline_loneliness_0 %>% 
+  ggplot(aes(x = wave, y = loneliness_value)) +
+  geom_smooth(se = FALSE, color = "#47FF00") +
+  geom_smooth(data = baseline_loneliness_1, aes(x = wave, y = loneliness_value), se = FALSE, color = "#6AFF00") +
+  geom_smooth(data = baseline_loneliness_2, aes(x = wave, y = loneliness_value, color = loneliness_value), se = FALSE, color = "#8DFF00") +
+  geom_smooth(data = baseline_loneliness_3, aes(x = wave, y = loneliness_value, color = loneliness_value), se = FALSE, color = "#B0FF00") +
+  geom_smooth(data = baseline_loneliness_4, aes(x = wave, y = loneliness_value), se = FALSE, color = "#D4FF00") +
+  geom_smooth(data = baseline_loneliness_5, aes(x = wave, y = loneliness_value), se = FALSE, color = "#F7FF00") +
+  geom_smooth(data = baseline_loneliness_6, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FFE400") +
+  geom_smooth(data = baseline_loneliness_7, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FFC100") +
+  geom_smooth(data = baseline_loneliness_8, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FF9E00") +
+  geom_smooth(data = baseline_loneliness_9, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FF7B00") +
+  geom_smooth(data = baseline_loneliness_10, aes(x = wave, y = loneliness_value), se = FALSE, color = "#FF5700") +
+  scale_y_continuous(breaks = c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)) +
+  scale_x_continuous(breaks = c(1, 2, 3)) +
+  theme_bw() +
+  labs(
+    x = "Wave",
+    y = "UCLA Loneliness Score"
+  ) 
+  
+ggplotly(lone_data)
+})
+```
+
+Graph 3:
+
+```{r}
+renderPlotly({
+  
+  phys_ment_plot = phys_ment_lone %>%
+  filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice ) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
     x = "Self-Rated Physical Health",
     y = "Self-Rated Mental Health"
   ) +
-  facet_grid(~sex) +
   theme_bw() +
   theme(legend.position = "none",
-        axis.text.x = element_text(angle = 40, hjust = 1))
-
+        axis.text.x = element_text(angle = 65, hjust = 1))
+ggplotly(phys_ment_plot)
+})
 
 ```
+
 
 For the first plot, we cleaned the values under the variables of interest using the `case_when` function and used the `factor` function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used `shiny` to stratify this plot by sex, marital status, and across waves to observe trends over time. 
 
@@ -317,336 +389,12 @@ results
 ```
 First, we checked to make sure the expected cell counts were greater than 5 in at least 20% of the cells. Then we ran code to calculate the chi-squared test statistic in order to determine if there is an association between mental health and physical heatlh. We then ran a chi-squared test between the association of mental health and physical health. At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = 4078.847 , p-value = 0).
 
-Graph 2:
-```{r spaghetti}
-wave_1_data = wave_1_data %>% 
-  mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS)
 
-wave_2_data = wave_2_data %>% 
-  mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS)
 
-wave_3_data = wave_3_data %>% 
-  mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS)
-
-spaghetti = 
-  merge(wave_1_data, wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-
-  select(ID, SEX.x, CS006, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  arrange(ID) %>% 
-  mutate(sex = case_when(
-    SEX.x == "(1) Male" ~ "Male",
-    SEX.x == "(2) Female" ~ "Female"
-  ),
-    marital_status = case_when(
-      CS006 == "(1) Married" ~ "Married",
-      CS006 == "(2) Living with a partner as if married" ~ "Cohabitation",
-      CS006 == "(3) Single(never married)" ~ "Single",
-      CS006 == "(4) Separated" ~ "Separated",
-      CS006 == "(5) Divorced" ~ "Divorced",
-      CS006 == "(6) Widowed" ~ "Widowed"
-)) %>% 
-  filter(marital_status == "Widowed") %>% 
-  select(-SEX.x, -CS006) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-      wave == "MHUCLA_LONELINESS_1" ~ 1, 
-      wave == "MHUCLA_LONELINESS_2" ~ 2, 
-      wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  janitor::clean_names()
-
-spaghetti %>% 
-  filter(sex == "Male", loneliness_value != "NA") %>% 
-  ggplot(aes(x = wave, y = loneliness_value, color = id)) +
-  geom_line() +
-  theme_bw() +
-  theme(legend.position = "none")
-```
-
-(DELETING THIS GRAPH 2?)
-
-Graph 3:
-```{r bar_graph}
-# ICD-10: bar graph of proportions of each ICD-10 code to determine which ICD-10 diagnosis accounts for the greatest burden of disease in our population. We can potentially facet by sex to see if the burden is different for males and females. 
-bar_graph = 
-  wave_3_data %>% 
-  select(ID, ICD10_01:ICD10_16) %>% 
-  summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
-            total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
-            total_07 = sum(ICD10_07), total_08 = sum(ICD10_08), total_09 = sum(ICD10_09),
-            total_10 = sum(ICD10_10), total_11 = sum(ICD10_11), total_12 = sum(ICD10_12),
-            total_13 = sum(ICD10_13), total_14 = sum(ICD10_14), total_15 = sum(ICD10_15),
-            total_16 = sum(ICD10_16)) %>% 
-  gather(key = icd_code, value = total, total_01:total_16) %>% 
-  separate(icd_code, into = c("total_char","icd_code"), sep = "_") %>% 
-  select(-total_char) %>% 
-  mutate(burden = total/sum(total)*100) %>% 
-  mutate(disease = case_when(
-    icd_code == "01" ~ "Infectious diseases",
-    icd_code == "02" ~ "Neoplasms",
-    icd_code == "03" ~ "Blood diseases",
-    icd_code == "04" ~ "Nutritional/metabolic diseases",
-    icd_code == "05" ~ "Mental/behavioral disorders",
-    icd_code == "06" ~ "Nervous system diseases",
-    icd_code == "07" ~ "Eye diseases",
-    icd_code == "08" ~ "Ear diseases",
-    icd_code == "09" ~ "Circulatory system diseases",
-    icd_code == "10" ~ "Respiratory system diseases",
-    icd_code == "11" ~ "Digestive system diseases",
-    icd_code == "12" ~ "Skin diseases",
-    icd_code == "13" ~ "Musculoskeletal system diseases",
-    icd_code == "14" ~ "Genitourinary system diseases",
-    icd_code == "15" ~ "Perinatal conditions",
-    icd_code == "16" ~ "Congenital malformations"
-  ))
- 
-
-plot_2 = bar_graph %>% 
-  ggplot(aes(x = reorder(disease, -burden), y = burden)) +
-  geom_bar(stat = "identity") + 
-  labs(
-    title = "Proportion of people with specified diseases",
-    x = "Disease",
-    y = "Percentage"
-  ) + 
-  viridis::scale_color_viridis(
-    name = "Location", 
-    discrete = TRUE
-  ) + 
-  theme_bw() +
-  theme(axis.text.x = element_text(angle = 90, size = 7))
-
-```
 
 In this plot we calculated the sum of people who had each ICD-10 disease in wave 3 in order to calculate the proportion of people with each disease, allowing us to visualize the burden of each disease in this population. Again, we used `case_when` to clean the values under the variables of interest. We then created a bar graph to show the proportions and ordered the bars according to decreasing burden. We used `shiny` to further stratify by sex and marital status.
 
-Graph 2 (real):
-```{r}
-### Baseline 0
 
-baseline_loneliness_0 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 0 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_0 = baseline_loneliness_0 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 1
-
-baseline_loneliness_1 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 1 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_1 = baseline_loneliness_1 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 2
-
-baseline_loneliness_2 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 2 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_2 = baseline_loneliness_2 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 3
-
-
-baseline_loneliness_3 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 3 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_3 = baseline_loneliness_3 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 4
-
-baseline_loneliness_4 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 4 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_4 = baseline_loneliness_4 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-
-### Baseline 5
-
-baseline_loneliness_5 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 5 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_5 = baseline_loneliness_5 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 6
-
-baseline_loneliness_6 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 6 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_6 = baseline_loneliness_6 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 7
-
-baseline_loneliness_7 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 7 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_7 = baseline_loneliness_7 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 8
-
-baseline_loneliness_8 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 8 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_8 = baseline_loneliness_8 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 9
-
-baseline_loneliness_9 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 9 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_9 = baseline_loneliness_9 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE)
-
-### Baseline 10
-
-baseline_loneliness_10 = wave_1_data %>% 
-  filter(MHUCLA_LONELINESS_1 == 10 & SEX == "(1) Male" & CS006 == "(6) Widowed") %>% 
-  select(ID, SEX, CS006, MHUCLA_LONELINESS_1) %>% 
-  merge(wave_2_data, by = "ID") %>% 
-  merge(wave_3_data, by = "ID") %>% 
-  select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
-  gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
-  mutate(wave = case_when(
-    wave == "MHUCLA_LONELINESS_1" ~ 1,
-    wave == "MHUCLA_LONELINESS_2" ~ 2,
-    wave == "MHUCLA_LONELINESS_3" ~ 3
-  )) %>% 
-  filter(loneliness_value != "NA")
-
-baseline_10 = baseline_loneliness_10 %>% 
-  ggplot(aes(x = wave, y = loneliness_value)) +
-    geom_smooth(se = FALSE) + ylim(0, 10)
-
-lone_data = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)
-```
 
 For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used `case_when` to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each baseline loneliness value (scale from 1-10). Although there is no one at loneliness 10 we kept this in our code for future replication of this code, if a participant were to respond as 10. We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in across loneliness values. The use of `shiny` allowed us to further stratify by sex and marital status. We also incorporated a color grid to depict the different trends.
 
