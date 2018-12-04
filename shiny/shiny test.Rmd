@@ -181,7 +181,7 @@ phys_ment_lone = overall_physical %>%
   select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
 
 ## Prepare data for loneliness plot
-plot_3 = 
+lone_data = 
   wave_1_data %>% 
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
@@ -271,7 +271,7 @@ Column {data-width=450}
 ```{r}
 renderPlotly({
   
-  plot_1 = phys_ment_lone %>%
+  phys_ment_plot = phys_ment_lone %>%
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice ) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
@@ -282,7 +282,7 @@ renderPlotly({
   theme_bw() +
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 65, hjust = 1))
-ggplotly(plot_1)
+ggplotly(phys_ment_plot)
 })
 
 ```
@@ -293,7 +293,7 @@ ggplotly(plot_1)
 renderPlotly({
 for (i in 0:10) {
   
-  data = plot_3 %>% 
+  data = lone_data %>% 
   filter(MHUCLA_LONELINESS_1 == i & sex == input$sex_choice & marital == input$marital_choice) %>% 
   select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
   gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
@@ -305,7 +305,7 @@ for (i in 0:10) {
   
 }
   
-plot_3 = baseline_loneliness_0 %>% 
+lone_data = baseline_loneliness_0 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
   geom_smooth(se = FALSE, color = "#47FF00") +
   geom_smooth(data = baseline_loneliness_1, aes(x = wave, y = loneliness_value), se = FALSE, color = "#6AFF00") +
@@ -326,6 +326,6 @@ plot_3 = baseline_loneliness_0 %>%
     y = "UCLA Loneliness Score"
   ) 
   
-ggplotly(plot_3)
+ggplotly(lone_data)
 })
 ```
