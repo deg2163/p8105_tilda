@@ -9,7 +9,7 @@ title: "About Our Project"
 <img src ="images/aging_image.png" style="width:75%">
 </center> 
 
-The project was developed from the Irish Longitudinal Study on Ageing.The TILDA study is a national, representative study on ageing in Ireland that collects information on health, social, and economic demographic information from folks aged 50 and over. All information is collected over the course of three waves, every 2 years. 
+This project was developed using data from the Irish Longitudinal Study on Ageing (TILDA). TILDA  is a national, representative study on ageing in Ireland that collects information on health, social, and economic demographic information from folks aged 50 and over. All information is collected over the course of three waves: 2009-2011, 2012-2013, and 2014-2015. 
 
 <center>
 You can learn more about the project by visiting the [TILDA website](https://tilda.tcd.ie). 
