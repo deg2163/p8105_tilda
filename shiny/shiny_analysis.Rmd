@@ -9,8 +9,8 @@ runtime: shiny
 
 ```{r setup, include=FALSE}
 
+## Load required libraries
 library(flexdashboard)
-library(viridis)
 library(plotly)
 library(dplyr)
 library(tidyverse)
@@ -123,7 +123,7 @@ wave_3_data = da37106.0001 %>%
   )
 ## Data for Physical Health vs. Mental Health
 ## Tidy data for self-report physical health
-overall_1 = wave_1_data %>%  
+overall_physical = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
   select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %>% 
@@ -131,14 +131,14 @@ overall_1 = wave_1_data %>%
   clean_wave()
   
 ## Tidy data for self-report mental health
-overall_2 = wave_1_data %>%  
+overall_mental = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
   select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
   gather(wave, mental_value, PH002_1:PH002_3) %>% 
   clean_wave()
 ## Tidy data for loneliness
-overall_3 = wave_1_data %>%  
+overall_loneliness = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
   select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
@@ -146,9 +146,9 @@ overall_3 = wave_1_data %>%
   clean_wave()
   
 ## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
-final = overall_1 %>% 
-  merge(overall_2, by = c("ID", "wave")) %>% 
-  merge(overall_3, by = c("ID", "wave")) %>% 
+phys_ment_lone = overall_physical %>% 
+  merge(overall_mental, by = c("ID", "wave")) %>% 
+  merge(overall_loneliness, by = c("ID", "wave")) %>% 
   select(ID, wave, SEX.x, CS006.x, physical_value, mental_value, loneliness_value) %>% 
   clean_physical() %>% 
   clean_mental() %>% 
@@ -168,9 +168,9 @@ Column {.sidebar}
 
 ```{r}
 
-sex_choice = final %>% distinct(sex) %>% pull()
-marital_choice = final %>% distinct(marital) %>% pull()
-wave_choice = final %>% distinct(wave) %>% pull()
+sex_choice = phys_ment_lone %>% distinct(sex) %>% pull()
+marital_choice = phys_ment_lone %>% distinct(marital) %>% pull()
+wave_choice = phys_ment_lone %>% distinct(wave) %>% pull()
 radioButtons("wave_choice", label = h3("Choose wave"),
     choices = wave_choice,
     selected = 1)
@@ -193,7 +193,7 @@ Column {data-width=500}
 
 renderPlotly({
   
-  plot_1 = final %>%
+  phys_ment_plot = phys_ment_lone %>%
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
@@ -204,7 +204,7 @@ renderPlotly({
   theme_bw() +
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 65, hjust = 1))
-ggplotly(plot_1)
+ggplotly(phys_ment_plot)
 })
 
 ```
@@ -218,11 +218,11 @@ Column {data-width=500}
 
 renderTable({
   
-final =
-  final %>% 
+phys_ment_lone =
+  phys_ment_lone %>% 
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
   
-chi = chisq.test(table(final$mental, final$physical))
+chi = chisq.test(table(phys_ment_lone$mental, phys_ment_lone$physical))
 
 observed = chi$observed
 
@@ -242,11 +242,11 @@ as.data.frame.matrix(observed) %>%
 
 renderTable({
   
-  final =
-  final %>% 
+  phys_ment_lone =
+  phys_ment_lone %>% 
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
   
-chi = chisq.test(table(final$mental, final$physical))
+chi = chisq.test(table(phys_ment_lone$mental, phys_ment_lone$physical))
 
 expected = chi$expected
 
@@ -265,11 +265,11 @@ as.data.frame.matrix(expected) %>%
 
 renderTable({
   
-  final =
-  final %>% 
+  phys_ment_lone =
+  phys_ment_lone %>% 
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice)
   
-chi = chisq.test(table(final$mental, final$physical))
+chi = chisq.test(table(phys_ment_lone$mental, phys_ment_lone$physical))
 
 results = chi %>% 
   broom::tidy() %>% 

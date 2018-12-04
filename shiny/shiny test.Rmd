@@ -8,14 +8,15 @@ runtime: shiny
 ---
 
 ```{r setup, include=FALSE}
+
 ## Load required libraries
 library(flexdashboard)
-library(viridis)
 library(plotly)
 library(dplyr)
 library(tidyverse)
 library(MASS)
 
+## 
 select = dplyr::select
 
 load("./34315-0001-Data.rda")
@@ -98,6 +99,7 @@ clean_marital = function(x) {
     )
   
 }
+
 clean_sex = function(x) {
   
    x %>% 
@@ -129,33 +131,33 @@ wave_3_data = da37106.0001 %>%
          PH001_3 = PH001,
          PH002_3 = PH002
   )
-## Data for Physical Health vs. Mental Health
-## Tidy data for self-report physical health
-overall_1 = wave_1_data %>%  
+
+## Tidy data for self-report physical health including sex, marital status, and ID
+overall_physical = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
   select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %>% 
   gather(wave, physical_value, PH001_1:PH001_3) %>% 
   clean_wave()
   
-## Tidy data for self-report mental health
-overall_2 = wave_1_data %>%  
+## Tidy data for self-report mental health including sex, marital status, and ID
+overall_mental = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
   select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %>% 
   gather(wave, mental_value, PH002_1:PH002_3) %>% 
   clean_wave()
 
-## Tidy data for loneliness
-overall_3 = wave_1_data %>%  
+## Tidy data for loneliness, including sex, marital status, and ID
+overall_loneliness = wave_1_data %>%  
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
-  select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>% 
+  select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %>%
   gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
   clean_wave()
 
-## Tidy data for ICD codes
-overall_4 = wave_1_data %>%  
+## Tidy data for ICD codes, including sex, marital status, and ID 
+overall_icd = wave_1_data %>%  
   merge(wave_3_data, by = "ID") %>% 
   select(ICD10_01:ICD10_16, ID, SEX.x, CS006) %>% 
   mutate(SEX = SEX.x) %>% 
@@ -164,9 +166,9 @@ overall_4 = wave_1_data %>%
   select(-SEX.x, -SEX, -CS006)
   
 ## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
-final = overall_1 %>% 
-  merge(overall_2, by = c("ID", "wave")) %>% 
-  merge(overall_3, by = c("ID", "wave")) %>% 
+phys_ment_lone = overall_physical %>% 
+  merge(overall_mental, by = c("ID", "wave")) %>% 
+  merge(overall_loneliness, by = c("ID", "wave")) %>% 
   select(ID, wave, SEX.x, CS006.x, physical_value, mental_value, loneliness_value) %>% 
   clean_physical() %>% 
   clean_mental() %>% 
@@ -179,14 +181,12 @@ final = overall_1 %>%
   select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
 
 ## Prepare data for loneliness plot
-plot_3 = 
+lone_data = 
   wave_1_data %>% 
   merge(wave_2_data, by = "ID") %>% 
   merge(wave_3_data, by = "ID") %>% 
-  select(SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3)  %>% 
-  mutate(
-    SEX = SEX.x
-  ) %>% 
+  select(SEX.x, CS006, ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>%
+  mutate(SEX = SEX.x) %>% 
   clean_sex() %>% 
   clean_marital() %>% 
   select(-SEX.x, -CS006, -SEX)
@@ -196,9 +196,9 @@ Column {.sidebar}
 -----------------------------------------------------------------------
 
 ```{r}
-sex_choice = final %>% distinct(sex) %>% pull()
-marital_choice = final %>% distinct(marital) %>% pull()
-wave_choice = final %>% distinct(wave) %>% pull()
+sex_choice = phys_ment_lone %>% distinct(sex) %>% pull()
+marital_choice = phys_ment_lone %>% distinct(marital) %>% pull()
+wave_choice = phys_ment_lone %>% distinct(wave) %>% pull()
 radioButtons("wave_choice", label = h3("Choose wave"),
     choices = wave_choice,
     selected = 1)
@@ -217,7 +217,7 @@ Column {data-width=550}
 
 ```{r}
 renderPlotly({
-icd_data = overall_4 %>% 
+icd_data = overall_icd %>% 
   filter(sex == input$sex_choice & marital == input$marital_choice) %>% 
   summarize(total_01 = sum(ICD10_01), total_02 = sum(ICD10_02), total_03 = sum(ICD10_03), 
             total_04 = sum(ICD10_04), total_05 = sum(ICD10_05), total_06 = sum(ICD10_06), 
@@ -271,7 +271,7 @@ Column {data-width=450}
 ```{r}
 renderPlotly({
   
-  plot_1 = final %>%
+  phys_ment_plot = phys_ment_lone %>%
   filter(sex == input$sex_choice & marital == input$marital_choice & wave == input$wave_choice ) %>% 
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
@@ -282,7 +282,7 @@ renderPlotly({
   theme_bw() +
   theme(legend.position = "none",
         axis.text.x = element_text(angle = 65, hjust = 1))
-ggplotly(plot_1)
+ggplotly(phys_ment_plot)
 })
 
 ```
@@ -293,7 +293,7 @@ ggplotly(plot_1)
 renderPlotly({
 for (i in 0:10) {
   
-  data = plot_3 %>% 
+  data = lone_data %>% 
   filter(MHUCLA_LONELINESS_1 == i & sex == input$sex_choice & marital == input$marital_choice) %>% 
   select(ID, MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3) %>% 
   gather(key = wave, value = loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %>% 
@@ -305,7 +305,7 @@ for (i in 0:10) {
   
 }
   
-plot_3 = baseline_loneliness_0 %>% 
+lone_data = baseline_loneliness_0 %>% 
   ggplot(aes(x = wave, y = loneliness_value)) +
   geom_smooth(se = FALSE, color = "#47FF00") +
   geom_smooth(data = baseline_loneliness_1, aes(x = wave, y = loneliness_value), se = FALSE, color = "#6AFF00") +
@@ -326,6 +326,6 @@ plot_3 = baseline_loneliness_0 %>%
     y = "UCLA Loneliness Score"
   ) 
   
-ggplotly(plot_3)
+ggplotly(lone_data)
 })
 ```
