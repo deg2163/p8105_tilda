@@ -9,10 +9,9 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Diana Ballesteros (deg2163), Chris Crowe (clc2229), Tanvi Jain (uni: tj2383)" />
 
 
-<title>Final Report</title>
+<title>phys_ment_lone Report</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -212,7 +211,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="https://www.youtube.com/">
+  <a href="https://youtu.be/1a7Bqk2KSXw">
     <span class="fas fa fas fa-video"></span>
      
   </a>
@@ -226,38 +225,76 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Final Report</h1>
-<h4 class="author"><em>Diana Ballesteros (deg2163), Chris Crowe (clc2229), Tanvi Jain (uni: tj2383)</em></h4>
-<h4 class="date"><em>December 4th, 2018</em></h4>
+<h1 class="title toc-ignore">phys_ment_lone Report</h1>
+<h4 class="date"><em>December 6th, 2018</em></h4>
 
 </div>
 
 
+<p><br></p>
 <div id="analysis-of-a-longitudinal-study-on-aging-conducted-in-ireland" class="section level1">
 <h1>Analysis of a Longitudinal Study on Aging Conducted in Ireland</h1>
-<p>Motivation: This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ years old.</p>
-<p>Related Work: This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <a href="https://www.apa.org/helpcenter/aging-depression.aspx" class="uri">https://www.apa.org/helpcenter/aging-depression.aspx</a></p>
-<p>Questions: Our main questions - Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?</p>
-<p>Evolution of questions: As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.</p>
-<p>Evolution of methods: In our initial proposal we wanted to look at <code>Quality of Life</code>. However, the nature of this variable seemed ambiguous to us so instead we looked at variables such as <code>mental health</code>, <code>physical health</code>, and <code>loneliness</code> as a proxy for quality of life. We also planned to use a hexagonal heat map for graph 1 but according to the distribution of our data this map was not visually aesthetic, instead we used a geom_count to display the concentrations of data within a scatterplot.</p>
-<p>Loading the necessary libraries:</p>
-<p>Instructions for importing the data: download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.</p>
+<div id="diana-ballesteros-deg2163-christopher-crowe-clc2229-tanvi-jain-tj2383" class="section level4">
+<h4>Diana Ballesteros (deg2163), Christopher Crowe (clc2229), Tanvi Jain (tj2383)</h4>
+<p><br></p>
+<p><b>Motivation:</b> <br> This project aims to look at the effect of sociodemographic indicators on mental health among a cohort of Irish residents aged 50+ years old.</p>
+<p><b>Related work:</b> <br> This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The following link to a page from the American Psychological Association was used as a reference for the variables we chose to analyze. <a href="https://www.apa.org/helpcenter/aging-depression.aspx" class="uri">https://www.apa.org/helpcenter/aging-depression.aspx</a></p>
+<p><b>Questions:</b> <br> Our main questions - Is physical health associated with mental health? Does loneliness change over time among widowed men? What is the proportion of various ICD-10 diseases among this population?</p>
+<p><b>Evolution of questions:</b> <br> As we created the graphs we decided to also explore variations according to sex (male and female) and different marital statuses (widowed, married, divorced, cohabitating, separated, and single). For some graphs, we also explored the change over time by stratifying according to wave.</p>
+<p><b>Evolution of methods:</b> <br> In our initial proposal we wanted to look at <code>Quality of Life</code>. However, the nature of this variable seemed ambiguous to us so instead we looked at variables such as <code>mental health</code>, <code>physical health</code>, and <code>loneliness</code> as a proxy for quality of life. We also planned to use a hexagonal heat map for graph 1 but according to the distribution of our data this map was not visually aesthetic, instead we used a geom_count to display the concentrations of data within a scatterplot.</p>
+<p><b>Loading the necessary libraries:</b></p>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(plotly)
+library(MASS)
+library(googledrive)
+library(httr)
+library(patchwork)
+
+## The MASS package also has a select function, so we need to specify that when we call the select function, we are referring to select from the dplyr package.
+select = dplyr::select</code></pre>
+<p><b>Instructions for importing the data:</b> <br> Download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.</p>
+<pre class="r"><code># Save the data within the shiny folder for use in the shiny app
+drive_download(&quot;34315-0001-Data.rda&quot;, path = &quot;./shiny/34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 34315-0001-Data.rda
+## Saved locally as:
+##   * ./shiny/34315-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37105-0001-Data.rda&quot;, path = &quot;./shiny/37105-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 37105-0001-Data.rda
+## Saved locally as:
+##   * ./shiny/37105-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37106-0001-Data.rda&quot;, path = &quot;./shiny/37106-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 37106-0001-Data.rda
+## Saved locally as:
+##   * ./shiny/37106-0001-Data.rda</code></pre>
+<pre class="r"><code># Save the data outside the shiny folder for use elsewhere in the website
+drive_download(&quot;34315-0001-Data.rda&quot;, path = &quot;./34315-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 34315-0001-Data.rda
+## Saved locally as:
+##   * ./34315-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37105-0001-Data.rda&quot;, path = &quot;./37105-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 37105-0001-Data.rda
+## Saved locally as:
+##   * ./37105-0001-Data.rda</code></pre>
+<pre class="r"><code>drive_download(&quot;37106-0001-Data.rda&quot;, path = &quot;./37106-0001-Data.rda&quot;, overwrite = TRUE)</code></pre>
+<pre><code>## File downloaded:
+##   * 37106-0001-Data.rda
+## Saved locally as:
+##   * ./37106-0001-Data.rda</code></pre>
 <pre class="r"><code>load(&quot;./data/Wave 1/DS0001/34315-0001-Data.rda&quot;)
 load(&quot;./data/Wave 2/DS0001/37105-0001-Data.rda&quot;)
 load(&quot;./data/Wave 3/DS0001/37106-0001-Data.rda&quot;)
 
 wave_1_data = da34315.0001
 wave_2_data = da37105.0001
-wave_3_data = da37106.0001
-
-nrow(wave_1_data)</code></pre>
-<pre><code>## [1] 8504</code></pre>
-<pre class="r"><code>nrow(wave_2_data)</code></pre>
-<pre><code>## [1] 7207</code></pre>
-<pre class="r"><code>nrow(wave_3_data)</code></pre>
-<pre><code>## [1] 6400</code></pre>
-<p>Tidying the data:</p>
-<pre class="r"><code>## Create functions to clean variables
+wave_3_data = da37106.0001</code></pre>
+<p><b>Tidying the data:</b></p>
+<pre class="r"><code>## Create a function to clean the wave variable
 clean_wave = function(x) {
   
   x %&gt;% 
@@ -270,6 +307,8 @@ clean_wave = function(x) {
   )
   
 }
+
+## Create a function to clean the self-rated physical health variable
 clean_physical = function(x) {
   
   x %&gt;% 
@@ -289,6 +328,8 @@ clean_physical = function(x) {
     )
   
 }
+
+## Create a function to clean the self-rated mental health variable
 clean_mental = function(x) {
   
   x %&gt;% 
@@ -307,6 +348,8 @@ clean_mental = function(x) {
       mental = factor(mental, levels = c(&quot;Poor&quot;, &quot;Fair&quot;, &quot;Good&quot;, &quot;Very Good&quot;, &quot;Excellent&quot;))
     )
 }
+
+## Create a function to clean the marital status variable
 clean_marital = function(x) {
   
   x %&gt;% 
@@ -323,6 +366,8 @@ clean_marital = function(x) {
     )
   
 }
+
+## Create a function to clean the sex variable
 clean_sex = function(x) {
   
    x %&gt;% 
@@ -338,22 +383,23 @@ clean_sex = function(x) {
 wave_1_data = da34315.0001 %&gt;% 
   mutate(MHUCLA_LONELINESS_1 = MHUCLA_LONELINESS,
          PH001_1 = PH001,
-         PH002_1 = PH002)
+         PH002_1 = PH002
+         )
  
 wave_2_data = da37105.0001 %&gt;% 
   mutate(MHUCLA_LONELINESS_2 = MHUCLA_LONELINESS,
          PH001_2 = PH001,
          PH002_2 = PH002
-  )
+         )
       
 wave_3_data = da37106.0001 %&gt;% 
   mutate(MHUCLA_LONELINESS_3 = MHUCLA_LONELINESS,
          PH001_3 = PH001,
          PH002_3 = PH002
-  )
-## Data for Physical Health vs. Mental Health
-## Tidy data for self-report physical health
-overall_1 = wave_1_data %&gt;%  
+         )
+
+## Tidy data for self-report physical health, including sex, marital status, and ID
+overall_physical = wave_1_data %&gt;%  
   merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
   merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
   select(PH001_1, PH001_2, PH001_3, SEX.x, CS006, ID) %&gt;% 
@@ -361,8 +407,8 @@ overall_1 = wave_1_data %&gt;%
   clean_wave()</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<pre class="r"><code>## Tidy data for self-report mental health
-overall_2 = wave_1_data %&gt;%  
+<pre class="r"><code>## Tidy data for self-report mental health, including sex, marital status, and ID
+overall_mental = wave_1_data %&gt;%  
   merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
   merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
   select(PH002_1, PH002_2, PH002_3, SEX.x, CS006, ID) %&gt;% 
@@ -370,15 +416,16 @@ overall_2 = wave_1_data %&gt;%
   clean_wave()</code></pre>
 <pre><code>## Warning: attributes are not identical across measure variables;
 ## they will be dropped</code></pre>
-<pre class="r"><code>## Tidy data for loneliness
-overall_3 = wave_1_data %&gt;%  
+<pre class="r"><code>## Tidy data for loneliness, including sex, marital status, and ID
+overall_loneliness = wave_1_data %&gt;%  
   merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
   merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
   select(MHUCLA_LONELINESS_1, MHUCLA_LONELINESS_2, MHUCLA_LONELINESS_3, SEX.x, CS006, ID) %&gt;% 
   gather(wave, loneliness_value, MHUCLA_LONELINESS_1:MHUCLA_LONELINESS_3) %&gt;% 
   clean_wave()
-## Tidy data for ICD codes
-overall_4 = wave_1_data %&gt;%  
+
+## Tidy data for ICD codes,including sex, marital status, and ID 
+overall_icd = wave_1_data %&gt;%  
   merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
   select(ICD10_01:ICD10_16, ID, SEX.x, CS006) %&gt;% 
   mutate(SEX = SEX.x) %&gt;% 
@@ -387,9 +434,9 @@ overall_4 = wave_1_data %&gt;%
   select(-SEX.x, -SEX, -CS006)
   
 ## Combine data for self-report physical and mental health, apply functions to create consistent, clean labels for variables
-final = overall_1 %&gt;% 
-  merge(overall_2, by = c(&quot;ID&quot;, &quot;wave&quot;)) %&gt;% 
-  merge(overall_3, by = c(&quot;ID&quot;, &quot;wave&quot;)) %&gt;% 
+phys_ment_lone = overall_physical %&gt;% 
+  merge(overall_mental, by = c(&quot;ID&quot;, &quot;wave&quot;)) %&gt;% 
+  merge(overall_loneliness, by = c(&quot;ID&quot;, &quot;wave&quot;)) %&gt;% 
   select(ID, wave, SEX.x, CS006.x, physical_value, mental_value, loneliness_value) %&gt;% 
   clean_physical() %&gt;% 
   clean_mental() %&gt;% 
@@ -402,7 +449,7 @@ final = overall_1 %&gt;%
   select(-physical_value, -mental_value, -SEX, -CS006, -SEX.x, -CS006.x)
 
 ## Prepare data for loneliness plot
-plot_3 = 
+lone_data = 
   wave_1_data %&gt;% 
   merge(wave_2_data, by = &quot;ID&quot;) %&gt;% 
   merge(wave_3_data, by = &quot;ID&quot;) %&gt;% 
@@ -413,8 +460,8 @@ plot_3 =
   clean_sex() %&gt;% 
   clean_marital() %&gt;% 
   select(-SEX.x, -CS006, -SEX)</code></pre>
-<p>Data Source: The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <a href="https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726" class="uri">https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726</a> . We did not delete any participants from our dataset to ensure completeness of our code, in case a participant who is null right now responds in a future wave. Our sample size for wave 1 was n =8504, for wave 2 n = 7207, for wave 3 n = 6400.</p>
-<p>Exploratory Analysis - creating graphs</p>
+<p><b>Data Source:</b> The data was obtained from The Irish Longitudinal Study on Ageing (TILDA) Waves 1, 2, and 3. Here is a link to the dataset <a href="https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726" class="uri">https://www.icpsr.umich.edu/icpsrweb/ICPSR/series/726</a> . We did not delete any participants from our dataset to ensure completeness of our code, in case a participant who is null right now responds in a future wave. Our sample size for wave 1 was n =8504, for wave 2 n = 7207, for wave 3 n = 6400.</p>
+<p><b>Exploratory Analysis - creating graphs</b></p>
 <p>Graph 1:</p>
 <pre class="r"><code>countplot = wave_3_data %&gt;% 
   select(PH001, PH002, SEX) %&gt;% 
@@ -443,7 +490,7 @@ plot_3 =
         ) %&gt;% 
   select(-PH001, -PH002, -SEX)
 
-plot_1 = countplot %&gt;%
+phys_ment_plot = countplot %&gt;%
   ggplot(aes(x = physical, y = mental, color = ..n..)) +
   geom_count(alpha = 0.8) +
   labs(
@@ -456,13 +503,13 @@ plot_1 = countplot %&gt;%
         axis.text.x = element_text(angle = 40, hjust = 1))</code></pre>
 <p>For the first plot, we cleaned the values under the variables of interest using the <code>case_when</code> function and used the <code>factor</code> function to level categorical ordinal variables, physical health and mental health, in decreasing order. We chose not to delete null values from our dataset in case participants chose to respond in future waves. We then created a scatter plot showing the concentration of responses according to dot size. We used <code>shiny</code> to stratify this plot by sex, marital status, and across waves to observe trends over time.</p>
 <p>Chi-squared test of independence:</p>
-<pre class="r"><code>final =
-  final %&gt;%
+<pre class="r"><code>phys_ment_lone =
+  phys_ment_lone %&gt;%
   filter(wave == 3)
  
-chi = chisq.test(table(final$mental, final$physical))</code></pre>
-<pre><code>## Warning in chisq.test(table(final$mental, final$physical)): Chi-squared
-## approximation may be incorrect</code></pre>
+chi = chisq.test(table(phys_ment_lone$mental, phys_ment_lone$physical))</code></pre>
+<pre><code>## Warning in chisq.test(table(phys_ment_lone$mental, phys_ment_lone
+## $physical)): Chi-squared approximation may be incorrect</code></pre>
 <pre class="r"><code>observed = chi$observed %&gt;%
   knitr::kable()
  
@@ -818,18 +865,19 @@ baseline_10 = baseline_loneliness_10 %&gt;%
   ggplot(aes(x = wave, y = loneliness_value)) +
     geom_smooth(se = FALSE) + ylim(0, 10)
 
-plot_3 = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
+lone_data = (baseline_0 + baseline_1 + baseline_2 + baseline_3 + baseline_4 + baseline_5 + baseline_6 + baseline_7 + baseline_8 + baseline_9)</code></pre>
 <p>For the second plot we renamed the loneliness variable so that it was consistent across the three waves and then merged the three waves of data by ID. Again, we used <code>case_when</code> to clean the values under the variables of interest. We then created a spaghetti plot to show the change in loneliness across waves. A large change me made once we saw this chaotic plot was that we decided to depict the different trends across waves for each baseline loneliness value (scale from 1-10). Although there is no one at loneliness 10 we kept this in our code for future replication of this code, if a participant were to respond as 10. We created separate datasets for each loneliness value at baseline and then at each wave thereafter. The resulting spaghetti plot shows the trend across waves in across loneliness values. The use of <code>shiny</code> allowed us to further stratify by sex and marital status. We also incorporated a color grid to depict the different trends.</p>
+</div>
 <div id="analysis" class="section level3">
 <h3>Analysis</h3>
 <p>Chi-Square Test:</p>
-<pre class="r"><code>final =
-  final %&gt;%
+<pre class="r"><code>phys_ment_lone =
+  phys_ment_lone %&gt;%
   filter(wave == 3)
  
-chi = chisq.test(table(final$mental, final$physical))</code></pre>
-<pre><code>## Warning in chisq.test(table(final$mental, final$physical)): Chi-squared
-## approximation may be incorrect</code></pre>
+chi = chisq.test(table(phys_ment_lone$mental, phys_ment_lone$physical))</code></pre>
+<pre><code>## Warning in chisq.test(table(phys_ment_lone$mental, phys_ment_lone
+## $physical)): Chi-squared approximation may be incorrect</code></pre>
 <pre class="r"><code>observed = chi$observed %&gt;%
   knitr::kable()
  
