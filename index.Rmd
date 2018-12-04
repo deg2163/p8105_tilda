@@ -23,13 +23,10 @@ Overview:
 </center>
 Quality of Life is the standard of health and happiness that an individual experiences throughout their lifetime. According to the Centers for Disease Control and Prevention, quality of life is a multidimensional public health topic that assesses factors of physical health, mental health, and sociodemographic predictors. Rather than studying rates of morbidity or mortality our motivation for this project was to use our contextual and technical knowledge in epidemiology and biostatistics to study indicators and outcomes that are a proxy for the measure of quality of life among an Irish cohort.
 
-<<<<<<< HEAD
 This project is a broad examination of the implications of aging on physical and mental health. The inspiration for this analysis was drawn from the group members research interests including depression, aging, and chronic diseases. The [American Psychological Association](https://www.apa.org/helpcenter/aging-depression.aspx ) was used as a reference for the variables we chose to analyze.
 
-To access a screencast overview of our project on this website please see the YouTube tab.
-=======
-To access a screencast overview of our project on this website please see click the [video](www.youtube.com) tab above.
->>>>>>> c7e294ffd56c8c9868bf953e7ea8ed82ec2e80bb
+To access a screencast overview of our project on this website please click the [video](www.youtube.com) tab above.
+
 <br>
 <br>
 <center>
@@ -37,7 +34,7 @@ To access a screencast overview of our project on this website please see click 
 Data sources:
 </b>
 </center>
-The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follow this link to the [Dataset](https://deg2163.github.io/p8105_tilda.github.io/about.html) tab to learn more.
+The Irish Longitudinal Study on Ageing (TILDA) was used for this analysis. Follow this link to the [About](https://deg2163.github.io/p8105_tilda.github.io/about.html) tab to learn more.
 <br>
 <br>
 <center>
