@@ -28,7 +28,6 @@ This project is a broad examination of the implications of aging on physical and
 To access a screencast overview of our project on this website please click the [video](www.youtube.com) tab above.
 
 <br>
-<br>
 <center>
 <b>
 Data sources:
