@@ -51,8 +51,6 @@ select = dplyr::select
 Download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path.
 ```{r load_data}
 
-
-
 load("./data/Wave 1/DS0001/34315-0001-Data.rda")
 load("./data/Wave 2/DS0001/37105-0001-Data.rda")
 load("./data/Wave 3/DS0001/37106-0001-Data.rda")
@@ -379,7 +377,9 @@ results = chi %>%
 
 results
 ```
-First, we checked to make sure the expected cell counts were greater than 5 in at least 20% of the cells. Then we ran code to calculate the chi-squared test statistic in order to determine if there is an association between mental health and physical heatlh. We then ran a chi-squared test between the association of mental health and physical health. At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health (X^2 = 4078.847 , p-value = 0).
+<br>
+<br>
+First, we checked to make sure the expected cell counts were greater than 5 in at least 20% of the cells. Then we ran code to calculate the chi-squared test statistic in order to determine if there is an association between mental health and physical heatlh. We then ran a chi-squared test between the association of mental health and physical health. At the 5% level of significance we have sufficient evidence to conclude that there is an association between mental health and physical health, X^2 = 4078.847 , p-value = 0.
 
 
 
