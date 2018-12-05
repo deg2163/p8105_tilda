@@ -15,9 +15,15 @@ library(plotly)
 library(dplyr)
 library(tidyverse)
 library(MASS)
+library(googledrive)
 
-## 
+## The MASS package also has a select function, so we need to specify that when we call the select function, we are referring to select from the dplyr package.
 select = dplyr::select
+
+
+drive_download(as_id("https://drive.google.com/open?id=12qBx-FbPIKAA_aQr5JoMR9ehvpmRrbWN"), path = "./34315-0001-Data.rda", overwrite = TRUE)
+drive_download(as_id("https://drive.google.com/open?id=1BLislRpc8OTvtYEw8118WKKLkVuHhV6C"), path = "./37105-0001-Data.rda", overwrite = TRUE)
+drive_download(as_id("https://drive.google.com/open?id=1gj53tdb5RHhX5NPDv2eyBqfgEBPAc42G"), path = "./37106-0001-Data.rda", overwrite = TRUE)
 
 load("./34315-0001-Data.rda")
 load("./37105-0001-Data.rda")
