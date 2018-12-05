@@ -1,0 +1,26 @@
+---
+title: "data"
+author: "Christopher Crowe"
+date: "December 5, 2018"
+output: html_document
+---
+
+```{r}
+download.file(url = "https://pcms.icpsr.umich.edu/pcms/performDownload/7cba3e31-9afe-424b-8b63-b1d32c46bd21", destfile = "./shiny/34315-0001-Data.rda")
+
+download.file(url = "https://pcms.icpsr.umich.edu/pcms/performDownload/8a56fdf6-d4b1-493f-bfa3-69a29c8cea42", destfile = "./shiny/37105-0001-Data.rda")
+
+download.file(url = "https://pcms.icpsr.umich.edu/pcms/performDownload/cd7a7b6b-f637-4c1e-a7a4-77e446d74089", destfile = "./shiny/37106-0001-Data.rda")
+
+load("./34315-0001-Data.rda")
+load("./37105-0001-Data.rda")
+load("./37106-0001-Data.rda")
+
+wave_1_data = da34315.0001
+wave_2_data = da37105.0001
+wave_3_data = da37106.0001
+
+```
+
+
+
