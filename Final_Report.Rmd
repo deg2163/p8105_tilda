@@ -1,7 +1,6 @@
 ---
 title: "Final Report"
 date: "December 6th, 2018"
-output: github_document
 ---
 
 <br>
