@@ -53,7 +53,7 @@ select = dplyr::select
 <br>
 Download the data from Google Drive to your local R environment (this requires you to sign into your Google account) then reference the data from a local path. The R console may provide you with a link to authenticate your Google account. If so, copy and paste this link into your browser and log into your Google account. After logging in, Google may successfully link to R and you can continue working in R as usual. However, after loggin in, Google may provide you with a authentication code. If so, copy and paste this code into your R console when prompted and continue working in R as usual.
 
-```{r load_data, collapse = TRUE}
+```{r load_data, message = FALSE}
 
 ## Save the data within the shiny folder for use in shiny
 drive_download(as_id("https://drive.google.com/open?id=12qBx-FbPIKAA_aQr5JoMR9ehvpmRrbWN"), path = "./shiny/34315-0001-Data.rda", overwrite = TRUE)
